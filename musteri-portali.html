@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Müşteri Takip Portalı — Vize Başvurusu Takibi | Ahoraclario</title>
+<meta name="description" content="Vize müşterileriniz başvurularının hangi aşamada olduğunu, randevu tarihini ve sorumlu kişiyi kendi takip linklerinden görsün. Aşama değişince otomatik e-posta, giriş gerektirmeyen güvenli link.">
+<link rel="canonical" href="https://ahoraclario.github.io/musteri-portali.html">
+<meta name="theme-color" content="#020B14">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Müşteri Takip Portalı — Ahoraclario">
+<meta property="og:description" content="Müşteriniz sormadan bilsin: başvuru durumu, randevu ve sorumlu kişi tek linkte.">
+<meta property="og:url" content="https://ahoraclario.github.io/musteri-portali.html">
+<meta property="og:locale" content="tr_TR">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%2339D98A'/%3E%3Cstop offset='.55' stop-color='%2322D3EE'/%3E%3Cstop offset='1' stop-color='%232563EB'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M21 4h10l19 44H39.5l-4-9.8H16.5l-4 9.8H2L21 4Zm5 11.5L19.8 30h12.4L26 15.5Z' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <div class="bg-glow"></div><div class="bg-grid"></div>
+  <div class="arc arc-tl"><i></i></div><div class="arc arc-br"><i></i></div>
+</div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand" aria-label="Ahoraclario ana sayfa">
+      <svg viewBox="0 0 52 52" aria-hidden="true"><defs><linearGradient id="bA" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#39D98A"/><stop offset=".55" stop-color="#22D3EE"/><stop offset="1" stop-color="#2563EB"/></linearGradient></defs><path d="M21 4h10l19 44H39.5l-4-9.8H16.5l-4 9.8H2L21 4Zm5 11.5L19.8 30h12.4L26 15.5Z" fill="url(#bA)"/><path d="M2 48 21 4h5L8.5 48Z" fill="#39D98A" opacity=".55"/></svg>
+      Ahoraclario
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Ana menü">
+      <a href="index.html#akis">Nasıl İşler</a>
+      <a href="index.html#ozellikler">Özellikler</a>
+      <a href="index.html#muhasebe">Muhasebe</a>
+      <a href="index.html#referans">Referans</a>
+      <a href="index.html#iletisim" class="btn btn-primary btn-sm">Ücretsiz Demo İste</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Menüyü aç" aria-expanded="false" aria-controls="navLinks">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+<section class="page-hero" aria-labelledby="h-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">Ana sayfa</a> / <a href="index.html#ozellikler">Özellikler</a> / Müşteri Takip Portalı</div>
+    <span class="eyebrow"><span class="dot"></span>Müşteri Takip Portalı</span>
+    <h1 id="h-hero">Müşteriniz <span class="grad">sormadan bilsin</span>.</h1>
+    <p class="lead">"Başvurum ne durumda?" telefonlarına son. Her müşteriniz başvurusunun hangi aşamada olduğunu, randevu tarihini ve dosyasıyla kimin ilgilendiğini kendi özel linkinden anlık olarak görür.</p>
+    <div class="hero-ctas">
+      <a href="#canli" class="btn btn-primary">Nasıl çalıştığını izle <span aria-hidden="true">↓</span></a>
+      <a href="index.html#iletisim" class="btn btn-ghost">Demo İste</a>
+    </div>
+  </div>
+</section>
+
+<section id="canli" style="padding-top:40px" aria-labelledby="h-demo">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Canlı örnek</div>
+      <h2 id="h-demo">Ekibiniz güncelliyor, müşteriniz anında görüyor</h2>
+      <p>Evrak sorumlunuz randevuyu sisteme girdiği an müşterinize bilgilendirme maili gider ve portalı kendiliğinden güncellenir. Kimsenin ayrıca mesaj atmasına gerek kalmaz.</p>
+    </div>
+
+    <div class="demo reveal" id="demo">
+      <div class="demo-steps" role="tablist" aria-label="Demo adımları">
+        <button class="dstep" data-s="0" role="tab"><span class="n">1</span>Ekip aşamayı günceller<span class="bar"></span></button>
+        <button class="dstep" data-s="1" role="tab"><span class="n">2</span>Müşteriye e-posta gider<span class="bar"></span></button>
+        <button class="dstep" data-s="2" role="tab"><span class="n">3</span>Portal anında güncellenir<span class="bar"></span></button>
+      </div>
+
+      <div class="stage">
+        <!-- CRM: müşteri dosyası -->
+        <div class="win" id="crmWin" aria-label="CRM müşteri dosyası (örnek)">
+          <div class="win-top"><i></i><i></i><i></i><b>Müşteri Dosyası</b></div>
+          <div class="win-body">
+            <div class="file-h"><div><b>Murat Aksoy</b><small>VZ-2026-4168 · 🇳🇱 Hollanda · Schengen Turistik</small></div><span class="st c" style="background:#CFFAFE;color:#0E7490">Evrak</span></div>
+            <div class="ffield" id="fStage"><label>AŞAMA</label><div class="v" id="vStage"><span class="st a" style="background:#FEF3C7;color:#B45309">Randevu Aranıyor</span></div></div>
+            <div class="ffield" id="fDate"><label>RANDEVU TARİHİ</label><div class="v" id="vDate" style="color:#9CA3AF;font-weight:500">—</div></div>
+            <div class="ffield" id="fCenter"><label>BAŞVURU MERKEZİ</label><div class="v" id="vCenter" style="color:#9CA3AF;font-weight:500">—</div></div>
+            <div class="ffield"><label>BİRLİKTE BAŞVURANLAR</label><div class="v">Ayşe Aksoy <span style="color:#9CA3AF;font-weight:500">· Eşi</span></div></div>
+            <div style="height:30px"></div>
+          </div>
+          <div class="w-toast" id="crmToast">✓ Aşama güncellendi · müşteriye e-posta gönderildi</div>
+          <svg class="cursor" id="cursor" viewBox="0 0 24 24" style="left:88%;top:88%"><path d="M4 2l16 9-7 2-3 7z" fill="#111827" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- E-posta -->
+        <div class="mail" id="mail" aria-label="Müşteriye giden bilgilendirme e-postası (örnek)">
+          <div class="from"><span>F</span><div><b>Firmanız Vize Danışmanlık</b><small>Kime: murat.aksoy@…</small></div></div>
+          <h5>Randevunuz alındı ✈️</h5>
+          <p>Sayın Murat Aksoy, Hollanda vize başvurunuz için randevunuz <b>14 Ekim 2026, 09:30</b> olarak alınmıştır.</p>
+          <div class="box"><b>🔗 Başvurunuzu Takip Edin</b><span class="btnm">Başvurumu Takip Et →</span></div>
+        </div>
+
+        <!-- Portal -->
+        <div class="phone2" aria-label="Müşteri portalı telefon görünümü (örnek)">
+          <div class="scr">
+            <div class="p-head"><small>Başvuru Takibi · VZ-2026-4168</small><b>Murat Aksoy</b><div class="meta">🇳🇱 Hollanda · Schengen Turistik</div></div>
+            <div class="p-body">
+              <div class="p-card">
+                <h6>Başvuru durumu</h6>
+                <div class="ps done"><i>✓</i><div><b>Başvuru alındı</b></div></div>
+                <div class="ps done"><i>✓</i><div><b>Ödeme alındı</b></div></div>
+                <div class="ps done"><i>✓</i><div><b>Evraklar hazırlandı</b></div></div>
+                <div class="ps now" id="psAppt"><i>•</i><div><b id="psApptT">Randevu aranıyor</b><span id="psApptS">Uygun tarih takip ediliyor</span></div></div>
+                <div class="ps todo" id="psApply"><i></i><div><b>Başvuru yapıldı</b></div></div>
+                <div class="ps todo"><i></i><div><b>Sonuç</b></div></div>
+              </div>
+              <div class="p-card appt" id="pAppt"><div class="d">14<small>EKİ</small></div><div><b>Randevu · 09:30</b><span>İstanbul Başvuru Merkezi</span></div></div>
+              <div class="p-card"><h6>Dosyanızla ilgilenen</h6>
+                <div class="rep-row"><div class="av">SD</div><div><b>Selin Demir</b><span>Evrak Sorumlusu</span></div><div class="call"><em>📞</em><em>💬</em></div></div>
+              </div>
+              <div class="upd" id="pUpd">Son güncelleme: 2 gün önce</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-ctrl"><button id="replay" type="button">↻ Baştan oynat</button><button id="pause" type="button">❚❚ Durdur</button></div>
+    </div>
+    <p class="demo-note" style="text-align:center;margin-top:14px">Örnek görünüm · isimler ve bilgiler temsilidir</p>
+  </div>
+</section>
+
+<section aria-labelledby="h-what">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Portalda neler var?</div>
+      <h2 id="h-what">Müşterinizin merak ettiği her şey, tek sayfada</h2>
+    </div>
+
+    <div class="feat-row reveal">
+      <div class="fr-visual"><div class="zoom">
+        <div class="ps done"><i>✓</i><div><b>Başvuru alındı</b><span>2 Eylül</span></div></div>
+        <div class="ps done"><i>✓</i><div><b>Ödeme alındı</b><span>4 Eylül</span></div></div>
+        <div class="ps done"><i>✓</i><div><b>Evraklar hazırlandı</b><span>19 Eylül</span></div></div>
+        <div class="ps now"><i>•</i><div><b>Randevu alındı</b><span>14 Ekim · 09:30</span></div></div>
+        <div class="ps todo"><i></i><div><b>Başvuru yapıldı</b></div></div>
+        <div class="ps todo"><i></i><div><b>Sonuç</b></div></div>
+      </div></div>
+      <div>
+        <h3>Adım adım ilerleme</h3>
+        <p>Başvurunun hangi aşamada olduğu, tamamlanan ve sıradaki adımlar açıkça görünür. İç süreçleriniz (satış, evrak, randevu) müşterinin anlayacağı sade adımlara çevrilir.</p>
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span>Dosya iptal edilse bile müşteri, <b>hangi adıma kadar ilerlendiğini</b> doğru görür.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span>Sayfada her zaman <b>son güncelleme zamanı</b> yazar.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="feat-row rev reveal">
+      <div class="fr-visual"><div class="zoom">
+        <div class="appt show"><div class="d">14<small>EKİ</small></div><div><b>Randevu · 09:30</b><span>İstanbul Başvuru Merkezi</span></div></div>
+        <div style="margin-top:12px;padding-top:12px;border-top:1px solid #F0F2F6;font-size:11.5px;color:#4B5563">📎 Randevudan 7 gün önce gerekli belgelerin listesi e-postanıza gönderilecek.</div>
+      </div></div>
+      <div>
+        <h3>Randevu bilgisi her an elinde</h3>
+        <p>Randevu tarihi, saati ve başvuru merkezi portalda görünür. Müşteri tarihi unutmaz, "randevum ne zamandı?" diye aramaz.</p>
+        <p>Randevudan 7 gün önce, ülkesine ve vize türüne uygun belgeler ekli hatırlatma maili de otomatik gider.</p>
+      </div>
+    </div>
+
+    <div class="feat-row reveal">
+      <div class="fr-visual"><div class="zoom">
+        <div style="font-size:10.5px;letter-spacing:.05em;color:#9CA3AF;font-weight:700;margin-bottom:10px">DOSYANIZLA İLGİLENEN</div>
+        <div class="rep-row"><div class="av">SD</div><div><b>Selin Demir</b><span>Evrak Sorumlusu</span></div><div class="call"><em>📞</em><em>💬</em></div></div>
+        <div style="height:12px"></div>
+        <div class="rep-row"><div class="av" style="background:#7C3AED">KA</div><div><b>Kaan Aydın</b><span>Operasyon Yöneticisi</span></div><div class="call"><em>📞</em></div></div>
+      </div></div>
+      <div>
+        <h3>Doğru kişiye tek dokunuşla ulaşır</h3>
+        <p>Portal, dosyanın o an hangi departmanda olduğuna göre <b style="color:var(--text)">o aşamanın sorumlusunu</b> gösterir: satış aşamasında temsilci, evrak aşamasında evrak sorumlusu, randevu aşamasında randevu sorumlusu.</p>
+        <p>Müşteri yanlış kişiyi aramaz; sorusu doğrudan ilgili çalışana gider. Operasyon yöneticiniz de her zaman listede görünür.</p>
+      </div>
+    </div>
+
+    <div class="feat-row rev reveal">
+      <div class="fr-visual"><div class="zoom">
+        <div style="font-size:10.5px;letter-spacing:.05em;color:#9CA3AF;font-weight:700;margin-bottom:10px">SİZİNLE BİRLİKTE BAŞVURANLAR</div>
+        <div class="rep-row" style="margin-bottom:10px"><div class="av" style="background:#EA580C">AA</div><div><b>Ayşe Aksoy</b><span>Eşi</span></div></div>
+        <div class="rep-row"><div class="av" style="background:#0EA5E9">DA</div><div><b>Deniz Aksoy</b><span>Çocuğu</span></div></div>
+      </div></div>
+      <div>
+        <h3>Aile başvuruları tek linkte</h3>
+        <p>Eş, çocuk veya refakatçiyle yapılan başvurularda, birlikte başvuranlar portalda listelenir. Aile tek linkten tüm süreci takip eder.</p>
+        <p>Gizlilik için birlikte başvuranların sadece <b style="color:var(--text)">adı ve yakınlığı</b> gösterilir; başka hiçbir kişisel bilgi paylaşılmaz.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Güvenli ve zahmetsiz</div>
+      <h2 id="h-how">Şifre yok, uygulama yok, kurulum yok</h2>
+    </div>
+    <div class="grid3">
+      <div class="card reveal" style="--c:#22D3EE"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></div>
+        <h3>Link otomatik oluşur</h3><p>Her müşteriye özel, tahmin edilemeyen bir link üretilir ve aşama değişikliği maillerine kendiliğinden eklenir. Siz ayrıca bir şey göndermezsiniz.</p></div>
+      <div class="card reveal" style="--c:#3B82F6"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>Süreli ve güvenli</h3><p>Link 90 gün geçerlidir; süresi dolunca kendiliğinden kapanır. Müşteri CRM'inize değil, sadece kendi başvurusunun özetine erişir.</p></div>
+      <div class="card reveal" style="--c:#39D98A"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+        <h3>Türkçe ve İngilizce</h3><p>Bilgilendirme mailleri Türkçe ve İngilizce gider; yabancı uyruklu müşterileriniz de süreci rahatça takip eder.</p></div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-gain">
+  <div class="wrap split">
+    <div class="reveal">
+      <div class="sec-head" style="text-align:left;margin:0"><div class="kicker">Firmanıza kazancı</div></div>
+      <h2 id="h-gain">Daha az telefon, <span class="grad">daha çok güven</span></h2>
+      <p class="lead">Müşteri bilgilendirmesi, vize ofislerinde en çok vakit alan işlerden biri. Portal bu işi sizin yerinize yapar.</p>
+      <ul class="checks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span><b>Ekibiniz işine odaklanır:</b> durum sormak için gelen aramalar azalır.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span><b>Profesyonel görünürsünüz:</b> müşteriniz büyük bir firmayla çalıştığını hisseder.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span><b>Tavsiye getirir:</b> süreci şeffaf yaşayan müşteri sizi çevresine önerir.</span></li>
+      </ul>
+    </div>
+    <div class="cta-band reveal" style="margin:0;text-align:left;padding:36px">
+      <h2 style="font-size:28px">Portalı canlı görmek ister misiniz?</h2>
+      <p style="margin:12px 0 22px">Demo görüşmesinde gerçek bir müşteri linki üzerinden portalı birlikte inceleyelim.</p>
+      <a href="index.html#iletisim" class="btn btn-primary">Ücretsiz Demo İste <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-more" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:30px">
+      <div class="kicker">Diğer özellikler</div>
+      <h2 id="h-more" style="font-size:clamp(24px,2.6vw,32px)">Sistemin geri kalanını keşfedin</h2>
+    </div>
+    <div class="more-grid reveal">
+      <a href="index.html#akis"><span>🧭</span><div>Departmanlar arası akış<small>Satış → Evrak → Randevu</small></div></a>
+      <a href="index.html#ozellikler"><span>📅</span><div>Randevu takvimi<small>Tüm randevular tek ekranda</small></div></a>
+      <a href="index.html#muhasebe"><span>💰</span><div>Muhasebe<small>Tahsilat, gider, net kâr</small></div></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="font-size:16px;color:var(--text)">
+      <svg viewBox="0 0 52 52" style="width:26px;height:26px" aria-hidden="true"><path d="M21 4h10l19 44H39.5l-4-9.8H16.5l-4 9.8H2L21 4Zm5 11.5L19.8 30h12.4L26 15.5Z" fill="url(#bA)"/></svg>
+      Ahoraclario
+    </div>
+    <div class="links">
+      <a href="index.html#akis">Nasıl İşler</a><a href="index.html#ozellikler">Özellikler</a><a href="index.html#muhasebe">Muhasebe</a><a href="index.html#iletisim">İletişim</a>
+    </div>
+    <div>© <span id="year">2026</span> Ahoraclario</div>
+  </div>
+</footer>
+
+<script>
+// Menü (mobil), kaydırınca üst çubuk, görünür olunca giriş animasyonu
+const nav = document.getElementById('nav'), menuBtn = document.getElementById('menuBtn'), links = document.getElementById('navLinks');
+menuBtn.addEventListener('click', () => { const o = links.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', o); });
+links.addEventListener('click', e => { if(e.target.closest('a')){ links.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); } });
+const onScroll = () => nav.classList.toggle('scrolled', scrollY > 10); addEventListener('scroll', onScroll, { passive:true }); onScroll();
+if('IntersectionObserver' in window){
+  const io = new IntersectionObserver(es => es.forEach(x => { if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } }), { threshold:.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+} else document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<script>
+// ── Canlı demo: aşama güncelle → e-posta → portal ──
+(() => {
+  const $ = id => document.getElementById(id);
+  const steps = [...document.querySelectorAll('.dstep')];
+  const win = $('crmWin'), cur = $('cursor');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let timers = [], paused = false, current = -1, started = false;
+  const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+  const clear = () => { timers.forEach(clearTimeout); timers = []; };
+  const moveCursor = (el, dx = .7, dy = .6) => {
+    const w = win.getBoundingClientRect(), r = el.getBoundingClientRect();
+    cur.style.left = (r.left - w.left + r.width * dx) + 'px';
+    cur.style.top = (r.top - w.top + r.height * dy) + 'px';
+  };
+  const click = () => { cur.classList.add('click'); later(() => cur.classList.remove('click'), 160); };
+  const type = (el, text, ms, done) => {
+    el.style.color = '#111827'; el.style.fontWeight = '600'; el.textContent = ''; el.classList.add('typing');
+    let i = 0; const tick = () => { el.textContent = text.slice(0, ++i); if(i < text.length) later(tick, ms); else { el.classList.remove('typing'); done && done(); } };
+    tick();
+  };
+  function reset(){
+    $('vStage').innerHTML = '<span class="st a" style="background:#FEF3C7;color:#B45309">Randevu Aranıyor</span>';
+    ['vDate','vCenter'].forEach(id => { const e = $(id); e.textContent = '—'; e.style.color = '#9CA3AF'; e.style.fontWeight = '500'; e.classList.remove('typing'); });
+    ['fStage','fDate','fCenter'].forEach(id => $(id).classList.remove('hl'));
+    $('crmToast').classList.remove('show'); $('mail').classList.remove('show');
+    $('psAppt').className = 'ps now'; $('psApptT').textContent = 'Randevu aranıyor'; $('psApptS').textContent = 'Uygun tarih takip ediliyor';
+    $('pAppt').classList.remove('show'); $('pUpd').textContent = 'Son güncelleme: 2 gün önce'; $('pUpd').classList.remove('flash');
+    cur.style.left = '88%'; cur.style.top = '88%';
+  }
+  function mark(i, dur){
+    steps.forEach((s, k) => { s.classList.toggle('on', k === i); s.classList.toggle('done', k < i); s.setAttribute('aria-selected', k === i); });
+    const b = steps[i].querySelector('.bar'); b.style.animation = 'none'; b.offsetWidth; b.style.animation = ''; steps[i].style.setProperty('--dur', dur + 'ms');
+  }
+  const scenes = [
+    { dur: 5200, run(){                                   // 1) Evrak sorumlusu randevuyu girer
+      reset();
+      later(() => { moveCursor($('fDate')); }, 300);
+      later(() => { click(); $('fDate').classList.add('hl'); type($('vDate'), '14 Ekim 2026 · 09:30', 55); }, 1250);
+      later(() => { $('fDate').classList.remove('hl'); moveCursor($('fCenter')); }, 2600);
+      later(() => { click(); $('fCenter').classList.add('hl'); type($('vCenter'), 'İstanbul Başvuru Merkezi', 40); }, 3300);
+      later(() => { $('fCenter').classList.remove('hl'); moveCursor($('fStage')); }, 4450);
+      later(() => { click(); $('fStage').classList.add('hl'); $('vStage').innerHTML = '<span class="st p" style="background:#EDE9FE;color:#6D28D9">Randevu Alındı</span>'; }, 5000);
+    }},
+    { dur: 2800, run(){                                   // 2) Otomatik e-posta
+      $('fStage').classList.remove('hl'); $('crmToast').classList.add('show');
+      later(() => $('mail').classList.add('show'), 500);
+    }},
+    { dur: 4200, run(){                                   // 3) Portal güncellenir
+      $('crmToast').classList.remove('show');
+      later(() => { $('psAppt').className = 'ps now'; $('psApptT').textContent = 'Randevu alındı'; $('psApptS').textContent = '14 Ekim · 09:30'; }, 300);
+      later(() => $('pAppt').classList.add('show'), 800);
+      later(() => { $('pUpd').textContent = 'Son güncelleme: az önce'; $('pUpd').classList.add('flash'); }, 1100);
+    }},
+  ];
+  function play(i){
+    clear(); current = i; mark(i, scenes[i].dur); scenes[i].run();
+    if(!paused) later(() => play((i + 1) % scenes.length), scenes[i].dur + (i === scenes.length - 1 ? 1800 : 400));
+  }
+  // Doğrudan bir adıma atlarken önceki adımların sonucunu da uygula
+  function jump(i){
+    clear(); reset();
+    if(i >= 1){ $('vDate').textContent = '14 Ekim 2026 · 09:30'; $('vCenter').textContent = 'İstanbul Başvuru Merkezi';
+      ['vDate','vCenter'].forEach(id => { $(id).style.color = '#111827'; $(id).style.fontWeight = '600'; });
+      $('vStage').innerHTML = '<span class="st p" style="background:#EDE9FE;color:#6D28D9">Randevu Alındı</span>'; }
+    if(i >= 2) $('mail').classList.add('show');
+    play(i);
+  }
+  steps.forEach((s, i) => s.addEventListener('click', () => jump(i)));
+  $('replay').addEventListener('click', () => { paused = false; $('pause').textContent = '❚❚ Durdur'; jump(0); });
+  $('pause').addEventListener('click', () => {
+    paused = !paused; $('pause').textContent = paused ? '▶ Devam et' : '❚❚ Durdur';
+    if(!paused) play((current + 1) % scenes.length); else clear();
+  });
+  if(reduce){ jump(2); paused = true; $('pause').textContent = '▶ Devam et'; return; }
+  const start = () => { if(!started){ started = true; play(0); } };
+  if('IntersectionObserver' in window){
+    new IntersectionObserver((es, o) => es.forEach(e => { if(e.isIntersecting){ start(); o.disconnect(); } }), { threshold:.35 }).observe($('demo'));
+  } else start();
+})();
+</script>
+</body>
+</html>
