@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ahoraclario — İşletmenize Özel CRM ve Satış Sistemi</title>
-<meta name="description" content="Ahoraclario, işletmenizin satış sürecine göre özel CRM kurar: müşteri takibi, satış pipeline'ı, otomatik takip görevleri, takvim, e-posta ve WhatsApp, destek talepleri ve raporlar tek ekranda.">
-<meta name="keywords" content="CRM, özel CRM, satış takibi, müşteri takip programı, vize danışmanlığı CRM, satış pipeline, Ahoraclario">
+<title>Vize Danışmanlık CRM'i — Operasyonunuza Özel | Ahoraclario</title>
+<meta name="description" content="Vize danışmanlık firmalarına özel CRM: satış, evrak, randevu ve muhasebe tek sistemde. Müşteri takip portalı, randevu takvimi, otomatik hatırlatma mailleri, tahsilat ve gider takibi. Operasyonunuza göre kurulur.">
+<meta name="keywords" content="vize danışmanlık CRM, vize ofisi programı, vize başvuru takip, vize müşteri takip programı, randevu takip, Schengen başvuru takip, Ahoraclario">
 <link rel="canonical" href="https://ahoraclario.github.io/">
 <meta name="theme-color" content="#020B14">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Ahoraclario — İşletmenize Özel CRM ve Satış Sistemi">
-<meta property="og:description" content="Satış sürecinizi tek ekranda yönetin. Müşteri takibi, pipeline, otomatik takipler, takvim ve raporlar — işletmenize göre kurulur.">
+<meta property="og:title" content="Vize operasyonunuza özel CRM — Ahoraclario">
+<meta property="og:description" content="İlk aramadan konsolosluk sonucuna kadar her dosya tek ekranda. Satış, evrak, randevu ve muhasebe aynı sistemde.">
 <meta property="og:url" content="https://ahoraclario.github.io/">
 <meta property="og:locale" content="tr_TR">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%2339D98A'/%3E%3Cstop offset='.55' stop-color='%2322D3EE'/%3E%3Cstop offset='1' stop-color='%232563EB'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M21 4h10l19 44H39.5l-4-9.8H16.5l-4 9.8H2L21 4Zm5 11.5L19.8 30h12.4L26 15.5Z' fill='url(%23g)'/%3E%3C/svg%3E">
@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"Ahoraclario","url":"https://ahoraclario.github.io/","email":"ahoraclario@gmail.com","description":"İşletmelere özel CRM ve satış sistemleri kurar.","areaServed":"TR"}
+{"@context":"https://schema.org","@type":"Organization","name":"Ahoraclario","url":"https://ahoraclario.github.io/","email":"ahoraclario@gmail.com","description":"Vize danışmanlık firmalarına özel CRM ve operasyon sistemleri kurar.","areaServed":"TR"}
 </script>
 <style>
 :root{
@@ -196,8 +196,104 @@ footer a:hover{color:var(--text)}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} .reveal{opacity:1;transform:none;transition:none} .mcol .c.hl{animation:none} }
 
+
+/* ── v2: vize operasyonu sayfası ek stilleri ── */
+.hero h1{font-size:clamp(34px,4.4vw,56px)}
+/* Ürün ekranı (gerçek arayüz açık renkli) */
+.app{position:relative;border-radius:16px;overflow:hidden;background:#F4F6FA;color:#1F2937;box-shadow:0 40px 90px -20px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.06),0 0 60px rgba(34,211,238,.08);font-size:11px}
+.app-top{display:flex;align-items:center;gap:7px;padding:9px 12px;background:#E9EDF3;border-bottom:1px solid #DCE2EA}
+.app-top i{width:9px;height:9px;border-radius:50%;background:#C9D1DC}
+.app-top b{margin-left:8px;font-weight:500;color:#6B7280;font-size:10.5px}
+.app-body{display:grid;grid-template-columns:118px 1fr;min-height:330px}
+.app-side{background:#fff;border-right:1px solid #E5E9F0;padding:10px 8px}
+.app-logo{display:flex;align-items:center;gap:7px;margin:0 4px 12px}
+.app-logo span{width:22px;height:22px;border-radius:6px;background:#2563EB;color:#fff;display:grid;place-items:center;font-size:11px}
+.app-logo b{font-size:11.5px;color:#111827;line-height:1.1}
+.app-logo small{display:block;font-size:8.5px;color:#9CA3AF;font-weight:500}
+.app-nav div{padding:5px 7px;border-radius:6px;color:#4B5563;font-size:10px;display:flex;justify-content:space-between;align-items:center;margin-bottom:1px}
+.app-nav div.on{background:#EFF4FF;color:#2563EB;font-weight:700}
+.app-nav em{font-style:normal;font-size:8.5px;background:#FEE2E2;color:#DC2626;border-radius:8px;padding:0 5px;font-weight:700}
+.app-nav h5{margin:9px 7px 4px;font-size:8px;letter-spacing:.08em;color:#9CA3AF}
+.app-main{padding:12px 14px;overflow:hidden}
+.app-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.app-h b{font-size:13px;color:#111827}
+.app-h span{background:#2563EB;color:#fff;border-radius:6px;padding:4px 9px;font-weight:700;font-size:9.5px}
+.app-tbl{background:#fff;border:1px solid #E5E9F0;border-radius:9px;overflow:hidden}
+.app-tr{display:grid;grid-template-columns:66px minmax(72px,1fr) 78px 98px 58px;gap:6px;align-items:center;padding:7px 10px;border-bottom:1px solid #F0F2F6;font-size:10px}
+.app-tr:last-child{border-bottom:0}
+.app-tr.hd{font-size:8.5px;font-weight:700;letter-spacing:.05em;color:#9CA3AF;background:#FAFBFC}
+.app-tr .fn{font-family:ui-monospace,Menlo,Consolas,monospace;color:#9CA3AF;font-size:9px}
+.app-tr b{color:#111827;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-tr > span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.st{display:inline-block;padding:2px 7px;border-radius:5px;font-weight:700;font-size:9px;white-space:nowrap}
+.st.g{background:#DCFCE7;color:#15803D}.st.b{background:#DBEAFE;color:#1D4ED8}.st.a{background:#FEF3C7;color:#B45309}.st.p{background:#EDE9FE;color:#6D28D9}.st.c{background:#CFFAFE;color:#0E7490}
+.rep{display:flex;align-items:center;gap:4px;color:#4B5563}
+.rep i{width:15px;height:15px;border-radius:50%;display:grid;place-items:center;color:#fff;font-style:normal;font-size:7px;font-weight:700}
+/* Müşteri portalı telefon */
+.phone{position:absolute;right:-26px;bottom:-34px;width:176px;border-radius:24px;padding:7px;background:#0B1623;box-shadow:0 30px 60px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08)}
+.phone-in{border-radius:18px;background:#fff;color:#1F2937;padding:12px 11px 14px;font-size:9.5px}
+.phone-in h6{margin:0 0 2px;font-size:11px;color:#111827}
+.phone-in small{color:#6B7280;font-size:8.5px}
+.pstep{display:flex;gap:7px;align-items:flex-start;margin-top:8px}
+.pstep i{flex-shrink:0;width:14px;height:14px;border-radius:50%;background:#E5E7EB;display:grid;place-items:center;font-style:normal;font-size:8px;color:#fff;margin-top:1px}
+.pstep.done i{background:#22C55E}.pstep.now i{background:#2563EB;box-shadow:0 0 0 3px #DBEAFE}
+.pstep b{display:block;font-size:9.5px;color:#111827}
+.pstep span{color:#6B7280;font-size:8.5px}
+.pstep.todo b{color:#9CA3AF}
+.hero-visual{position:relative;margin-right:26px}
+
+/* Departman akışı */
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative}
+.lane{position:relative;border-radius:18px;padding:24px;background:rgba(8,25,42,.72);border:1px solid var(--border2)}
+.lane::before{content:'';position:absolute;inset:0 0 auto 0;height:3px;border-radius:18px 18px 0 0;background:var(--lc)}
+.lane-h{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.lane-h .ficon{margin:0;--c:var(--lc)}
+.lane h3{font-size:18.5px}
+.lane .who{color:var(--muted);font-size:14px;margin-bottom:16px}
+.stages{display:flex;flex-direction:column;gap:7px}
+.stages span{display:flex;align-items:center;gap:9px;font-size:14px;color:#C9D6E3;padding:8px 11px;border-radius:9px;background:rgba(11,32,51,.8);border:1px solid var(--border2)}
+.stages span::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--lc);flex-shrink:0}
+.handoff{margin-top:16px;font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:flex-start}
+.handoff b{color:var(--text)}
+.flow-arrow{position:absolute;top:50%;width:26px;height:26px;border-radius:50%;background:#0B2236;border:1px solid var(--border);display:grid;place-items:center;color:var(--cyan);z-index:2;font-size:13px}
+.flow-arrow.a1{left:calc(33.33% - 13px)}.flow-arrow.a2{left:calc(66.66% - 13px)}
+
+/* Muhasebe vitrini */
+.money{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.mcard{background:#fff;color:#1F2937;border-radius:12px;padding:14px;border-top:3px solid var(--mc)}
+.mcard b{display:block;font-size:19px;color:var(--mc);letter-spacing:-.02em}
+.mcard small{color:#6B7280;font-size:11px}
+.mtable{margin-top:10px;background:#fff;border-radius:12px;overflow:hidden;color:#1F2937;font-size:11.5px}
+.mtable div{display:grid;grid-template-columns:1.2fr 1fr 1fr 1.2fr;padding:8px 14px;border-bottom:1px solid #F0F2F6;align-items:center}
+.mtable div:first-child{font-size:9.5px;font-weight:700;letter-spacing:.06em;color:#9CA3AF;background:#FAFBFC}
+.mtable .bar{height:6px;border-radius:4px;background:#16A34A}
+.demo-note{font-size:12px;color:var(--faint);margin-top:10px;text-align:right}
+
+/* Referans */
+.ref{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;border-radius:24px;padding:44px;border:1px solid var(--border);
+  background:radial-gradient(ellipse at 0% 0%,rgba(57,217,138,.12),transparent 55%),radial-gradient(ellipse at 100% 100%,rgba(37,99,235,.16),transparent 55%),rgba(6,20,35,.75)}
+.ref-badge{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:12px;background:rgba(11,32,51,.8);border:1px solid var(--border2);font-weight:700;margin-bottom:18px}
+.ref-badge span{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(135deg,#2563EB,#22D3EE);font-size:15px}
+.ref h2{font-size:clamp(26px,2.8vw,36px);font-weight:800}
+.ref p{color:var(--muted);font-size:16.5px;margin:14px 0 0}
+.ref-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.ref-list li{display:flex;gap:11px;align-items:center;padding:12px 14px;border-radius:12px;background:rgba(8,25,42,.75);border:1px solid var(--border2);font-size:15px;color:#D4E0EC}
+.ref-list li i{font-style:normal;font-size:18px}
+
+.pain{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pain .card{padding:26px}
+.pain .card h3{display:flex;align-items:center;gap:10px}
+.pain ul{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:9px}
+.pain li{display:flex;gap:10px;color:var(--muted);font-size:15px}
+.pain .bad li::before{content:'✕';color:#F87171;font-weight:700}
+.pain .good li::before{content:'✓';color:var(--green);font-weight:700}
+.pain .good{border-color:rgba(57,217,138,.3)}
 /* ── Duyarlı tasarım ── */
 @media (max-width:980px){
+  .hero-visual{margin:10px 0 40px}
+  .flow{grid-template-columns:1fr}.flow-arrow{display:none}
+  .pain{grid-template-columns:1fr}
+  .ref{grid-template-columns:1fr;padding:32px}
   .hero .wrap,.split,.contact{grid-template-columns:1fr}
   .hero{padding:40px 0 70px}
   .grid3{grid-template-columns:1fr 1fr}
@@ -205,6 +301,11 @@ footer a:hover{color:var(--text)}
   .mock-toast{right:10px}
 }
 @media (max-width:760px){
+  .app-body{grid-template-columns:1fr}.app-side{display:none}
+  .app-tr{grid-template-columns:1fr 92px 58px}.app-tr > :nth-child(1),.app-tr > :nth-child(3){display:none}
+  .phone{right:-6px;bottom:-40px;width:150px}
+  .money{grid-template-columns:1fr 1fr}.money .mcard:nth-child(3){grid-column:span 2}
+  .ref{padding:24px}
   .trust .sep{display:none}
   .nav-links{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:10px 24px 20px;background:rgba(2,11,20,.97);border-bottom:1px solid var(--border2)}
   .nav-links.open{display:flex}
@@ -235,9 +336,10 @@ footer a:hover{color:var(--text)}
       Ahoraclario
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Ana menü">
+      <a href="#akis">Nasıl İşler</a>
       <a href="#ozellikler">Özellikler</a>
-      <a href="#size-ozel">Size Özel</a>
-      <a href="#surec">Nasıl Çalışır</a>
+      <a href="#muhasebe">Muhasebe</a>
+      <a href="#referans">Referans</a>
       <a href="#sss">SSS</a>
       <a href="#iletisim" class="btn btn-primary btn-sm">Ücretsiz Demo İste</a>
     </nav>
@@ -251,102 +353,228 @@ footer a:hover{color:var(--text)}
 <section class="hero" aria-labelledby="h-hero">
   <div class="wrap">
     <div>
-      <span class="eyebrow"><span class="dot"></span>İşletmenize özel CRM</span>
-      <h1 id="h-hero">Satış sürecinizi <span class="grad">tek ekranda</span> yönetin.</h1>
-      <p class="lead">Excel dosyaları, WhatsApp grupları ve unutulan takipler yerine; müşterilerinizi, tekliflerinizi ve görüşmelerinizi takip eden, <b style="color:var(--text)">sizin iş akışınıza göre kurulmuş</b> bir CRM.</p>
+      <span class="eyebrow"><span class="dot"></span>Vize danışmanlık firmaları için</span>
+      <h1 id="h-hero">Vize operasyonunuza <span class="grad">özel CRM</span>.</h1>
+      <p class="lead">İlk aramadan konsolosluk sonucuna kadar her dosya tek ekranda. Satış, evrak, randevu ve muhasebe ekibiniz aynı sistemde çalışır; müşteriniz başvurusunu kendi takip linkinden izler.</p>
       <div class="hero-ctas">
         <a href="#iletisim" class="btn btn-primary">Ücretsiz Demo İste <span aria-hidden="true">→</span></a>
-        <a href="#ozellikler" class="btn btn-ghost">Neler Yapabilir?</a>
+        <a href="#akis" class="btn btn-ghost">Nasıl İşler?</a>
       </div>
       <div class="hero-points">
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5 9-10"/></svg>Kurulum ve eğitim bizden</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5 9-10"/></svg>Türkçe destek</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5 9-10"/></svg>Bilgisayar ve telefonda çalışır</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5 9-10"/></svg>Firmanızın süreçlerine göre kurulur</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5 9-10"/></svg>Kurulum, veri aktarımı ve eğitim bizden</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5 9-10"/></svg>Aktif olarak kullanılıyor</span>
       </div>
     </div>
 
-    <div class="mock" aria-label="Ahoraclario CRM ekran önizlemesi" role="img">
-      <div class="mock-in">
-        <div class="mock-bar"><i></i><i></i><i></i><b>Satış Pipeline'ı</b></div>
-        <div class="mock-body">
-          <div class="mock-stats">
-            <div class="mstat"><small>Açık fırsatlar</small><b>₺184.500</b><em>↑ 12%</em></div>
-            <div class="mstat"><small>Bugünkü takipler</small><b>7</b></div>
-            <div class="mstat"><small>Bu ay kazanılan</small><b>5</b><em>↑ 2</em></div>
+    <div class="hero-visual">
+      <div class="app" role="img" aria-label="CRM müşteri listesi ekranı örneği">
+        <div class="app-top"><i></i><i></i><i></i><b>Operasyon Sistemi</b></div>
+        <div class="app-body">
+          <div class="app-side">
+            <div class="app-logo"><span>✈</span><div><b>Firmanız</b><small>Operasyon Sistemi</small></div></div>
+            <div class="app-nav">
+              <div>📊 Dashboard</div><div>🎯 Bugün Ne Yapmalıyım</div><div class="on">👥 Müşteriler</div><div>🧭 Pipeline</div><div>📅 Takvim</div><div>🏛️ Konsolosluk</div><div>✅ Tamamlandı<em>27</em></div>
+              <h5>YÖNETİM</h5><div>💰 Muhasebe</div><div>📈 Performans</div><div>📚 Belge Kütüphanesi</div>
+            </div>
           </div>
-          <div class="mock-board">
-            <div class="mcol"><h4 style="background:#64748B;color:#fff">Aday</h4>
-              <div class="c" style="--cc:#64748B"><b>Atlas Turizm</b><span>Yeni · web sitesi</span></div>
-              <div class="c" style="--cc:#64748B"><b>Mavi Eğitim</b><span>2 gün önce</span></div></div>
-            <div class="mcol"><h4 style="background:#22D3EE">Görüşme</h4>
-              <div class="c hl" style="--cc:#22D3EE"><b>Nova Vize</b><span>Bugün 14:00</span></div></div>
-            <div class="mcol"><h4 style="background:#C084FC">Teklif</h4>
-              <div class="c" style="--cc:#C084FC"><b>Delta Danışmanlık</b><span>₺24.000</span></div>
-              <div class="c" style="--cc:#C084FC"><b>Kuzey Emlak</b><span>₺18.500</span></div></div>
-            <div class="mcol"><h4 style="background:#39D98A">Kazanıldı</h4>
-              <div class="c" style="--cc:#39D98A"><b>Ege Ajans</b><span>Müşteri oldu 🎉</span></div></div>
+          <div class="app-main">
+            <div class="app-h"><b>Müşteriler</b><span>+ Yeni Müşteri</span></div>
+            <div class="app-tbl">
+              <div class="app-tr hd"><span>DOSYA NO</span><span>AD SOYAD</span><span>ÜLKE</span><span>AŞAMA</span><span>TEMSİLCİ</span></div>
+              <div class="app-tr"><span class="fn">VZ-2026-4172</span><b>Elif Demir</b><span>🇬🇷 Yunanistan</span><span><span class="st g">Ödeme Alındı</span></span><span class="rep"><i style="background:#0D9488">AK</i>Ayşe</span></div>
+              <div class="app-tr"><span class="fn">VZ-2026-4168</span><b>Murat Aksoy</b><span>🇳🇱 Hollanda</span><span><span class="st p">Randevu Alındı</span></span><span class="rep"><i style="background:#7C3AED">MY</i>Mert</span></div>
+              <div class="app-tr"><span class="fn">VZ-2026-4161</span><b>Zeynep Kaya</b><span>🇩🇪 Almanya</span><span><span class="st a">Belge Bekleniyor</span></span><span class="rep"><i style="background:#2563EB">SD</i>Selin</span></div>
+              <div class="app-tr"><span class="fn">VZ-2026-4155</span><b>Can Yıldız</b><span>🇨🇭 İsviçre</span><span><span class="st c">Başvuru Yapıldı</span></span><span class="rep"><i style="background:#0D9488">AK</i>Ayşe</span></div>
+              <div class="app-tr"><span class="fn">VZ-2026-4149</span><b>Deniz Arslan</b><span>🇮🇹 İtalya</span><span><span class="st b">İlgileniyor</span></span><span class="rep"><i style="background:#EA580C">BT</i>Burak</span></div>
+              <div class="app-tr"><span class="fn">VZ-2026-4140</span><b>Ahmet Şen</b><span>🇪🇸 İspanya</span><span><span class="st g">Tamamlandı</span></span><span class="rep"><i style="background:#7C3AED">MY</i>Mert</span></div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="mock-toast"><span class="ic">✓</span><div>3 takip görevi planlandı<small>E-posta gönderildi · Nova Vize</small></div></div>
+      <div class="phone" role="img" aria-label="Müşteri takip portalı örneği">
+        <div class="phone-in">
+          <h6>Başvurunuz</h6><small>🇳🇱 Hollanda · Schengen Turistik</small>
+          <div class="pstep done"><i>✓</i><div><b>Ödeme alındı</b></div></div>
+          <div class="pstep done"><i>✓</i><div><b>Belgeler tamam</b></div></div>
+          <div class="pstep now"><i>•</i><div><b>Randevu alındı</b><span>14 Ekim · 09:30</span></div></div>
+          <div class="pstep todo"><i></i><div><b>Başvuru yapıldı</b></div></div>
+          <div class="pstep todo"><i></i><div><b>Sonuç</b></div></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <div class="trust" aria-label="Öne çıkanlar">
   <div class="wrap">
-    <span><b>Müşteri</b> takibi</span><span class="sep">·</span><span><b>Satış</b> pipeline'ı</span><span class="sep">·</span><span><b>Otomatik</b> hatırlatmalar</span><span class="sep">·</span><span><b>Raporlar</b> ve günlük özet</span>
+    <span><b>Satış</b> → <b>Evrak</b> → <b>Randevu</b> tek akışta</span><span class="sep">·</span><span><b>Müşteri</b> takip portalı</span><span class="sep">·</span><span><b>Otomatik</b> randevu hatırlatma</span><span class="sep">·</span><span><b>Tahsilat</b> ve gider takibi</span>
   </div>
 </div>
+
+<section aria-labelledby="h-pain">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Tanıdık geliyor mu?</div>
+      <h2 id="h-pain">Dosyalar büyüdükçe Excel ve WhatsApp yetmiyor</h2>
+      <p>Her ay onlarca başvuru, farklı ülkeler, randevu tarihleri, eksik evraklar ve taksitli ödemeler… Bir dosya gözden kaçtığında hem müşteri hem para kaybedilir.</p>
+    </div>
+    <div class="pain">
+      <div class="card bad reveal"><h3>😩 Bugün</h3>
+        <ul>
+          <li>Hangi müşteri hangi aşamada, kimse tam bilmiyor</li>
+          <li>Müşteriler "başvurum ne durumda?" diye sürekli arıyor</li>
+          <li>Randevu yaklaşırken eksik evrak son gün fark ediliyor</li>
+          <li>Kim ne kadar ödedi, kalan ne kadar — ayrı bir tabloda</li>
+          <li>Personel değişince müşteri geçmişi kayboluyor</li>
+        </ul></div>
+      <div class="card good reveal"><h3>✨ Sistemle</h3>
+        <ul>
+          <li>Her dosyanın aşaması, sorumlusu ve geçmişi tek ekranda</li>
+          <li>Müşteri başvurusunu kendi linkinden anlık takip ediyor</li>
+          <li>Randevudan 7 gün önce gerekli belgelerle otomatik hatırlatma</li>
+          <li>Tahsilat, taksit, gider ve net kâr otomatik hesaplanıyor</li>
+          <li>Kim neyi ne zaman değiştirdi, hepsi kayıt altında</li>
+        </ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="akis" aria-labelledby="h-flow">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Nasıl İşler</div>
+      <h2 id="h-flow">Dosya, departmandan departmana <span class="grad">kendiliğinden</span> geçer</h2>
+      <p>Her ekip sadece kendi işini görür. Aşama değiştiğinde dosya bir sonraki departmanda sıradaki çalışana otomatik atanır; kimse "bu dosya kimde?" diye sormaz.</p>
+    </div>
+    <div class="flow">
+      <div class="flow-arrow a1" aria-hidden="true">→</div><div class="flow-arrow a2" aria-hidden="true">→</div>
+      <div class="lane reveal" style="--lc:#3B82F6">
+        <div class="lane-h"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></div><h3>1 · Satış</h3></div>
+        <p class="who">Yeni gelen adayları arar, ikna eder, ödemeyi alır.</p>
+        <div class="stages"><span>Yeni Kayıt</span><span>Ulaşılamıyor / Sonra Ara</span><span>İlgileniyor</span><span>İletişime Geçildi</span></div>
+        <p class="handoff">⚡ <span>Form ve reklamlardan gelen adaylar <b>satış ekibine sırayla dağıtılır</b>.</span></p>
+      </div>
+      <div class="lane reveal" style="--lc:#F59E0B">
+        <div class="lane-h"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div><h3>2 · Evrak</h3></div>
+        <p class="who">Belgeleri toplar, kontrol eder, randevuyu ayarlar.</p>
+        <div class="stages"><span>Ödeme Alındı</span><span>Belge Bekleniyor</span><span>Belgeler Tamam</span><span>Randevu Aranıyor → Alındı</span></div>
+        <p class="handoff">⚡ <span>Belge yüklenmeden ödeme aşamasına, randevu tarihi girilmeden randevu aşamasına <b>geçilemez</b>.</span></p>
+      </div>
+      <div class="lane reveal" style="--lc:#39D98A">
+        <div class="lane-h"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg></div><h3>3 · Randevu & Konsolosluk</h3></div>
+        <p class="who">Başvuruyu yapar, sonucu takip eder, dosyayı kapatır.</p>
+        <div class="stages"><span>Randevu Evrakları Tamam</span><span>Başvuru Yapıldı</span><span>Sonuç Bekleniyor</span><span>Tamamlandı</span></div>
+        <p class="handoff">⚡ <span>Vize süresi dolan müşteri <b>otomatik olarak yeniden satış listesine</b> düşer.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="ozellikler" aria-labelledby="h-feat">
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="kicker">Özellikler</div>
-      <h2 id="h-feat">Satışta ihtiyacınız olan her şey, tek yerde</h2>
-      <p>Ekibiniz hangi müşteriyle ne konuşulduğunu, sıradaki adımın ne olduğunu ve hangi teklifin cevap beklediğini her an görür.</p>
+      <h2 id="h-feat">Bir vize ofisinin ihtiyaç duyduğu her şey</h2>
+      <p>Genel bir CRM'e uymaya çalışmayın. Bu sistem vize operasyonunun günlük işleri düşünülerek yapıldı.</p>
     </div>
     <div class="grid3">
-      <article class="card reveal" style="--c:#39D98A"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="5" height="16" rx="1.5"/><rect x="10" y="4" width="5" height="11" rx="1.5"/><rect x="17" y="4" width="4" height="7" rx="1.5"/></svg></div>
-        <h3>Satış Pipeline'ı</h3><p>Müşterileri aşamalar arasında sürükleyip bırakın. Hangi fırsatın nerede takıldığını ve toplam potansiyel geliri anında görün.</p></article>
-      <article class="card reveal" style="--c:#22D3EE"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-        <h3>Otomatik Takipler</h3><p>E-posta gönderdiğiniz müşteri için 3, 5 ve 7 gün sonra takip görevleri kendiliğinden oluşur. Hiçbir müşteri unutulmaz.</p></article>
+      <article class="card reveal" style="--c:#22D3EE"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10 18h4"/></svg></div>
+        <h3>Müşteri Takip Portalı</h3><p>Her müşteriye özel link: başvurusunun hangi aşamada olduğunu, randevu tarihini ve sorumlu kişiyi görür. Aşama değişince Türkçe/İngilizce bilgilendirme maili gider.</p></article>
       <article class="card reveal" style="--c:#3B82F6"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
-        <h3>Takvim ve Toplantılar</h3><p>Görüşmeleri ve demoları planlayın, toplantı linkini ekleyin, Google Takvim'e tek tıkla aktarın.</p></article>
+        <h3>Randevu Takvimi</h3><p>Tüm randevular tek takvimde; evrakı hazır olanlar yeşil, eksik olanlar turuncu. Konsoloslukta bekleyen dosyalar gün sayacıyla ayrı listede.</p></article>
       <article class="card reveal" style="--c:#39D98A"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></div>
-        <h3>E-posta ve WhatsApp</h3><p>Müşteriye CRM'in içinden hazır şablonlarla e-posta atın veya WhatsApp'tan yazın. Gönderilen her şey kayıt altında.</p></article>
-      <article class="card reveal" style="--c:#22D3EE"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></div>
-        <h3>Destek Talepleri</h3><p>Müşterileriniz sorunlarını kendi ekranlarından iletir, siz yanıtlarsınız. Tüm yazışmalar müşterinin dosyasında saklanır.</p></article>
-      <article class="card reveal" style="--c:#3B82F6"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
-        <h3>Raporlar ve Sabah Özeti</h3><p>Satış hunisi, kaynak performansı ve kayıp nedenleri. Her sabah günün görevleri ve toplantıları e-postanıza gelir.</p></article>
+        <h3>Otomatik Hatırlatmalar</h3><p>Randevudan 7 gün önce, müşterinin ülkesine ve vize türüne uygun belgeler ekli hatırlatma maili kendiliğinden gönderilir.</p></article>
+      <article class="card reveal" style="--c:#F59E0B"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2"/><path d="M9 13h6M9 17h4"/></svg></div>
+        <h3>Belge Kütüphanesi</h3><p>Davet mektubu, sigorta formu gibi şablon evraklar ülke ve vize türüne göre saklanır; müşteriye tek tıkla e-postayla gönderilir.</p></article>
+      <article class="card reveal" style="--c:#22D3EE"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2.4.6 4 2.6 4 6"/></svg></div>
+        <h3>Aile ve Grup Başvuruları</h3><p>Aynı dosyada eşler, çocuklar ve refakatçiler; her başvurunun randevusu ayrı takip edilir, portalda "sizinle birlikte başvuranlar" olarak görünür.</p></article>
+      <article class="card reveal" style="--c:#3B82F6"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18" opacity=".35"/><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>Bugün Ne Yapmalıyım?</h3><p>Her çalışan güne kendi listesiyle başlar: aranacak adaylar, bekleyen evraklar, yaklaşan randevular ve hatırlatıcılar.</p></article>
+      <article class="card reveal" style="--c:#39D98A"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+        <h3>Performans Raporları</h3><p>Temsilci bazında satış ve ciro, arama sayıları, departman süreleri ve çalışanların sistemde aktif kaldığı süre.</p></article>
+      <article class="card reveal" style="--c:#F59E0B"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+        <h3>Yetki ve Denetim İzi</h3><p>Satış, evrak, randevu ve yönetim rolleri; herkes sadece kendi dosyalarını görür. Ödeme ve aşama değişiklikleri kimin yaptığıyla kayıtlı.</p></article>
+      <article class="card reveal" style="--c:#22D3EE"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg></div>
+        <h3>Toplu Yükleme ve Excel</h3><p>Mevcut müşteri listenizi tek seferde içeri alın; müşteri listesi ve muhasebe raporlarını istediğiniz an Excel olarak indirin.</p></article>
     </div>
   </div>
 </section>
 
-<section id="size-ozel" aria-labelledby="h-custom">
+<section id="muhasebe" aria-labelledby="h-money">
+  <div class="wrap split">
+    <div class="reveal">
+      <div class="sec-head" style="text-align:left;margin:0"><div class="kicker">Muhasebe</div></div>
+      <h2 id="h-money">Tahsilattan net kâra, <span class="grad">paranızı görün</span></h2>
+      <p class="lead">Ön ödeme ve taksitler dosyaya işlenir; kalan tutar kendiliğinden hesaplanır. Konsolosluk harcı, randevu ücreti, kargo ve tercüme gibi müşteri giderleriyle ofis giderlerinizi girin, net kârınızı her ay görün.</p>
+      <ul class="checks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span><b>Aylık kırılım:</b> tahsilat, gider, net ve müşteri sayısı ay ay.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span><b>Temsilci ve ülke bazlı ciro:</b> hangi ülke ve hangi çalışan kazandırıyor?</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span><b>Onaylı tahsilat ve iade süreci:</b> kalan ödemeler ve iadeler yönetici onayıyla kayda geçer.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span><b>Fatura takibi:</b> hangi dosyanın faturası kesildi, hangisi bekliyor.</span></li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <div class="money">
+        <div class="mcard" style="--mc:#16A34A"><b>₺248.600</b><small>Tahsilat · bu ay</small></div>
+        <div class="mcard" style="--mc:#DC2626"><b>₺41.250</b><small>Müşteri giderleri</small></div>
+        <div class="mcard" style="--mc:#16A34A"><b>₺192.300</b><small>Net kâr · %77</small></div>
+      </div>
+      <div class="mtable">
+        <div><span>AY</span><span>TAHSİLAT</span><span>NET</span><span>GRAFİK</span></div>
+        <div><span style="color:#2563EB;font-weight:600">Eylül</span><span style="color:#16A34A">₺248.600</span><span>₺192.300</span><span><span class="bar" style="width:62%;display:block"></span></span></div>
+        <div><span style="color:#2563EB;font-weight:600">Ağustos</span><span style="color:#16A34A">₺312.400</span><span>₺268.900</span><span><span class="bar" style="width:84%;display:block"></span></span></div>
+        <div><span style="color:#2563EB;font-weight:600">Temmuz</span><span style="color:#16A34A">₺356.100</span><span>₺301.750</span><span><span class="bar" style="width:96%;display:block"></span></span></div>
+      </div>
+      <p class="demo-note">Örnek görünüm · rakamlar temsilidir</p>
+    </div>
+  </div>
+</section>
+
+<section id="referans" aria-labelledby="h-ref">
+  <div class="wrap">
+    <div class="ref reveal">
+      <div>
+        <div class="ref-badge"><span>✈</span>Yedi Kıtada Vizem</div>
+        <h2 id="h-ref">Sahada çalışan bir sistem</h2>
+        <p>Yedi Kıtada Vizem, satıştan konsolosluğa kadar tüm vize operasyonunu bu sistemle yönetiyor. Satış, evrak ve randevu ekipleri aynı dosya üzerinde çalışıyor; yönetim tahsilatı, giderleri ve ekip performansını tek ekrandan izliyor.</p>
+        <p>Sistem sürekli gelişiyor: ekip kullandıkça ihtiyaç duyulan her özellik birlikte eklendi.</p>
+      </div>
+      <ul class="ref-list">
+        <li><i>🧭</i>Satış → Evrak → Randevu otomatik devir</li>
+        <li><i>📱</i>Müşterilere başvuru takip linki</li>
+        <li><i>📅</i>Randevu takvimi ve konsolosluk takibi</li>
+        <li><i>💰</i>Tahsilat, gider ve iade yönetimi</li>
+        <li><i>📈</i>Temsilci ve ülke bazlı raporlar</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="ozel" aria-labelledby="h-custom">
   <div class="wrap split">
     <div class="reveal">
       <div class="sec-head" style="text-align:left;margin:0"><div class="kicker">Size Özel</div></div>
-      <h2 id="h-custom">Hazır paket değil, <span class="grad">sizin işinize göre</span> kurulur</h2>
-      <p class="lead">Genel CRM programları her sektöre aynı ekranı sunar. Biz önce sizin satış sürecinizi dinler, sonra aşamaları, alanları ve raporları ona göre kurarız.</p>
+      <h2 id="h-custom">Hazır paket değil, <span class="grad">operasyonunuza göre</span> kurulur</h2>
+      <p class="lead">Her vize ofisinin çalışma şekli farklı. Önce sizin sürecinizi dinliyor, sonra aşamaları, departmanları, ülkeleri ve raporları firmanıza göre ayarlıyoruz.</p>
       <ul class="checks">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span><b>Kendi aşamalarınız:</b> başvuru, evrak, randevu, teklif… süreciniz neyse pipeline o.</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span><b>Mevcut verileriniz:</b> Excel listelerinizi tek seferde içeri aktarırız.</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span><b>Güvenli altyapı:</b> şifreli giriş, müşteriye özel dosya alanı ve tek tıkla tam yedek.</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span><b>Sürekli gelişim:</b> kullandıkça ihtiyaç duyduğunuz özellikleri birlikte ekleriz.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span><b>Kendi aşamalarınız ve ekip yapınız:</b> tek kişilik ofisten çok departmanlı firmaya.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span><b>Kendi markanız:</b> portal ve e-postalarda sizin firma adınız görünür.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span><b>Ayrı ve güvenli veritabanı:</b> verileriniz başka firmalarla paylaşılmaz; şifreli giriş ve kaba kuvvet koruması.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span><b>Sürekli destek:</b> sorularınıza hızlı dönüş, ihtiyaç duydukça yeni özellikler.</span></li>
       </ul>
     </div>
     <div class="sectors reveal">
-      <h4>Çalıştığımız alanlardan bazıları</h4>
+      <h4>Desteklenen başvurular (örnek)</h4>
       <div class="chips">
-        <span class="chip"><i>🛂</i>Vize danışmanlığı</span>
-        <span class="chip"><i>✈️</i>Turizm ve seyahat</span>
-        <span class="chip"><i>🎓</i>Yurt dışı eğitim</span>
-        <span class="chip"><i>🏠</i>Emlak</span>
-        <span class="chip"><i>📣</i>Ajanslar</span>
-        <span class="chip"><i>💼</i>B2B hizmet firmaları</span>
-        <span class="chip"><i>🩺</i>Klinik ve danışmanlık</span>
-        <span class="chip"><i>🏭</i>Toptan satış</span>
+        <span class="chip"><i>🇪🇺</i>Schengen Turistik</span>
+        <span class="chip"><i>🇬🇧</i>İngiltere</span>
+        <span class="chip"><i>🇺🇸</i>Amerika</span>
+        <span class="chip"><i>🇨🇳</i>Çin</span>
+        <span class="chip"><i>💼</i>Çalışma Vizesi</span>
+        <span class="chip"><i>🎓</i>Öğrenci Vizesi</span>
+        <span class="chip"><i>👨‍👩‍👧</i>Aile Birleşimi</span>
+        <span class="chip"><i>🌍</i>20+ ülke</span>
       </div>
     </div>
   </div>
@@ -355,15 +583,15 @@ footer a:hover{color:var(--text)}
 <section id="surec" aria-labelledby="h-steps">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="kicker">Nasıl Çalışır</div>
+      <div class="kicker">Başlarken</div>
       <h2 id="h-steps">Dört adımda kullanıma hazır</h2>
-      <p>Teknik bilgi gerekmez. Kurulumu, veri aktarımını ve eğitimi biz yaparız.</p>
+      <p>Teknik bilgi gerekmez. Kurulumu, veri aktarımını ve ekip eğitimini biz yaparız.</p>
     </div>
     <div class="steps">
-      <div class="step reveal"><div class="n">1</div><h3>Tanışma görüşmesi</h3><p>Satış sürecinizi, ekibinizi ve kullandığınız araçları dinleriz.</p></div>
-      <div class="step reveal"><div class="n">2</div><h3>Kurulum</h3><p>Aşamaları, alanları ve raporları size göre hazırlar, verilerinizi aktarırız.</p></div>
-      <div class="step reveal"><div class="n">3</div><h3>Eğitim</h3><p>Ekibinize sistemi birlikte kullanarak gösteririz, ilk günden verim alırsınız.</p></div>
-      <div class="step reveal"><div class="n">4</div><h3>Destek ve gelişim</h3><p>Sorularınızı yanıtlar, ihtiyaç duydukça yeni özellikler ekleriz.</p></div>
+      <div class="step reveal"><div class="n">1</div><h3>Demo görüşmesi</h3><p>Sistemi canlı gösteriyor, ofisinizin nasıl çalıştığını dinliyoruz.</p></div>
+      <div class="step reveal"><div class="n">2</div><h3>Size özel kurulum</h3><p>Aşamaları, rolleri, ülkeleri ve e-posta şablonlarını firmanıza göre hazırlıyoruz.</p></div>
+      <div class="step reveal"><div class="n">3</div><h3>Veri aktarımı ve eğitim</h3><p>Mevcut müşteri listenizi aktarıyor, ekibinize sistemi birlikte kullanarak öğretiyoruz.</p></div>
+      <div class="step reveal"><div class="n">4</div><h3>Destek ve gelişim</h3><p>Sorularınızı yanıtlıyor, ihtiyaç duydukça yeni özellikler ekliyoruz.</p></div>
     </div>
   </div>
 </section>
@@ -375,11 +603,12 @@ footer a:hover{color:var(--text)}
       <h2 id="h-faq">Aklınıza takılanlar</h2>
     </div>
     <div class="faq reveal">
-      <details><summary>Bir program kurmam gerekiyor mu?</summary><p>Hayır. Ahoraclario tarayıcıda çalışır; bilgisayardan, tabletten ve telefondan internet olan her yerden giriş yapabilirsiniz.</p></details>
-      <details><summary>Mevcut müşteri listemi aktarabilir miyim?</summary><p>Evet. Excel veya CSV dosyalarınızı sisteme aktarırız; şirketler, kişiler ve satış aşamaları tek seferde yerine oturur.</p></details>
-      <details><summary>Verilerim güvende mi?</summary><p>Girişler şifrelidir, her müşterinin dosyaları kendi alanında saklanır ve tüm verinizin yedeğini tek tıkla indirebilirsiniz.</p></details>
-      <details><summary>Ekibimdeki birden fazla kişi kullanabilir mi?</summary><p>Evet. Ekip arkadaşlarınız kendi hesaplarıyla giriş yapar; kimin hangi müşteriyle ne konuştuğu zaman çizelgesinde görünür.</p></details>
-      <details><summary>Fiyatlandırma nasıl?</summary><p>Her kurulum işletmenin ihtiyacına göre hazırlandığı için fiyatı ekip büyüklüğüne ve istenen özelliklere göre belirliyoruz. Demo görüşmesinde size özel teklif sunuyoruz.</p></details>
+      <details><summary>Bir program kurmam gerekiyor mu?</summary><p>Hayır. Sistem tarayıcıda çalışır; ofisten, evden ve telefondan internet olan her yerden giriş yapılabilir.</p></details>
+      <details><summary>Müşterilerim sisteme nasıl ulaşıyor?</summary><p>Müşterileriniz CRM'e giriş yapmaz. Her müşteriye özel, süreli bir takip linki gönderilir; bu linkten sadece kendi başvurusunun durumunu, randevu bilgisini ve sorumlu kişiyi görür.</p></details>
+      <details><summary>Mevcut müşteri listemi aktarabilir miyim?</summary><p>Evet. Excel listelerinizi toplu yükleme ile aktarırız; müşteriler aşamalarıyla birlikte sisteme yerleşir.</p></details>
+      <details><summary>Ekibimdeki herkes her şeyi görebilir mi?</summary><p>Hayır, rollere göre ayarlanır. Satış temsilcisi kendi adaylarını, evrak ve randevu ekibi kendi aşamalarındaki dosyaları görür; muhasebe ve raporlar yöneticiye açıktır.</p></details>
+      <details><summary>Verilerim güvende mi?</summary><p>Her firmanın verisi ayrı bir veritabanında tutulur. Şifreler özel olarak şifrelenerek saklanır, hatalı girişlerde hesap geçici olarak kilitlenir ve önemli değişiklikler kimin yaptığıyla birlikte kayıt altına alınır.</p></details>
+      <details><summary>Fiyatlandırma nasıl?</summary><p>Her kurulum firmanın ekip büyüklüğüne ve ihtiyaçlarına göre hazırlandığı için fiyatı demo görüşmesinden sonra size özel olarak sunuyoruz.</p></details>
     </div>
   </div>
 </section>
@@ -388,14 +617,14 @@ footer a:hover{color:var(--text)}
   <div class="wrap contact">
     <div class="contact-info reveal">
       <div class="sec-head" style="text-align:left;margin:0"><div class="kicker">İletişim</div></div>
-      <h2 id="h-contact">Size özel CRM'i birlikte planlayalım</h2>
-      <p>Formu doldurun, en kısa sürede sizi arayalım. Kısa bir görüşmede ihtiyacınızı dinleyip sistemi canlı olarak gösterelim.</p>
+      <h2 id="h-contact">Sistemi canlı görün</h2>
+      <p>Formu doldurun, sizi arayalım. Kısa bir görüşmede ofisinizin işleyişini dinleyip sistemi gerçek ekranlarıyla gösterelim.</p>
       <a class="cline" href="mailto:ahoraclario@gmail.com">
         <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></span>
         <span><small>E-posta</small><b>ahoraclario@gmail.com</b></span>
       </a>
       <div class="cline">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span>
         <span><small>Dönüş</small><b>Formu doldurun, sizi arayalım</b></span>
       </div>
     </div>
@@ -406,13 +635,13 @@ footer a:hover{color:var(--text)}
         <p class="sub">Bilgileriniz sadece sizinle iletişime geçmek için kullanılır.</p>
         <div class="frow">
           <div class="fld"><label for="f-name">Ad Soyad *</label><input id="f-name" name="name" autocomplete="name" required maxlength="120"></div>
-          <div class="fld"><label for="f-company">Şirket</label><input id="f-company" name="company" autocomplete="organization" maxlength="160"></div>
+          <div class="fld"><label for="f-company">Firma Adı</label><input id="f-company" name="company" autocomplete="organization" maxlength="160"></div>
         </div>
         <div class="frow">
           <div class="fld"><label for="f-email">E-posta</label><input id="f-email" name="email" type="email" autocomplete="email" maxlength="200"></div>
           <div class="fld"><label for="f-phone">Telefon</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="05xx xxx xx xx"></div>
         </div>
-        <div class="fld"><label for="f-msg">Mesajınız</label><textarea id="f-msg" name="message" maxlength="3000" placeholder="Kısaca işinizden ve şu an müşterilerinizi nasıl takip ettiğinizden bahsedin."></textarea></div>
+        <div class="fld"><label for="f-msg">Mesajınız</label><textarea id="f-msg" name="message" maxlength="3000" placeholder="Ofisinizde kaç kişi çalışıyor, ayda yaklaşık kaç başvuru yapıyorsunuz, şu an dosyaları nasıl takip ediyorsunuz?"></textarea></div>
         <div class="hp" aria-hidden="true"><label>Web siteniz<input name="website_url" tabindex="-1" autocomplete="off"></label></div>
         <button class="btn btn-primary" id="f-submit" type="submit">Gönder <span aria-hidden="true">→</span></button>
         <div class="form-msg" id="f-msg-box" role="status" aria-live="polite"></div>
@@ -424,8 +653,8 @@ footer a:hover{color:var(--text)}
 
 <section aria-label="Harekete geç" style="padding-top:20px">
   <div class="cta-band reveal">
-    <h2>Takipleri unutmaya son verin</h2>
-    <p>Müşterileriniz, teklifleriniz ve görüşmeleriniz tek ekranda. 20 dakikalık bir demoyla görün.</p>
+    <h2>Dosya kaybetmeye son verin</h2>
+    <p>Satış, evrak, randevu ve muhasebe tek sistemde. 20 dakikalık bir demoyla görün.</p>
     <a href="#iletisim" class="btn btn-primary">Demo Planla <span aria-hidden="true">→</span></a>
   </div>
 </section>
@@ -438,7 +667,7 @@ footer a:hover{color:var(--text)}
       Ahoraclario
     </div>
     <div class="links">
-      <a href="#ozellikler">Özellikler</a><a href="#surec">Nasıl Çalışır</a><a href="#iletisim">İletişim</a><a href="https://ahoraclario.github.io/Ahoraclario/">Müşteri Girişi</a>
+      <a href="#akis">Nasıl İşler</a><a href="#ozellikler">Özellikler</a><a href="#muhasebe">Muhasebe</a><a href="#iletisim">İletişim</a>
     </div>
     <div>© <span id="year">2026</span> Ahoraclario</div>
   </div>
