@@ -18,6 +18,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
 <style>
+/* Durdur: tüm CSS animasyonları da olduğu yerde donar */
+.demo.is-paused *,.demo.is-paused *::before,.demo.is-paused *::after{animation-play-state:paused!important}
 /* Muhasebe sayfasına özel */
 .demo-steps.d4{grid-template-columns:repeat(4,1fr)}
 .acc{position:relative;border-radius:16px;overflow:hidden;background:#F4F6FA;color:#1F2937;box-shadow:0 40px 90px -20px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.06);font-size:11.5px}
@@ -398,10 +400,25 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const steps = [...document.querySelectorAll('.dstep')];
   const acc = $('acc'), cur = $('cursor'), scroller = $('accScroll');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let timers = [], raf = [], paused = false, current = -1, started = false;
-  const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+  // Duraklatılabilir zamanlayıcı: "Durdur"da bekleyen her adım olduğu yerde donar,
+  // "Devam et"te kalan süresiyle kaldığı yerden sürer.
+  const T = (() => {
+    let list = [], pausedAt = null, offset = 0;
+    const now = () => (pausedAt ?? performance.now()) - offset;
+    const arm = t => { t.id = setTimeout(() => { list = list.filter(x => x !== t); t.fn(); }, Math.max(0, t.due - now())); };
+    return {
+      now,
+      add(fn, ms){ const t = { fn, due: now() + ms }; list.push(t); if(pausedAt === null) arm(t); },
+      clear(){ list.forEach(t => clearTimeout(t.id)); list = []; },
+      pause(){ if(pausedAt !== null) return; pausedAt = performance.now(); list.forEach(t => clearTimeout(t.id)); },
+      resume(){ if(pausedAt === null) return; offset += performance.now() - pausedAt; pausedAt = null; list.forEach(arm); },
+    };
+  })();
+  let current = -1;
+  const later = (fn, ms) => T.add(fn, ms);
+  let raf = [];
   const pending = {};   // yarım kalan sayı animasyonlarının hedefi
-  const clear = () => { timers.forEach(clearTimeout); timers = []; raf.forEach(cancelAnimationFrame); raf = []; for(const id in pending){ setNum(id, pending[id]); delete pending[id]; } };
+  const clear = () => { T.clear(); raf.forEach(cancelAnimationFrame); raf = []; for(const id in pending){ setNum(id, pending[id]); delete pending[id]; } };
   const tl = n => '₺' + Math.round(n).toLocaleString('tr-TR');
   const DATA = {
     ay:  { tah:248600, sTah:'Tahsilat · 38 müşteri · 41 kayıt', gen:21400, sGen:'Genel Gider · 17 kayıt', mus:41250, sMus:'Müşteri Giderleri · 22 kayıt', bek:312800, iad:18500 },
@@ -411,8 +428,8 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const vals = {};   // ekranda o an görünen sayılar
   function setNum(id, v){ vals[id] = v; $(id).textContent = tl(v); }
   function tween(id, to, ms = 900){
-    const from = vals[id] ?? to, t0 = performance.now(); pending[id] = to;
-    const step = t => { const p = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - p, 3); vals[id] = from + (to - from) * e; $(id).textContent = tl(vals[id]); if(p < 1) raf.push(requestAnimationFrame(step)); else delete pending[id]; };
+    const from = vals[id] ?? to, t0 = T.now(); pending[id] = to;
+    const step = () => { const p = Math.min(1, (T.now() - t0) / ms), e = 1 - Math.pow(1 - p, 3); vals[id] = from + (to - from) * e; $(id).textContent = tl(vals[id]); if(p < 1) raf.push(requestAnimationFrame(step)); else delete pending[id]; };
     raf.push(requestAnimationFrame(step));
   }
   function show(d, animate){
@@ -493,7 +510,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
   function applyYearAnimated(){ $('selVal').textContent = 'Bu Yıl'; document.querySelectorAll('#dd div').forEach(d => d.classList.toggle('sel', d.dataset.v === 'Bu Yıl')); show(DATA.yil, true); ['kGen','kMus','kNet'].forEach(pop); }
   function play(i){
     clear(); current = i; mark(i, scenes[i].dur); scenes[i].run();
-    if(!paused) later(() => play((i + 1) % scenes.length), scenes[i].dur + (i === scenes.length - 1 ? 2000 : 400));
+    later(() => play((i + 1) % scenes.length), scenes[i].dur + (i === scenes.length - 1 ? 2000 : 400));
   }
   function jump(i){
     clear(); reset();
@@ -501,18 +518,22 @@ document.getElementById('year').textContent = new Date().getFullYear();
     if(i >= 2){ const d = withRent(); show(d, false); }
     play(i);
   }
-  steps.forEach((s, i) => s.addEventListener('click', () => jump(i)));
-  $('replay').addEventListener('click', () => { paused = false; $('pause').textContent = '❚❚ Durdur'; jump(0); });
-  $('pause').addEventListener('click', () => {
-    paused = !paused; $('pause').textContent = paused ? '▶ Devam et' : '❚❚ Durdur';
-    if(!paused) play((current + 1) % scenes.length); else clear();
-  });
+  // Durdurma: kullanıcı durdurduysa, sekme gizliyse ya da demo ekrandan çıktıysa her şey donar
+  const demo = $('demo'), pauseBtn = $('pause');
+  let userPaused = false, onScreen = false;
+  function sync(){ const stop = userPaused || document.hidden || !onScreen; stop ? T.pause() : T.resume(); demo.classList.toggle('is-paused', stop); }
+  function setPaused(p){ userPaused = p; pauseBtn.textContent = p ? '▶ Devam et' : '❚❚ Durdur'; pauseBtn.setAttribute('aria-pressed', p); sync(); }
+  steps.forEach((s, i) => s.addEventListener('click', () => { jump(i); setPaused(false); }));
+  $('replay').addEventListener('click', () => { jump(0); setPaused(false); });
+  pauseBtn.addEventListener('click', () => setPaused(!userPaused));
+  document.addEventListener('visibilitychange', sync);
   reset();
-  if(reduce){ applyYear(); show(withRent(), false); acc.classList.add('show-rep'); mark(3, 1); paused = true; $('pause').textContent = '▶ Devam et'; return; }
-  const start = () => { if(!started){ started = true; play(0); } };
-  if('IntersectionObserver' in window){
-    new IntersectionObserver((es, o) => es.forEach(e => { if(e.isIntersecting){ start(); o.disconnect(); } }), { threshold:.35 }).observe($('demo'));
-  } else start();
+  if(reduce){ onScreen = true; applyYear(); show(withRent(), false); acc.classList.add('show-rep'); mark(3, 1); setPaused(true); return; }
+  let started = false;
+  const seen = on => { onScreen = on; if(on && !started){ started = true; play(0); } sync(); };
+  // Ekranda en az ~160px'i görünüyorsa oynar; tamamen kaydırılıp gidilince durur
+  if('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => seen(e.isIntersecting && e.intersectionRect.height >= Math.min(160, e.boundingClientRect.height / 2))), { threshold:Array.from({ length:21 }, (_, k) => k / 20) }).observe(demo);
+  else seen(true);
 })();
 </script>
 </body>

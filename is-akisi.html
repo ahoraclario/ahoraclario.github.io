@@ -24,50 +24,89 @@
 .fboard{position:relative;border-radius:16px;border:1px solid var(--border2);background:rgba(4,15,27,.75);padding:14px;overflow:hidden}
 .src{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px;font-size:12.5px;color:var(--muted)}
 .src b{color:var(--text);font-weight:600;margin-right:4px}
-.src span{padding:5px 10px;border-radius:999px;border:1px solid var(--border2);background:rgba(11,32,51,.7);transition:all .3s}
+.src span{padding:5px 10px;border-radius:999px;border:1px solid var(--border2);background:rgba(11,32,51,.7);transition:border-color .3s,background .3s,color .3s}
 .src span.on{border-color:rgba(57,217,138,.6);color:var(--text);background:rgba(57,217,138,.1)}
-.lane2{position:relative;display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:center;padding:14px 12px;border-radius:13px;border:1px solid var(--border2);background:rgba(8,25,42,.7);margin-bottom:10px;transition:border-color .4s,box-shadow .4s}
-.lane2::before{content:'';position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:3px;background:var(--lc)}
-.lane2.act{border-color:color-mix(in srgb,var(--lc) 55%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--lc) 25%,transparent),0 12px 40px -14px color-mix(in srgb,var(--lc) 45%,transparent)}
+/* Departman şeritleri: başlık | aşamalar | dosya yuvası */
+.lane2{position:relative;display:grid;grid-template-columns:148px 1fr 190px;gap:12px;align-items:center;padding:12px;border-radius:13px;border:1px solid var(--border2);background:rgba(8,25,42,.7);margin-bottom:10px;transition:border-color .5s,box-shadow .5s,background .5s}
+.lane2::before{content:'';position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:3px;background:var(--lc);opacity:.55;transition:opacity .5s}
+.lane2.act{border-color:color-mix(in srgb,var(--lc) 50%,transparent);background:color-mix(in srgb,var(--lc) 5%,rgba(8,25,42,.8));box-shadow:0 0 0 1px color-mix(in srgb,var(--lc) 20%,transparent),0 14px 40px -16px color-mix(in srgb,var(--lc) 45%,transparent)}
+.lane2.act::before{opacity:1}
 .ln-h b{display:block;font-size:14.5px}
 .ln-h small{color:var(--faint);font-size:11.5px}
-.ln-rep{display:flex;align-items:center;gap:7px;margin-top:8px;font-size:12px;color:var(--muted);opacity:.35;transition:opacity .4s}
+.ln-rep{display:flex;align-items:center;gap:7px;margin-top:8px;font-size:12px;color:var(--muted);opacity:.35;transition:opacity .5s}
 .ln-rep.on{opacity:1}
 .ln-rep i{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:9.5px;font-weight:800;color:#fff;background:var(--lc)}
 .ln-rep em{font-style:normal;font-size:10px;color:var(--green);display:block}
-.chips2{display:flex;flex-wrap:wrap;gap:7px;min-height:44px;align-items:center}
-.chip2{position:relative;font-size:12px;color:#8FA7BD;padding:9px 11px;border-radius:9px;border:1px dashed rgba(148,178,210,.18);background:rgba(2,11,20,.35);transition:all .35s;white-space:nowrap}
+.chips2{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+.chip2{position:relative;display:inline-flex;align-items:center;font-size:12px;color:#8FA7BD;padding:8px 11px;border-radius:9px;border:1px dashed rgba(148,178,210,.18);background:rgba(2,11,20,.35);transition:color .4s,border-color .4s,background .4s,box-shadow .4s;white-space:nowrap}
 .chip2.done{color:#B7C9DA;border-style:solid;border-color:rgba(148,178,210,.16)}
-.chip2.done::after{content:'✓';margin-left:6px;color:var(--green);font-weight:800}
-.chip2.cur{color:transparent}
-.gate{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:11px;background:rgba(245,158,11,.14);color:#F59E0B;border:1px solid rgba(245,158,11,.4);transition:all .3s;flex-shrink:0}
-.gate.ok{background:rgba(57,217,138,.15);color:var(--green);border-color:rgba(57,217,138,.5)}
-.gate.bad{background:rgba(248,113,113,.15);color:#F87171;border-color:rgba(248,113,113,.5);animation:shake .4s}
+.chip2.done::after{content:'';width:9px;height:5px;margin:-3px 0 0 8px;border:solid var(--green);border-width:0 0 2px 2px;transform:rotate(-45deg)}
+.chip2.cur{color:#fff;border-style:solid;border-color:color-mix(in srgb,var(--lc) 75%,transparent);background:color-mix(in srgb,var(--lc) 20%,transparent);box-shadow:0 0 0 3px color-mix(in srgb,var(--lc) 14%,transparent)}
+.chip2.cur::before{content:'';width:7px;height:7px;border-radius:50%;margin-right:8px;background:var(--lc);animation:curPulse 1.6s ease-out infinite}
+@keyframes curPulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--lc) 70%,transparent)}100%{box-shadow:0 0 0 7px transparent}}
+.gate{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:rgba(245,158,11,.12);color:#F59E0B;border:1px solid rgba(245,158,11,.4);transition:background .3s,color .3s,border-color .3s;flex-shrink:0}
+.gate svg,.ev i svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.gate.ok{background:rgba(57,217,138,.14);color:var(--green);border-color:rgba(57,217,138,.5)}
+.gate.bad{background:rgba(248,113,113,.14);color:#F87171;border-color:rgba(248,113,113,.5);animation:shake .4s}
 @keyframes shake{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
-.ticket{position:absolute;z-index:4;left:0;top:0;padding:8px 11px;border-radius:10px;background:#fff;color:#111827;box-shadow:0 12px 30px rgba(0,0,0,.55),0 0 0 2px var(--tc,#22D3EE);font-size:11px;white-space:nowrap;transition:left .8s cubic-bezier(.4,0,.2,1),top .8s cubic-bezier(.4,0,.2,1),box-shadow .4s,opacity .4s;pointer-events:none}
-.ticket b{display:block;font-size:12px}
-.ticket span{color:#6B7280;font-size:10px}
-.ticket .tst{display:inline-block;margin-top:3px;font-size:10px;font-weight:700;padding:1px 6px;border-radius:5px;background:#EFF6FF;color:#1D4ED8}
-.ticket .renew{display:none;margin-left:5px;font-size:10px;font-weight:700;padding:1px 6px;border-radius:5px;background:#DCFCE7;color:#15803D}
+.slot{align-self:stretch;min-height:88px;border-radius:11px;border:1px dashed rgba(148,178,210,.12);background:rgba(2,11,20,.25)}
+/* Müşteri dosyası kartı: şeritler arasında yuvaya oturur, aşamaları kapatmaz */
+.ticket{position:absolute;z-index:4;left:0;top:0;padding:10px 12px 11px;border-radius:11px;background:#fff;color:#111827;box-shadow:0 10px 26px rgba(0,0,0,.45),0 0 0 2px var(--tc,#22D3EE);font-size:11px;transition:top .75s cubic-bezier(.65,0,.35,1),left .75s cubic-bezier(.65,0,.35,1),width .3s,box-shadow .45s,transform .45s,opacity .4s;pointer-events:none}
+.ticket.moving{transform:scale(1.035);box-shadow:0 22px 44px rgba(0,0,0,.55),0 0 0 2px var(--tc,#22D3EE)}
+.ticket b{display:flex;align-items:center;gap:6px;font-size:12.5px}
+.ticket .meta{display:block;color:#6B7280;font-size:10px;line-height:1.45;margin-top:1px}
+.ticket .tst{display:inline-flex;align-items:center;gap:5px;margin-top:6px;font-size:10px;font-weight:700;line-height:1.3;padding:3px 7px;border-radius:6px;background:color-mix(in srgb,var(--tc) 13%,#fff);color:color-mix(in srgb,var(--tc) 70%,#0B1220)}
+.ticket .tst::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--tc);flex-shrink:0}
+.ticket .tst.bump{animation:pillIn .4s cubic-bezier(.2,.8,.2,1)}
+@keyframes pillIn{from{opacity:0;transform:translateY(4px)}}
+.ticket .prog{height:3px;border-radius:3px;background:#EEF2F6;margin-top:8px;overflow:hidden}
+.ticket .prog i{display:block;height:100%;width:0;border-radius:3px;background:var(--tc);transition:width .6s ease,background .45s}
+.ticket .renew{display:none;font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:5px;background:#DCFCE7;color:#15803D}
 .ticket.renewing .renew{display:inline-block}
-.gatepop{position:absolute;z-index:5;min-width:220px;padding:10px 12px;border-radius:11px;background:#0B2236;border:1px solid var(--border);box-shadow:0 18px 40px rgba(0,0,0,.5);font-size:12px;opacity:0;transform:translateY(6px);transition:all .3s;pointer-events:none}
+.gatepop{position:absolute;z-index:5;min-width:224px;padding:10px 12px;border-radius:11px;background:#0B2236;border:1px solid var(--border);box-shadow:0 18px 40px rgba(0,0,0,.5);font-size:12px;opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s;pointer-events:none}
 .gatepop.show{opacity:1;transform:none}
-.gatepop h6{margin:0 0 6px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
-.gatepop div{display:flex;gap:7px;align-items:center;margin-top:5px;color:#C9D6E3}
-.gatepop div i{font-style:normal;width:16px;text-align:center}
-/* Olay günlüğü */
-.log{border-radius:16px;border:1px solid var(--border2);background:rgba(4,15,27,.8);display:flex;flex-direction:column;overflow:hidden}
-.log-h{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid var(--border2);font-size:13px;font-weight:700}
-.log-h span{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--green);font-weight:600}
-.log-h span::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink2 1.4s infinite}
+.gatepop h6{margin:0 0 6px;font-size:11.5px;font-weight:700;color:var(--text)}
+.gatepop h6.no{color:#F87171}.gatepop h6.yes{color:var(--green)}
+.gatepop div{display:flex;gap:8px;align-items:center;margin-top:5px;color:#C9D6E3}
+.gatepop div i{width:14px;height:14px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;font-style:normal;font-size:9px;font-weight:800;color:#04140C;background:var(--green)}
+.gatepop div i.x{background:#F87171;color:#2A0A0A}
+/* Sistem kaydı */
+.log{border-radius:16px;border:1px solid var(--border2);background:rgba(4,15,27,.85);display:flex;flex-direction:column;overflow:hidden}
+.log-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--border2)}
+.log-h b{display:block;font-size:13px}
+.log-h small{display:block;font-size:10.5px;color:var(--faint);font-variant-numeric:tabular-nums}
+.live{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--green);font-weight:600;white-space:nowrap}
+.live::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor;animation:blink2 1.4s infinite}
+.demo.is-paused .live{color:#F59E0B}
 @keyframes blink2{50%{opacity:.3}}
-.log-list{flex:1;overflow:hidden;padding:10px 12px;display:flex;flex-direction:column;gap:8px;justify-content:flex-end;min-height:420px}
-.ev{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:12px;color:#C9D6E3;opacity:0;transform:translateY(8px);animation:evIn .4s forwards}
-@keyframes evIn{to{opacity:1;transform:none}}
-.ev i{font-style:normal;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:11px;background:rgba(148,178,210,.1)}
-.ev small{display:block;color:var(--faint);font-size:10.5px}
-.ev.ml i{background:rgba(59,130,246,.15)}.ev.auto i{background:rgba(57,217,138,.14)}.ev.rule i{background:rgba(245,158,11,.14)}.ev.bad i{background:rgba(248,113,113,.15)}
+.log-list{flex:1 1 0;min-height:0;overflow:hidden;padding:10px 12px;display:flex;flex-direction:column;gap:3px;justify-content:flex-end;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 70px);mask-image:linear-gradient(to bottom,transparent,#000 70px)}
+.ev{display:grid;grid-template-columns:24px 1fr auto;gap:9px;align-items:start;padding:6px 7px;border-radius:9px;font-size:12px;line-height:1.35;color:#C9D6E3;animation:evIn .45s cubic-bezier(.2,.8,.2,1) both,evNew 1.8s ease-out}
+.ev.ff{animation:none}
+@keyframes evIn{from{opacity:0;transform:translateY(8px)}}
+@keyframes evNew{0%,30%{background:rgba(148,178,210,.08)}100%{background:transparent}}
+.ev i{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-style:normal;color:#9FB3C8;background:rgba(148,178,210,.1)}
+.ev.auto i{color:var(--green);background:rgba(57,217,138,.13)}
+.ev.ml i{color:#60A5FA;background:rgba(59,130,246,.15)}
+.ev.rule i{color:#F59E0B;background:rgba(245,158,11,.14)}
+.ev.bad i{color:#F87171;background:rgba(248,113,113,.15)}
 .ev b{color:var(--text);font-weight:600}
+.ev small{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-top:2px;color:var(--faint);font-size:10.5px}
+.ev em{font-style:normal;font-size:9.5px;font-weight:700;padding:1px 5px;border-radius:4px;color:#B7C9DA;background:rgba(148,178,210,.12)}
+.ev em.sys{color:var(--green);background:rgba(57,217,138,.1)}
+.ev time{font-size:10.5px;color:var(--faint);font-variant-numeric:tabular-nums;padding-top:1px}
+.ev-day{display:flex;align-items:center;gap:8px;margin:6px 2px 3px;font-size:10px;font-weight:700;color:var(--faint);animation:evIn .45s both}
+.ev-day::after{content:'';flex:1;height:1px;background:var(--border2)}
+.ev-day.ff{animation:none}
+.log-f{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border2)}
+.log-f div{padding:10px 8px;text-align:center}
+.log-f div+div{border-left:1px solid var(--border2)}
+.log-f b{display:block;font-size:16px;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.log-f small{color:var(--faint);font-size:10px}
+/* Durdur: tüm CSS animasyonları da olduğu yerde donar */
+.demo.is-paused *,.demo.is-paused *::before,.demo.is-paused *::after{animation-play-state:paused!important}
+/* Adıma atlarken önceki adımlar anında uygulanır */
+.demo.instant *,.demo.instant *::before,.demo.instant *::after{transition:none!important}
+.demo-ctrl button[aria-pressed="true"]{color:var(--text);border-color:rgba(245,158,11,.55)}
 
 /* Alt bölümler */
 .dept{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -93,15 +132,14 @@
 .counter div{flex:1;border-radius:10px;padding:10px;border:1px solid #E5E9F0;text-align:center}
 .counter b{display:block;font-size:22px;letter-spacing:-.02em}
 .counter small{color:#6B7280;font-size:10.5px}
-@media (max-width:1100px){ .fb-wrap{grid-template-columns:1fr} .log-list{min-height:0;max-height:260px} }
+@media (max-width:1100px){ .fb-wrap{grid-template-columns:1fr} .log-list{flex:none;height:300px} }
 @media (max-width:980px){ .demo-steps.d5{grid-template-columns:repeat(3,1fr)} .dept{grid-template-columns:1fr} }
 @media (max-width:760px){
   .demo-steps.d5{grid-template-columns:1fr 1fr}
   .lane2{grid-template-columns:1fr;gap:8px}
   .chip2{font-size:11px;padding:7px 9px}
+  .slot{min-height:108px}
   .gatepop{min-width:190px;font-size:11px}
-  .ticket{padding:6px 9px}.ticket > span:not(.tst),.ticket br{display:none}.ticket .tst{margin:0 0 0 6px}
-  .ticket b{display:inline}
 }
 </style>
 </head>
@@ -169,30 +207,34 @@
           <div class="lane2" id="L0" style="--lc:#3B82F6">
             <div class="ln-h"><b>1 · Satış</b><small>Adayı arar, ikna eder, ödemeyi alır</small>
               <div class="ln-rep" id="R0"><i>AK</i><div>Ayşe Korkmaz<em>otomatik atandı</em></div></div></div>
-            <div class="chips2"><span class="chip2" id="c-yeni">Yeni Kayıt</span><span class="chip2" id="c-ilg">İlgileniyor</span><span class="chip2" id="c-ilet">İletişime Geçildi</span><span class="gate" id="g1" title="Kontrol">🔒</span></div>
+            <div class="chips2"><span class="chip2" id="c-yeni">Yeni Kayıt</span><span class="chip2" id="c-ilg">İlgileniyor</span><span class="chip2" id="c-ilet">İletişime Geçildi</span><span class="gate" id="g1" title="Kontrol"></span><span class="chip2" id="c-odeme">Ödeme Alındı</span></div>
+            <div class="slot" id="S0" aria-hidden="true"></div>
           </div>
           <div class="lane2" id="L1" style="--lc:#F59E0B">
             <div class="ln-h"><b>2 · Evrak</b><small>Belgeleri toplar, randevuyu alır</small>
               <div class="ln-rep" id="R1"><i>SD</i><div>Selin Demir<em>otomatik atandı</em></div></div></div>
-            <div class="chips2"><span class="chip2" id="c-odeme">Ödeme Alındı</span><span class="chip2" id="c-belgeb">Belge Bekleniyor</span><span class="chip2" id="c-belget">Belgeler Tamam</span><span class="chip2" id="c-randar">Randevu Aranıyor</span><span class="gate" id="g2" title="Kontrol">🔒</span><span class="chip2" id="c-randal">Randevu Alındı</span><span class="chip2" id="c-randhaz">Randevu Evrakları Hazırlanıyor</span></div>
+            <div class="chips2"><span class="chip2" id="c-belgeb">Belge Bekleniyor</span><span class="chip2" id="c-belget">Belgeler Tamam</span><span class="chip2" id="c-randar">Randevu Aranıyor</span><span class="gate" id="g2" title="Kontrol"></span><span class="chip2" id="c-randal">Randevu Alındı</span><span class="chip2" id="c-randhaz">Randevu Evrakları Hazırlanıyor</span></div>
+            <div class="slot" id="S1" aria-hidden="true"></div>
           </div>
           <div class="lane2" id="L2" style="--lc:#39D98A">
             <div class="ln-h"><b>3 · Randevu & Konsolosluk</b><small>Başvuruyu yapar, sonucu takip eder</small>
               <div class="ln-rep" id="R2"><i>KA</i><div>Kerem Aslan<em>otomatik atandı</em></div></div></div>
             <div class="chips2"><span class="chip2" id="c-randtam">Randevu Evrakları Tamamlandı</span><span class="chip2" id="c-basv">Başvuru Yapıldı</span><span class="chip2" id="c-sonuc">Sonuç Bekleniyor</span><span class="chip2" id="c-tamam">Tamamlandı</span></div>
+            <div class="slot" id="S2" aria-hidden="true"></div>
           </div>
 
-          <div class="ticket" id="ticket" style="opacity:0"><b>Elif Demir <span class="renew">🔁 Yenileme</span></b><span>VZ-2026-4172 · 🇬🇷 Yunanistan · 2 kişi</span><br><span class="tst" id="tst">Yeni Kayıt</span></div>
+          <div class="ticket" id="ticket" style="opacity:0"><b>Elif Demir <span class="renew">Yenileme</span></b><span class="meta">VZ-2026-4172<br>🇬🇷 Yunanistan · 2 kişi</span><span class="tst" id="tst">Yeni Kayıt</span><div class="prog"><i id="tprog"></i></div></div>
           <div class="gatepop" id="gp"></div>
         </div>
 
         <div class="log" aria-label="Sistem kaydı (örnek)">
-          <div class="log-h">Sistem kaydı<span>canlı</span></div>
+          <div class="log-h"><div><b>Sistem kaydı</b><small>Dosya VZ-2026-4172</small></div><span class="live" id="liveTag">canlı</span></div>
           <div class="log-list" id="log" aria-live="polite"></div>
+          <div class="log-f"><div><b id="stAuto">0</b><small>otomatik işlem</small></div><div><b id="stMail">0</b><small>müşteri maili</small></div><div><b id="stTime">0 dk</b><small>geçen süre</small></div></div>
         </div>
       </div>
 
-      <div class="demo-ctrl"><button id="replay" type="button">↻ Baştan oynat</button><button id="pause" type="button">❚❚ Durdur</button></div>
+      <div class="demo-ctrl"><button id="replay" type="button">↻ Baştan oynat</button><button id="pause" type="button" aria-pressed="false">❚❚ Durdur</button></div>
     </div>
     <p class="demo-note" style="text-align:center;margin-top:14px">Örnek görünüm · isimler ve bilgiler temsilidir</p>
   </div>
@@ -208,14 +250,14 @@
     <div class="dept">
       <div class="dcard reveal" style="--lc:#3B82F6">
         <div class="ficon" style="--c:#3B82F6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></div>
-        <h3>Satış</h3><p class="role">Yeni adayları arayıp müşteriye dönüştürür.</p>
-        <h5>Aşamalar</h5><ul><li>Yeni Kayıt</li><li>Ulaşılamıyor · Sonra Ara</li><li>İlgileniyor · İletişime Geçildi</li></ul>
+        <h3>Satış</h3><p class="role">Yeni adayları arayıp müşteriye dönüştürür, ödemeyi alır.</p>
+        <h5>Aşamalar</h5><ul><li>Yeni Kayıt</li><li>Ulaşılamıyor · Sonra Ara</li><li>İlgileniyor · İletişime Geçildi</li><li>Ödeme Alındı</li></ul>
         <h5>Sistem ne yapar?</h5><ul><li>Yeni adayları temsilcilere sırayla dağıtır</li><li>"Yeni Data Çek" ile adayları kuyruk hâlinde verir</li><li>Arama sonuçlarını ve hatırlatıcıları tutar</li></ul>
       </div>
       <div class="dcard reveal" style="--lc:#F59E0B">
         <div class="ficon" style="--c:#F59E0B"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
         <h3>Evrak</h3><p class="role">Belgeleri toplar, kontrol eder, randevuyu alır.</p>
-        <h5>Aşamalar</h5><ul><li>Ödeme Alındı · Belge Bekleniyor</li><li>Belgeler Tamam · Randevu Aranıyor</li><li>Randevu Alındı · Evraklar Hazırlanıyor</li></ul>
+        <h5>Aşamalar</h5><ul><li>Belge Bekleniyor · Belgeler Tamam</li><li>Randevu Aranıyor · Randevu Alındı</li><li>Randevu Evrakları Hazırlanıyor</li></ul>
         <h5>Sistem ne yapar?</h5><ul><li>Ödeme alınan dosyayı sıradaki evrakçıya atar</li><li>Randevu bekleyen dosyada gün sayar</li><li>Eksik bilgiyle aşama atlatmaz</li></ul>
       </div>
       <div class="dcard reveal" style="--lc:#39D98A">
@@ -376,127 +418,217 @@ document.getElementById('year').textContent = new Date().getFullYear();
 // ── Canlı demo: bir vize dosyasının departmanlar arası yolculuğu ──
 (() => {
   const $ = id => document.getElementById(id);
-  const steps = [...document.querySelectorAll('.dstep')];
-  const board = $('board'), tk = $('ticket'), logEl = $('log'), gp = $('gp');
+  const demo = $('demo'), steps = [...document.querySelectorAll('.dstep')];
+  const board = $('board'), tk = $('ticket'), logEl = $('log'), gp = $('gp'), pauseBtn = $('pause');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let timers = [], paused = false, current = -1, started = false;
-  const later = (fn, ms) => timers.push(setTimeout(fn, ms));
-  const clear = () => { timers.forEach(clearTimeout); timers = []; };
+
+  // Duraklatılabilir zamanlayıcı: "Durdur"da bekleyen her adım olduğu yerde donar,
+  // "Devam et"te kalan süresiyle kaldığı yerden sürer.
+  const T = (() => {
+    let list = [], pausedAt = null, offset = 0;
+    const now = () => (pausedAt ?? performance.now()) - offset;
+    const arm = t => { t.id = setTimeout(() => { list = list.filter(x => x !== t); t.fn(); }, Math.max(0, t.due - now())); };
+    return {
+      add(fn, ms){ const t = { fn, due: now() + ms }; list.push(t); if(pausedAt === null) arm(t); },
+      clear(){ list.forEach(t => clearTimeout(t.id)); list = []; },
+      pause(){ if(pausedAt !== null) return; pausedAt = performance.now(); list.forEach(t => clearTimeout(t.id)); },
+      resume(){ if(pausedAt === null) return; offset += performance.now() - pausedAt; pausedAt = null; list.forEach(arm); },
+    };
+  })();
+
+  // Anında mod: bir adıma atlarken önceki sahneler animasyonsuz, sırasıyla uygulanır
+  let instant = null;
+  const later = (fn, ms) => instant ? instant.push({ fn, ms, k: instant.length }) : T.add(fn, ms);
+
   const ORDER = ['c-yeni','c-ilg','c-ilet','c-odeme','c-belgeb','c-belget','c-randar','c-randal','c-randhaz','c-randtam','c-basv','c-sonuc','c-tamam'];
-  const LANE_OF = id => ORDER.indexOf(id) <= 2 ? 0 : ORDER.indexOf(id) <= 8 ? 1 : 2;
+  const LANE_OF = id => { const i = ORDER.indexOf(id); return i <= 3 ? 0 : i <= 8 ? 1 : 2; };
   const COLORS = ['#3B82F6','#F59E0B','#39D98A'];
   const NAMES = { 'c-yeni':'Yeni Kayıt','c-ilg':'İlgileniyor','c-ilet':'İletişime Geçildi','c-odeme':'Ödeme Alındı','c-belgeb':'Belge Bekleniyor','c-belget':'Belgeler Tamam','c-randar':'Randevu Aranıyor','c-randal':'Randevu Alındı','c-randhaz':'Randevu Evrakları Hazırlanıyor','c-randtam':'Randevu Evrakları Tamamlandı','c-basv':'Başvuru Yapıldı','c-sonuc':'Sonuç Bekleniyor','c-tamam':'Tamamlandı' };
-  let clock = 0;   // demo saatinin dakikası (09:12'den başlar)
-  const tstr = () => { const m = 9 * 60 + 12 + clock, day = Math.floor(m / 1440) + 1, hm = m % 1440; const t = String(Math.floor(hm / 60)).padStart(2,'0') + ':' + String(hm % 60).padStart(2,'0'); return (day > 1 ? day + '. gün ' : '') + t; };
-  function ev(type, icon, html, sub){
-    const d = document.createElement('div'); d.className = 'ev ' + type;
-    d.innerHTML = `<i>${icon}</i><div>${html}<small>${sub ? sub + ' · ' : ''}${tstr()}</small></div>`;
-    logEl.appendChild(d); while(logEl.children.length > 9) logEl.firstChild.remove();
+
+  // Çizgi ikonlar (sistem kaydı ve kontrol noktaları)
+  const P = {
+    web:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+    assign:'<circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M16 11l2 2 4-4"/>',
+    mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+    pull:'<path d="M12 3v12M7 10l5 5 5-5M4 21h16"/>',
+    phone:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>',
+    chat:'<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/>',
+    block:'<circle cx="12" cy="12" r="9"/><path d="m5.6 5.6 12.8 12.8"/>',
+    clip:'<path d="m21 11-8.5 8.5a5 5 0 0 1-7-7L14 4a3.5 3.5 0 0 1 5 5l-8.5 8.5a2 2 0 0 1-3-3L15 7"/>',
+    check:'<path d="M20 6 9 17l-5-5"/>',
+    x:'<path d="M18 6 6 18M6 6l12 12"/>',
+    lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+    move:'<path d="M4 8h14l-4-4M20 16H6l4 4"/>',
+    folder:'<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><path d="m9 13 2 2 4-4"/>',
+    timer:'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/>',
+    cal:'<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/>',
+    bell:'<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21a2 2 0 0 0 4 0"/>',
+    bank:'<path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/>',
+    pay:'<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/>',
+    done:'<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>',
+    renew:'<path d="M3 12a9 9 0 0 1 15.5-6.3L21 8M21 3v5h-5M21 12a9 9 0 0 1-15.5 6.3L3 16M3 21v-5h5"/>',
+    doc:'<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/>',
+  };
+  const svg = k => `<svg viewBox="0 0 24 24" aria-hidden="true">${P[k]}</svg>`;
+
+  // Demo saati: 09:12'den başlar, dakika cinsinden ilerler
+  let clock = 0, lastDay = 0, nAuto = 0, nMail = 0;
+  const hm = () => { const m = (9 * 60 + 12 + clock) % 1440; return String(Math.floor(m / 60)).padStart(2,'0') + ':' + String(m % 60).padStart(2,'0'); };
+  const dayNo = () => Math.floor((9 * 60 + 12 + clock) / 1440) + 1;
+  const span = () => clock < 60 ? clock + ' dk' : clock < 1440 ? Math.floor(clock / 60) + ' sa' : clock < 60 * 1440 ? Math.floor(clock / 1440) + ' gün' : Math.round(clock / 43200) + ' ay';
+  function stats(){ $('stAuto').textContent = nAuto; $('stMail').textContent = nMail; $('stTime').textContent = span(); }
+
+  // Sistem kaydına satır ekler. who: işlemi yapan kişi; boşsa işlem otomatiktir.
+  function ev(kind, icon, html, sub, who){
+    const ff = instant ? ' ff' : '';
+    if(dayNo() !== lastDay){
+      lastDay = dayNo();
+      const d = document.createElement('div'); d.className = 'ev-day' + ff; d.textContent = lastDay + '. gün';
+      logEl.appendChild(d);
+    }
+    const tag = who ? `<em>${who}</em>` : '<em class="sys">Otomatik</em>';
+    const r = document.createElement('div'); r.className = 'ev ' + kind + ff;
+    r.innerHTML = `<i>${svg(icon)}</i><div>${html}<small>${tag}${sub ? '<span>' + sub + '</span>' : ''}</small></div><time>${hm()}</time>`;
+    logEl.appendChild(r);
+    while(logEl.children.length > 24) logEl.firstChild.remove();
+    if(kind === 'ml') nMail++; else if(!who) nAuto++;
+    stats();
   }
-  function place(id){
-    const b = board.getBoundingClientRect(), c = $(id).getBoundingClientRect();
-    const w = tk.offsetWidth, h = tk.offsetHeight;
-    let left = c.left - b.left + c.width / 2 - w / 2, top = c.top - b.top + c.height / 2 - h / 2;
-    left = Math.max(6, Math.min(left, b.width - w - 6));
-    tk.style.left = left + 'px'; tk.style.top = top + 'px';
+
+  // Dosya kartı, aktif departmanın yuvasına oturur; aşama çipleri hep görünür kalır
+  let lane = -1;
+  function place(){
+    if(lane < 0) return;
+    const b = board.getBoundingClientRect(), s = $('S' + lane).getBoundingClientRect();
+    tk.style.width = s.width + 'px';
+    tk.style.left = (s.left - b.left) + 'px';
+    tk.style.top = (s.top - b.top + (s.height - tk.offsetHeight) / 2) + 'px';
   }
   function moveTo(id){
-    const i = ORDER.indexOf(id), lane = LANE_OF(id);
+    const i = ORDER.indexOf(id), l = LANE_OF(id);
     ORDER.forEach((c, k) => { $(c).classList.toggle('done', k < i); $(c).classList.toggle('cur', k === i); });
-    [0,1,2].forEach(l => $('L' + l).classList.toggle('act', l === lane));
-    tk.style.setProperty('--tc', COLORS[lane]); $('tst').textContent = NAMES[id];
-    tk.style.opacity = 1; place(id);
+    [0,1,2].forEach(n => $('L' + n).classList.toggle('act', n === l));
+    if(l !== lane && lane >= 0 && !instant){ tk.classList.add('moving'); setTimeout(() => tk.classList.remove('moving'), 800); }
+    lane = l;
+    tk.style.setProperty('--tc', COLORS[l]);
+    const st = $('tst'); st.textContent = NAMES[id];
+    if(!instant){ st.classList.remove('bump'); void st.offsetWidth; st.classList.add('bump'); }
+    $('tprog').style.width = ((i + 1) / ORDER.length * 100) + '%';
+    if(tk.style.opacity !== '1'){                 // ilk görünüş: yerine anında otur, sonra belir
+      tk.style.transition = 'none'; place(); void tk.offsetWidth; tk.style.transition = '';
+    } else place();
+    tk.style.opacity = 1;
   }
+  const setGate = (g, state) => { const el = $(g); el.classList.remove('ok','bad'); if(state) el.classList.add(state); el.innerHTML = svg(state === 'ok' ? 'check' : state === 'bad' ? 'x' : 'lock'); };
   function gate(gid, lines, ok, anchor){
-    const g = $(gid); g.classList.remove('ok','bad'); g.classList.add(ok ? 'ok' : 'bad'); g.textContent = ok ? '✓' : '✕';
-    gp.innerHTML = `<h6>${ok ? 'Kontrol geçildi' : 'Geçiş engellendi'}</h6>` + lines.map(([o, t]) => `<div><i>${o ? '✅' : '⛔'}</i>${t}</div>`).join('');
-    const b = board.getBoundingClientRect(), r = $(anchor || gid).getBoundingClientRect();
-    gp.style.left = Math.max(8, Math.min(r.left - b.left - 60, b.width - 240)) + 'px'; gp.style.top = (r.bottom - b.top + 8) + 'px';
+    setGate(gid, ok ? 'ok' : 'bad');
+    if(instant) return;
+    gp.innerHTML = `<h6 class="${ok ? 'yes' : 'no'}">${ok ? 'Kontrol geçildi' : 'Geçiş engellendi'}</h6>` + lines.map(([o, t]) => `<div><i class="${o ? '' : 'x'}">${o ? '✓' : '✕'}</i>${t}</div>`).join('');
+    const b = board.getBoundingClientRect(), r = $(anchor || gid).getBoundingClientRect(), area = $(gid).parentElement.getBoundingClientRect();
+    const w = gp.offsetWidth, minL = area.left - b.left, maxL = Math.max(minL, area.right - b.left - w);
+    gp.style.left = Math.max(minL, Math.min(r.left - b.left - 40, maxL)) + 'px';
+    gp.style.top = (r.bottom - b.top + 8) + 'px';
     gp.classList.add('show');
   }
   const hideGate = () => gp.classList.remove('show');
   const rep = n => $('R' + n).classList.add('on');
+
   function reset(){
-    clock = 0; logEl.innerHTML = ''; hideGate(); tk.style.opacity = 0; tk.classList.remove('renewing');
+    clock = 0; lastDay = 0; nAuto = 0; nMail = 0; lane = -1; stats();
+    logEl.innerHTML = ''; hideGate(); tk.style.opacity = 0; tk.classList.remove('renewing','moving'); $('tprog').style.width = 0;
     ORDER.forEach(c => $(c).classList.remove('done','cur'));
-    [0,1,2].forEach(l => { $('L' + l).classList.remove('act'); $('R' + l).classList.remove('on'); });
-    ['g1','g2'].forEach(g => { $(g).classList.remove('ok','bad'); $(g).textContent = '🔒'; });
+    [0,1,2].forEach(n => { $('L' + n).classList.remove('act'); $('R' + n).classList.remove('on'); });
+    ['g1','g2'].forEach(g => setGate(g, null));
     $('srcForm').classList.remove('on');
   }
   function mark(i, dur){
     steps.forEach((s, k) => { s.classList.toggle('on', k === i); s.classList.toggle('done', k < i); s.setAttribute('aria-selected', k === i); });
-    const b = steps[i].querySelector('.bar'); b.style.animation = 'none'; b.offsetWidth; b.style.animation = ''; steps[i].style.setProperty('--dur', dur + 'ms');
+    const b = steps[i].querySelector('.bar'); b.style.animation = 'none'; void b.offsetWidth; b.style.animation = ''; steps[i].style.setProperty('--dur', dur + 'ms');
   }
+
   const scenes = [
     { dur: 5200, run(){                                              // 1) Başvuru gelir
-      reset();
-      later(() => { $('srcForm').classList.add('on'); ev('auto', '🌐', '<b>Yeni başvuru</b> web formundan geldi', 'Elif Demir · Yunanistan'); }, 300);
-      later(() => { moveTo('c-yeni'); clock += 1; ev('auto', '🎯', '<b>Ayşe K.</b>\'ya otomatik atandı', 'En uzun süredir aday almayan temsilci'); rep(0); }, 1300);
-      later(() => { ev('ml', '✉️', '<b>"Başvurunuz Alındı"</b> maili gönderildi', 'Danışman adı ve telefonuyla'); }, 2600);
-      later(() => { clock += 14; ev('', '📥', 'Ayşe K. <b>Yeni Data Çek</b> ile dosyayı aldı'); }, 3900);
+      later(() => { $('srcForm').classList.add('on'); ev('auto', 'web', '<b>Yeni başvuru</b> web formundan geldi', 'Elif Demir · Yunanistan'); }, 300);
+      later(() => { moveTo('c-yeni'); clock += 1; rep(0); ev('auto', 'assign', '<b>Ayşe K.</b>\'ya atandı', 'En uzun süredir aday almayan temsilci'); }, 1300);
+      later(() => { ev('ml', 'mail', '<b>"Başvurunuz Alındı"</b> maili gönderildi', 'Danışman adı ve telefonuyla'); }, 2600);
+      later(() => { clock += 14; ev('hum', 'pull', '<b>Yeni Data Çek</b> ile dosyayı aldı', '', 'Ayşe K.'); }, 3900);
     }},
-    { dur: 7600, run(){                                              // 2) Satış kapanır
-      later(() => { clock += 6; ev('', '📞', 'Arama kaydı: <b>İlgileniyor</b>', 'Not: Eşiyle birlikte gidecek'); moveTo('c-ilg'); }, 300);
-      later(() => { clock += 90; moveTo('c-ilet'); ev('', '💬', 'Teklif iletildi, <b>ön ödeme</b> bekleniyor'); }, 1700);
-      later(() => { clock += 35; gate('g1', [[false, 'En az bir belge yüklenmeli (pasaport vb.)']], false); ev('bad', '⛔', '<b>Ödeme Alındı</b>\'ya geçiş engellendi', 'Belge yüklenmemiş'); }, 3100);
-      later(() => { hideGate(); clock += 3; ev('', '📎', '<b>pasaport_elif.pdf</b> yüklendi'); }, 4700);
-      later(() => { gate('g1', [[true, 'Belge yüklendi'], [true, '₺12.000 ön ödeme kaydedildi']], true); ev('rule', '✅', 'Kontrol geçildi', 'Ödeme tahsilata yazıldı'); }, 5500);
+    { dur: 8200, run(){                                              // 2) Satış kapanır
+      later(() => { clock += 6; moveTo('c-ilg'); ev('hum', 'phone', 'Arama sonucu: <b>İlgileniyor</b>', 'Not: eşiyle birlikte gidecek', 'Ayşe K.'); }, 300);
+      later(() => { clock += 90; moveTo('c-ilet'); ev('hum', 'chat', 'Teklif iletildi, <b>ön ödeme</b> bekleniyor', '', 'Ayşe K.'); }, 1700);
+      later(() => { clock += 35; gate('g1', [[false, 'En az bir belge yüklenmeli (pasaport vb.)']], false); ev('bad', 'block', '<b>Ödeme Alındı</b>\'ya geçiş engellendi', 'Belge yüklenmemiş'); }, 3100);
+      later(() => { hideGate(); clock += 3; ev('hum', 'clip', '<b>pasaport_elif.pdf</b> yüklendi', '', 'Ayşe K.'); }, 4700);
+      later(() => { gate('g1', [[true, 'Belge yüklendi'], [true, '₺12.000 ön ödeme girildi']], true, 'c-odeme'); ev('rule', 'check', 'Kontrol geçildi', 'Belge ve ödeme tamam'); }, 5500);
+      later(() => { hideGate(); clock += 1; moveTo('c-odeme'); ev('auto', 'pay', 'Satış kapandı · <b>₺12.000</b> tahsilata yazıldı', 'Ciro Ayşe K. adına'); }, 6800);
     }},
     { dur: 9800, run(){                                              // 3) Evrak ve randevu
-      hideGate();
-      later(() => { clock += 1; moveTo('c-odeme'); ev('auto', '🔀', 'Dosya <b>Evrak</b> ekibine geçti'); }, 200);
-      later(() => { rep(1); ev('auto', '🎯', '<b>Selin D.</b>\'ya otomatik atandı', 'Evrak ekibinde sıradaki'); }, 1100);
-      later(() => { ev('ml', '✉️', '<b>"Ödemeniz Alındı"</b> maili gönderildi', 'Evrak sorumlusu + takip linki'); }, 2000);
-      later(() => { clock += 60; moveTo('c-belgeb'); }, 3000);
-      later(() => { clock += 2880; moveTo('c-belget'); ev('', '📂', 'Tüm belgeler tamamlandı', '2 başvuru · 7 belge'); }, 4000);
-      later(() => { clock += 30; moveTo('c-randar'); ev('rule', '⏱️', 'Randevu sayacı çalışıyor', 'İlk ödemeden beri 3. gün'); }, 5000);
-      later(() => { clock += 1440; gate('g2', [[true, 'Elif Demir: 14 Ekim 09:30'], [true, 'Ayşe Aksoy: 14 Ekim 09:45'], [true, 'Randevu gideri girildi (₺2.400)']], true, 'c-randal'); ev('rule', '✅', 'Randevu kontrolleri geçildi', 'Tüm başvurularda tarih var'); }, 6100);
-      later(() => { hideGate(); moveTo('c-randal'); ev('ml', '✉️', '<b>"Randevunuz Alındı"</b> maili gönderildi', 'Tarih, saat ve merkez'); }, 7700);
-      later(() => { clock += 240; moveTo('c-randhaz'); }, 8800);
+      later(() => { clock += 1; moveTo('c-belgeb'); ev('auto', 'move', 'Dosya <b>Evrak</b> ekibine geçti'); }, 300);
+      later(() => { rep(1); ev('auto', 'assign', '<b>Selin D.</b>\'ya atandı', 'Evrak ekibinde sıradaki'); }, 1200);
+      later(() => { ev('ml', 'mail', '<b>"Ödemeniz Alındı"</b> maili gönderildi', 'Evrak sorumlusu ve takip linkiyle'); }, 2100);
+      later(() => { clock += 2880; moveTo('c-belget'); ev('hum', 'folder', 'Tüm belgeler tamamlandı', '2 başvuru · 7 belge', 'Selin D.'); }, 3300);
+      later(() => { clock += 30; moveTo('c-randar'); ev('rule', 'timer', 'Randevu sayacı çalışıyor', 'İlk ödemeden beri 3. gün'); }, 4400);
+      later(() => { clock += 1440; gate('g2', [[true, 'Elif Demir: 14 Ekim 09:30'], [true, 'Ayşe Aksoy: 14 Ekim 09:45'], [true, 'Randevu gideri girildi (₺2.400)']], true, 'c-randal'); ev('rule', 'check', 'Randevu kontrolleri geçildi', 'Tüm başvurularda tarih var'); }, 5600);
+      later(() => { hideGate(); moveTo('c-randal'); ev('ml', 'mail', '<b>"Randevunuz Alındı"</b> maili gönderildi', 'Tarih, saat ve merkez'); }, 7200);
+      later(() => { clock += 240; moveTo('c-randhaz'); ev('hum', 'doc', 'Randevu evrakları hazırlanıyor', '', 'Selin D.'); }, 8400);
     }},
     { dur: 8600, run(){                                              // 4) Konsolosluk
-      hideGate();
-      later(() => { clock += 1500; moveTo('c-randtam'); ev('auto', '🔀', 'Dosya <b>Randevu</b> ekibine geçti'); }, 300);
-      later(() => { rep(2); ev('auto', '🎯', '<b>Kerem A.</b>\'ya otomatik atandı'); ev('ml', '✉️', '<b>"Randevu Evraklarınız Hazır"</b> maili gönderildi'); }, 1300);
-      later(() => { clock += 1; ev('ml', '⏰', '<b>Randevuya 7 gün kala</b> hatırlatma gitti', 'Gerekli belgeler ekli'); }, 2600);
-      later(() => { clock += 10080; moveTo('c-basv'); ev('ml', '🏛️', 'Başvuru yapıldı · <b>"Başvurunuz Yapıldı"</b> maili'); }, 3900);
-      later(() => { clock += 60; moveTo('c-sonuc'); ev('rule', '⏱️', 'Konsolosluk sayacı başladı'); }, 5100);
-      later(() => { clock += 12960; moveTo('c-tamam'); ev('auto', '🎉', 'Vize çıktı · dosya <b>Tamamlandı</b>', 'Hatırlatıcılar otomatik kapandı'); }, 6500);
+      later(() => { clock += 1500; moveTo('c-randtam'); ev('auto', 'move', 'Dosya <b>Randevu</b> ekibine geçti'); }, 300);
+      later(() => { rep(2); ev('auto', 'assign', '<b>Kerem A.</b>\'ya atandı', 'Randevu ekibinde sıradaki'); }, 1200);
+      later(() => { ev('ml', 'mail', '<b>"Randevu Evraklarınız Hazır"</b> maili gönderildi'); }, 2000);
+      later(() => { clock += 1; ev('ml', 'bell', '<b>Randevuya 7 gün kala</b> hatırlatma gitti', 'Gerekli belgeler ekli'); }, 2900);
+      later(() => { clock += 10080; moveTo('c-basv'); ev('ml', 'bank', '<b>"Başvurunuz Yapıldı"</b> maili gönderildi', 'Konsoloslukta başvuru tamam'); }, 4100);
+      later(() => { clock += 60; moveTo('c-sonuc'); ev('rule', 'timer', 'Konsolosluk sayacı başladı'); }, 5300);
+      later(() => { clock += 12960; moveTo('c-tamam'); ev('auto', 'done', 'Vize çıktı · dosya <b>Tamamlandı</b>', 'Hatırlatıcılar otomatik kapandı'); }, 6700);
     }},
-    { dur: 5200, run(){                                              // 5) Yenileme döngüsü
-      later(() => { ev('', '📅', 'Vize bitiş tarihi kaydedildi', '180 gün'); }, 300);
-      later(() => { clock += 180 * 1440; tk.classList.add('renewing'); moveTo('c-yeni');
-        ['c-ilg','c-ilet','c-odeme','c-belgeb','c-belget','c-randar','c-randal','c-randhaz','c-randtam','c-basv','c-sonuc','c-tamam'].forEach(c => $(c).classList.remove('done'));
-        ev('auto', '🔁', 'Vize süresi doldu → <b>otomatik Yeni Kayıt</b>', 'Yenileme için satışa döndü'); }, 1600);
-      later(() => { ev('auto', '🎯', 'Yeniden satış ekibinin listesinde', 'Eski müşteri = yeni kazanç'); }, 3000);
+    { dur: 5600, run(){                                              // 5) Yenileme döngüsü
+      later(() => { ev('auto', 'cal', 'Vize bitiş tarihi kaydedildi', '180 gün geçerli'); }, 300);
+      later(() => { clock += 180 * 1440; tk.classList.add('renewing'); moveTo('c-yeni'); rep(0);
+        ev('auto', 'renew', 'Vize süresi doldu, <b>Yeni Kayıt</b> açıldı', 'Yenileme için satışa döndü'); }, 1600);
+      later(() => { ev('auto', 'assign', 'Satış ekibinin listesine düştü', 'Eski müşteri, yeni satış fırsatı'); }, 3100);
     }},
   ];
+
+  let current = -1;
   function play(i){
-    clear(); current = i; mark(i, scenes[i].dur); scenes[i].run();
-    if(!paused) later(() => play((i + 1) % scenes.length), scenes[i].dur + (i === scenes.length - 1 ? 2200 : 500));
+    T.clear(); current = i; if(i === 0) reset(); mark(i, scenes[i].dur); scenes[i].run();
+    later(() => play((i + 1) % scenes.length), scenes[i].dur + (i === scenes.length - 1 ? 2400 : 600));
   }
-  // Bir adıma atlarken önceki adımların sonucunu hazır getir
-  const STATE = [null, { at:'c-yeni', reps:[0] }, { at:'c-ilet', reps:[0], g1:true }, { at:'c-randhaz', reps:[0,1], g1:true, g2:true }, { at:'c-tamam', reps:[0,1,2], g1:true, g2:true }];
+  // Bir adıma atlarken: sıfırla, önceki sahneleri anında uygula, sonra seçilen adımı oynat
   function jump(i){
-    clear(); reset();
-    const s = STATE[i];
-    if(s){ moveTo(s.at); s.reps.forEach(rep); if(s.g1){ $('g1').classList.add('ok'); $('g1').textContent = '✓'; } if(s.g2){ $('g2').classList.add('ok'); $('g2').textContent = '✓'; }
-      ev('', '⏩', 'Önceki adımlar tamamlandı'); }
+    T.clear(); demo.classList.add('instant'); reset();
+    for(let k = 0; k < i; k++){
+      instant = []; scenes[k].run();
+      while(instant.length){ instant.sort((a, b) => a.ms - b.ms || a.k - b.k); instant.shift().fn(); }
+    }
+    instant = null; hideGate(); place();
+    void demo.offsetWidth; requestAnimationFrame(() => demo.classList.remove('instant'));
     play(i);
   }
-  steps.forEach((s, i) => s.addEventListener('click', () => jump(i)));
-  $('replay').addEventListener('click', () => { paused = false; $('pause').textContent = '❚❚ Durdur'; jump(0); });
-  $('pause').addEventListener('click', () => {
-    paused = !paused; $('pause').textContent = paused ? '▶ Devam et' : '❚❚ Durdur';
-    if(!paused) play((current + 1) % scenes.length); else clear();
-  });
-  addEventListener('resize', () => { const c = document.querySelector('.chip2.cur'); if(c) place(c.id); });
+
+  // Durdurma: kullanıcı durdurduysa, sekme gizliyse ya da demo ekrandan çıktıysa her şey donar
+  let userPaused = false, onScreen = false;
+  function sync(){
+    const stop = userPaused || document.hidden || !onScreen;
+    stop ? T.pause() : T.resume();
+    demo.classList.toggle('is-paused', stop);
+    $('liveTag').textContent = userPaused ? 'durduruldu' : 'canlı';
+  }
+  function setPaused(p){
+    userPaused = p; pauseBtn.textContent = p ? '▶ Devam et' : '❚❚ Durdur'; pauseBtn.setAttribute('aria-pressed', p); sync();
+  }
+  steps.forEach((s, i) => s.addEventListener('click', () => { jump(i); setPaused(false); }));
+  $('replay').addEventListener('click', () => { jump(0); setPaused(false); });
+  pauseBtn.addEventListener('click', () => setPaused(!userPaused));
+  document.addEventListener('visibilitychange', sync);
+  addEventListener('resize', () => { demo.classList.add('instant'); place(); requestAnimationFrame(() => demo.classList.remove('instant')); });
+
   reset();
-  if(reduce){ jump(4); paused = true; clear(); $('pause').textContent = '▶ Devam et'; return; }
-  const start = () => { if(!started){ started = true; play(0); } };
-  if('IntersectionObserver' in window){
-    new IntersectionObserver((es, o) => es.forEach(e => { if(e.isIntersecting){ start(); o.disconnect(); } }), { threshold:.3 }).observe($('demo'));
-  } else start();
+  if(reduce){ onScreen = true; jump(4); setPaused(true); return; }
+  let started = false;
+  const seen = on => { onScreen = on; if(on && !started){ started = true; play(0); } sync(); };
+  // Ekranda en az ~160px'i görünüyorsa oynar; tamamen kaydırılıp gidilince durur
+  if('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => seen(e.isIntersecting && e.intersectionRect.height >= Math.min(160, e.boundingClientRect.height / 2))), { threshold:Array.from({ length:21 }, (_, k) => k / 20) }).observe(demo);
+  else seen(true);
 })();
 </script>
 </body>
