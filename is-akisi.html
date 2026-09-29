@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Departmanlar Arası Akış — Vize Ofisi İş Akışı | Ahoraclario</title>
+<meta name="description" content="Vize ofisleri için otomatik iş akışı: başvurular satış, evrak ve randevu ekipleri arasında kendiliğinden geçer. Adil otomatik dağıtım, eksik dosyayı durduran kontroller, müşteriye otomatik mailler, konsolosluk sayacı ve vize yenileme döngüsü.">
+<link rel="canonical" href="https://ahoraclario.github.io/is-akisi.html">
+<meta name="theme-color" content="#020B14">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Departmanlar Arası Akış — Ahoraclario">
+<meta property="og:description" content="Her vize dosyası doğru ekipte, doğru anda: satış, evrak, randevu otomatik akış.">
+<meta property="og:url" content="https://ahoraclario.github.io/is-akisi.html">
+<meta property="og:locale" content="tr_TR">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%2339D98A'/%3E%3Cstop offset='.55' stop-color='%2322D3EE'/%3E%3Cstop offset='1' stop-color='%232563EB'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M21 4h10l19 44H39.5l-4-9.8H16.5l-4 9.8H2L21 4Zm5 11.5L19.8 30h12.4L26 15.5Z' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+/* İş akışı sayfasına özel */
+.demo-steps.d5{grid-template-columns:repeat(5,1fr)}
+.fb-wrap{display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:stretch}
+.fboard{position:relative;border-radius:16px;border:1px solid var(--border2);background:rgba(4,15,27,.75);padding:14px;overflow:hidden}
+.src{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px;font-size:12.5px;color:var(--muted)}
+.src b{color:var(--text);font-weight:600;margin-right:4px}
+.src span{padding:5px 10px;border-radius:999px;border:1px solid var(--border2);background:rgba(11,32,51,.7);transition:all .3s}
+.src span.on{border-color:rgba(57,217,138,.6);color:var(--text);background:rgba(57,217,138,.1)}
+.lane2{position:relative;display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:center;padding:14px 12px;border-radius:13px;border:1px solid var(--border2);background:rgba(8,25,42,.7);margin-bottom:10px;transition:border-color .4s,box-shadow .4s}
+.lane2::before{content:'';position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:3px;background:var(--lc)}
+.lane2.act{border-color:color-mix(in srgb,var(--lc) 55%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--lc) 25%,transparent),0 12px 40px -14px color-mix(in srgb,var(--lc) 45%,transparent)}
+.ln-h b{display:block;font-size:14.5px}
+.ln-h small{color:var(--faint);font-size:11.5px}
+.ln-rep{display:flex;align-items:center;gap:7px;margin-top:8px;font-size:12px;color:var(--muted);opacity:.35;transition:opacity .4s}
+.ln-rep.on{opacity:1}
+.ln-rep i{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:9.5px;font-weight:800;color:#fff;background:var(--lc)}
+.ln-rep em{font-style:normal;font-size:10px;color:var(--green);display:block}
+.chips2{display:flex;flex-wrap:wrap;gap:7px;min-height:44px;align-items:center}
+.chip2{position:relative;font-size:12px;color:#8FA7BD;padding:9px 11px;border-radius:9px;border:1px dashed rgba(148,178,210,.18);background:rgba(2,11,20,.35);transition:all .35s;white-space:nowrap}
+.chip2.done{color:#B7C9DA;border-style:solid;border-color:rgba(148,178,210,.16)}
+.chip2.done::after{content:'✓';margin-left:6px;color:var(--green);font-weight:800}
+.chip2.cur{color:transparent}
+.gate{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:11px;background:rgba(245,158,11,.14);color:#F59E0B;border:1px solid rgba(245,158,11,.4);transition:all .3s;flex-shrink:0}
+.gate.ok{background:rgba(57,217,138,.15);color:var(--green);border-color:rgba(57,217,138,.5)}
+.gate.bad{background:rgba(248,113,113,.15);color:#F87171;border-color:rgba(248,113,113,.5);animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.ticket{position:absolute;z-index:4;left:0;top:0;padding:8px 11px;border-radius:10px;background:#fff;color:#111827;box-shadow:0 12px 30px rgba(0,0,0,.55),0 0 0 2px var(--tc,#22D3EE);font-size:11px;white-space:nowrap;transition:left .8s cubic-bezier(.4,0,.2,1),top .8s cubic-bezier(.4,0,.2,1),box-shadow .4s,opacity .4s;pointer-events:none}
+.ticket b{display:block;font-size:12px}
+.ticket span{color:#6B7280;font-size:10px}
+.ticket .tst{display:inline-block;margin-top:3px;font-size:10px;font-weight:700;padding:1px 6px;border-radius:5px;background:#EFF6FF;color:#1D4ED8}
+.ticket .renew{display:none;margin-left:5px;font-size:10px;font-weight:700;padding:1px 6px;border-radius:5px;background:#DCFCE7;color:#15803D}
+.ticket.renewing .renew{display:inline-block}
+.gatepop{position:absolute;z-index:5;min-width:220px;padding:10px 12px;border-radius:11px;background:#0B2236;border:1px solid var(--border);box-shadow:0 18px 40px rgba(0,0,0,.5);font-size:12px;opacity:0;transform:translateY(6px);transition:all .3s;pointer-events:none}
+.gatepop.show{opacity:1;transform:none}
+.gatepop h6{margin:0 0 6px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+.gatepop div{display:flex;gap:7px;align-items:center;margin-top:5px;color:#C9D6E3}
+.gatepop div i{font-style:normal;width:16px;text-align:center}
+/* Olay günlüğü */
+.log{border-radius:16px;border:1px solid var(--border2);background:rgba(4,15,27,.8);display:flex;flex-direction:column;overflow:hidden}
+.log-h{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid var(--border2);font-size:13px;font-weight:700}
+.log-h span{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--green);font-weight:600}
+.log-h span::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink2 1.4s infinite}
+@keyframes blink2{50%{opacity:.3}}
+.log-list{flex:1;overflow:hidden;padding:10px 12px;display:flex;flex-direction:column;gap:8px;justify-content:flex-end;min-height:420px}
+.ev{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:12px;color:#C9D6E3;opacity:0;transform:translateY(8px);animation:evIn .4s forwards}
+@keyframes evIn{to{opacity:1;transform:none}}
+.ev i{font-style:normal;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:11px;background:rgba(148,178,210,.1)}
+.ev small{display:block;color:var(--faint);font-size:10.5px}
+.ev.ml i{background:rgba(59,130,246,.15)}.ev.auto i{background:rgba(57,217,138,.14)}.ev.rule i{background:rgba(245,158,11,.14)}.ev.bad i{background:rgba(248,113,113,.15)}
+.ev b{color:var(--text);font-weight:600}
+
+/* Alt bölümler */
+.dept{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.dcard{border-radius:18px;padding:24px;background:rgba(8,25,42,.72);border:1px solid var(--border2);position:relative;overflow:hidden}
+.dcard::before{content:'';position:absolute;inset:0 0 auto 0;height:3px;background:var(--lc)}
+.dcard h3{font-size:19px;margin:10px 0 4px}
+.dcard .role{color:var(--muted);font-size:14px;margin-bottom:14px}
+.dcard h5{margin:14px 0 7px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.dcard ul{list-style:none;padding:0;margin:0;display:grid;gap:7px}
+.dcard li{display:flex;gap:8px;font-size:14px;color:#C9D6E3}
+.dcard li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--lc);margin-top:8px;flex-shrink:0}
+.rr{display:grid;gap:8px}
+.rr-row{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;padding:9px 11px;border-radius:10px;background:#F8FAFC;border:1px solid #E5E9F0;font-size:12px;transition:all .4s}
+.rr-row i{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-style:normal;color:#fff;font-weight:800;font-size:10px}
+.rr-row b{display:block;font-size:12.5px}.rr-row small{color:#6B7280;font-size:10.5px}
+.rr-row em{font-style:normal;font-size:10.5px;font-weight:700;padding:3px 7px;border-radius:6px;background:#DCFCE7;color:#15803D}
+.rr-row.next{border-color:#22C55E;box-shadow:0 0 0 3px #DCFCE7}
+.mailtl{display:grid;gap:8px}
+.mt{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;padding:9px 11px;border-radius:10px;border:1px solid #E5E9F0;font-size:12px}
+.mt i{font-style:normal;font-size:10px;font-weight:700;padding:3px 7px;border-radius:6px;background:#EFF6FF;color:#1D4ED8;white-space:nowrap}
+.mt b{font-size:12px}.mt small{display:block;color:#6B7280;font-size:10.5px}
+.counter{display:flex;gap:10px}
+.counter div{flex:1;border-radius:10px;padding:10px;border:1px solid #E5E9F0;text-align:center}
+.counter b{display:block;font-size:22px;letter-spacing:-.02em}
+.counter small{color:#6B7280;font-size:10.5px}
+@media (max-width:1100px){ .fb-wrap{grid-template-columns:1fr} .log-list{min-height:0;max-height:260px} }
+@media (max-width:980px){ .demo-steps.d5{grid-template-columns:repeat(3,1fr)} .dept{grid-template-columns:1fr} }
+@media (max-width:760px){
+  .demo-steps.d5{grid-template-columns:1fr 1fr}
+  .lane2{grid-template-columns:1fr;gap:8px}
+  .chip2{font-size:11px;padding:7px 9px}
+  .gatepop{min-width:190px;font-size:11px}
+  .ticket{padding:6px 9px}.ticket > span:not(.tst),.ticket br{display:none}.ticket .tst{margin:0 0 0 6px}
+  .ticket b{display:inline}
+}
+</style>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <div class="bg-glow"></div><div class="bg-grid"></div>
+  <div class="arc arc-tl"><i></i></div><div class="arc arc-br"><i></i></div>
+</div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand" aria-label="Ahoraclario ana sayfa">
+      <svg viewBox="0 0 52 52" aria-hidden="true"><defs><linearGradient id="bA" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#39D98A"/><stop offset=".55" stop-color="#22D3EE"/><stop offset="1" stop-color="#2563EB"/></linearGradient></defs><path d="M21 4h10l19 44H39.5l-4-9.8H16.5l-4 9.8H2L21 4Zm5 11.5L19.8 30h12.4L26 15.5Z" fill="url(#bA)"/><path d="M2 48 21 4h5L8.5 48Z" fill="#39D98A" opacity=".55"/></svg>
+      Ahoraclario
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Ana menü">
+      <a href="index.html#akis">Nasıl İşler</a>
+      <a href="index.html#ozellikler">Özellikler</a>
+      <a href="index.html#muhasebe">Muhasebe</a>
+      <a href="index.html#referans">Referans</a>
+      <a href="index.html#iletisim" class="btn btn-primary btn-sm">Ücretsiz Demo İste</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Menüyü aç" aria-expanded="false" aria-controls="navLinks">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+<section class="page-hero" aria-labelledby="h-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">Ana sayfa</a> / <a href="index.html#akis">Nasıl İşler</a> / Departmanlar Arası Akış</div>
+    <span class="eyebrow"><span class="dot"></span>Departmanlar Arası Akış</span>
+    <h1 id="h-hero">Her dosya <span class="grad">doğru ekipte, doğru anda</span>.</h1>
+    <p class="lead">Başvuru geldiği andan vize sonucuna kadar dosya; satıştan evraka, evraktan randevuya kendiliğinden geçer. Sistem her geçişte sıradaki çalışanı atar, kuralları kontrol eder ve müşteriyi bilgilendirir.</p>
+    <div class="hero-ctas">
+      <a href="#canli" class="btn btn-primary">Bir dosyanın yolculuğunu izle <span aria-hidden="true">↓</span></a>
+      <a href="index.html#iletisim" class="btn btn-ghost">Demo İste</a>
+    </div>
+  </div>
+</section>
+
+<section id="canli" style="padding-top:40px" aria-labelledby="h-demo">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Canlı örnek</div>
+      <h2 id="h-demo">Bir vize dosyasının baştan sona yolculuğu</h2>
+      <p>Sağdaki kayıt, sistemin arka planda sizin yerinize yaptığı her şeyi gösterir: atamalar, kontroller, müşteriye giden mailler.</p>
+    </div>
+
+    <div class="demo reveal" id="demo">
+      <div class="demo-steps d5" role="tablist" aria-label="Demo adımları">
+        <button class="dstep" data-s="0" role="tab"><span class="n">1</span>Başvuru gelir<span class="bar"></span></button>
+        <button class="dstep" data-s="1" role="tab"><span class="n">2</span>Satış kapanır<span class="bar"></span></button>
+        <button class="dstep" data-s="2" role="tab"><span class="n">3</span>Evrak ve randevu<span class="bar"></span></button>
+        <button class="dstep" data-s="3" role="tab"><span class="n">4</span>Konsolosluk<span class="bar"></span></button>
+        <button class="dstep" data-s="4" role="tab"><span class="n">5</span>Yenileme<span class="bar"></span></button>
+      </div>
+
+      <div class="fb-wrap">
+        <div class="fboard" id="board" aria-label="Departman akış panosu (örnek)">
+          <div class="src"><b>Giriş kanalları:</b><span id="srcForm">🌐 Web / Google Form</span><span>📞 Telefon</span><span>✍️ Elle kayıt</span><span>📥 Excel toplu yükleme</span></div>
+
+          <div class="lane2" id="L0" style="--lc:#3B82F6">
+            <div class="ln-h"><b>1 · Satış</b><small>Adayı arar, ikna eder, ödemeyi alır</small>
+              <div class="ln-rep" id="R0"><i>AK</i><div>Ayşe Korkmaz<em>otomatik atandı</em></div></div></div>
+            <div class="chips2"><span class="chip2" id="c-yeni">Yeni Kayıt</span><span class="chip2" id="c-ilg">İlgileniyor</span><span class="chip2" id="c-ilet">İletişime Geçildi</span><span class="gate" id="g1" title="Kontrol">🔒</span></div>
+          </div>
+          <div class="lane2" id="L1" style="--lc:#F59E0B">
+            <div class="ln-h"><b>2 · Evrak</b><small>Belgeleri toplar, randevuyu alır</small>
+              <div class="ln-rep" id="R1"><i>SD</i><div>Selin Demir<em>otomatik atandı</em></div></div></div>
+            <div class="chips2"><span class="chip2" id="c-odeme">Ödeme Alındı</span><span class="chip2" id="c-belgeb">Belge Bekleniyor</span><span class="chip2" id="c-belget">Belgeler Tamam</span><span class="chip2" id="c-randar">Randevu Aranıyor</span><span class="gate" id="g2" title="Kontrol">🔒</span><span class="chip2" id="c-randal">Randevu Alındı</span><span class="chip2" id="c-randhaz">Randevu Evrakları Hazırlanıyor</span></div>
+          </div>
+          <div class="lane2" id="L2" style="--lc:#39D98A">
+            <div class="ln-h"><b>3 · Randevu & Konsolosluk</b><small>Başvuruyu yapar, sonucu takip eder</small>
+              <div class="ln-rep" id="R2"><i>KA</i><div>Kerem Aslan<em>otomatik atandı</em></div></div></div>
+            <div class="chips2"><span class="chip2" id="c-randtam">Randevu Evrakları Tamamlandı</span><span class="chip2" id="c-basv">Başvuru Yapıldı</span><span class="chip2" id="c-sonuc">Sonuç Bekleniyor</span><span class="chip2" id="c-tamam">Tamamlandı</span></div>
+          </div>
+
+          <div class="ticket" id="ticket" style="opacity:0"><b>Elif Demir <span class="renew">🔁 Yenileme</span></b><span>VZ-2026-4172 · 🇬🇷 Yunanistan · 2 kişi</span><br><span class="tst" id="tst">Yeni Kayıt</span></div>
+          <div class="gatepop" id="gp"></div>
+        </div>
+
+        <div class="log" aria-label="Sistem kaydı (örnek)">
+          <div class="log-h">Sistem kaydı<span>canlı</span></div>
+          <div class="log-list" id="log" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="demo-ctrl"><button id="replay" type="button">↻ Baştan oynat</button><button id="pause" type="button">❚❚ Durdur</button></div>
+    </div>
+    <p class="demo-note" style="text-align:center;margin-top:14px">Örnek görünüm · isimler ve bilgiler temsilidir</p>
+  </div>
+</section>
+
+<section aria-labelledby="h-dept">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Üç departman, tek dosya</div>
+      <h2 id="h-dept">Herkes sadece kendi işini görür</h2>
+      <p>Her çalışanın ekranında yalnızca kendi aşamasındaki dosyalar bulunur. Kalabalık listeler yok, "bu kimin işi?" sorusu yok.</p>
+    </div>
+    <div class="dept">
+      <div class="dcard reveal" style="--lc:#3B82F6">
+        <div class="ficon" style="--c:#3B82F6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></div>
+        <h3>Satış</h3><p class="role">Yeni adayları arayıp müşteriye dönüştürür.</p>
+        <h5>Aşamalar</h5><ul><li>Yeni Kayıt</li><li>Ulaşılamıyor · Sonra Ara</li><li>İlgileniyor · İletişime Geçildi</li></ul>
+        <h5>Sistem ne yapar?</h5><ul><li>Yeni adayları temsilcilere sırayla dağıtır</li><li>"Yeni Data Çek" ile adayları kuyruk hâlinde verir</li><li>Arama sonuçlarını ve hatırlatıcıları tutar</li></ul>
+      </div>
+      <div class="dcard reveal" style="--lc:#F59E0B">
+        <div class="ficon" style="--c:#F59E0B"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+        <h3>Evrak</h3><p class="role">Belgeleri toplar, kontrol eder, randevuyu alır.</p>
+        <h5>Aşamalar</h5><ul><li>Ödeme Alındı · Belge Bekleniyor</li><li>Belgeler Tamam · Randevu Aranıyor</li><li>Randevu Alındı · Evraklar Hazırlanıyor</li></ul>
+        <h5>Sistem ne yapar?</h5><ul><li>Ödeme alınan dosyayı sıradaki evrakçıya atar</li><li>Randevu bekleyen dosyada gün sayar</li><li>Eksik bilgiyle aşama atlatmaz</li></ul>
+      </div>
+      <div class="dcard reveal" style="--lc:#39D98A">
+        <div class="ficon" style="--c:#39D98A"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg></div>
+        <h3>Randevu & Konsolosluk</h3><p class="role">Başvuruyu yapar, sonucu takip eder.</p>
+        <h5>Aşamalar</h5><ul><li>Randevu Evrakları Tamamlandı</li><li>Başvuru Yapıldı · Sonuç Bekleniyor</li><li>Tamamlandı</li></ul>
+        <h5>Sistem ne yapar?</h5><ul><li>Hazır dosyayı sıradaki randevu sorumlusuna atar</li><li>Konsoloslukta geçen günü sayar</li><li>Vize bitince müşteriyi yeniden satışa düşürür</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-auto">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Otomasyonlar</div>
+      <h2 id="h-auto">Sizin yerinize çalışan kurallar</h2>
+    </div>
+
+    <div class="feat-row reveal">
+      <div class="fr-visual"><div class="zoom">
+        <div style="font-size:10.5px;letter-spacing:.05em;color:#9CA3AF;font-weight:700;margin-bottom:10px">EVRAK EKİBİ · SIRADAKİ ATAMA</div>
+        <div class="rr">
+          <div class="rr-row next" id="rrA"><i style="background:#F59E0B">SD</i><div><b>Selin Demir</b><small>Son dosya: 3 saat önce</small></div><em>Sıradaki</em></div>
+          <div class="rr-row"><i style="background:#0EA5E9">EO</i><div><b>Emre Öztürk</b><small>Son dosya: 1 saat önce</small></div></div>
+          <div class="rr-row"><i style="background:#8B5CF6">NY</i><div><b>Nazlı Yurt</b><small>Son dosya: 12 dk önce</small></div></div>
+        </div>
+      </div></div>
+      <div>
+        <h3>Adil ve otomatik dağıtım</h3>
+        <p>Yeni gelen aday, ödeme alınan dosya ya da randevuya hazır evrak; her biri o departmanda <b style="color:var(--text)">en uzun süredir dosya almamış</b> çalışana otomatik atanır. Kimse iş seçmez, kimse boşta kalmaz, iş yükü kendiliğinden dengelenir.</p>
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span>Form ve reklamlardan gelen başvurular <b>anında</b> bir temsilciye düşer.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span>Satış temsilcisi adaylarını <b>"Yeni Data Çek"</b> ile sırayla alır; aynı anda yüzlerce isimle boğulmaz.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span>Aynı telefonla arka arkaya girilen kayıtlar <b>mükerrer açılmaz</b>.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="feat-row rev reveal">
+      <div class="fr-visual"><div class="zoom">
+        <div style="font-size:10.5px;letter-spacing:.05em;color:#9CA3AF;font-weight:700;margin-bottom:10px">AŞAMA DEĞİŞTİRİLEMEDİ</div>
+        <div class="mt" style="border-color:#FECACA;background:#FEF2F2"><i style="background:#FEE2E2;color:#B91C1C">Ödeme Alındı</i><div><b>Önce en az bir belge (pasaport vb.) yüklemelisiniz</b></div></div>
+        <div class="mt" style="border-color:#FECACA;background:#FEF2F2;margin-top:8px"><i style="background:#FEE2E2;color:#B91C1C">Randevu Alındı</i><div><b>Randevu tarihi girilmemiş kişiler var: Ayşe Aksoy</b></div></div>
+        <div class="mt" style="border-color:#FECACA;background:#FEF2F2;margin-top:8px"><i style="background:#FEE2E2;color:#B91C1C">Randevu Alındı</i><div><b>Önce en az bir randevu gideri girilmelidir</b></div></div>
+      </div></div>
+      <div>
+        <h3>Eksik dosya bir sonraki ekibe geçemez</h3>
+        <p>Kritik geçişlerde sistem kontrol yapar. Belge yüklenmemiş dosya ödeme aşamasına, randevu tarihi veya randevu gideri girilmemiş dosya randevu aşamasına geçirilemez.</p>
+        <p>Böylece evrak ekibi eksik dosya devralmaz, muhasebede kayıp masraf kalmaz, aile başvurularında kimse unutulmaz.</p>
+      </div>
+    </div>
+
+    <div class="feat-row reveal">
+      <div class="fr-visual"><div class="zoom">
+        <div style="font-size:10.5px;letter-spacing:.05em;color:#9CA3AF;font-weight:700;margin-bottom:10px">MÜŞTERİYE OTOMATİK GİDEN MAİLLER</div>
+        <div class="mailtl">
+          <div class="mt"><i>Yeni Kayıt</i><div><b>Başvurunuz Alındı</b><small>Danışmanın adı ve telefonuyla</small></div></div>
+          <div class="mt"><i>Ödeme Alındı</i><div><b>Ödemeniz Alındı</b><small>Evrak sorumlusu bilgisiyle</small></div></div>
+          <div class="mt"><i>Randevu Alındı</i><div><b>Randevunuz Alındı</b><small>Tarih, saat ve merkez</small></div></div>
+          <div class="mt"><i>7 gün kala</i><div><b>Randevu hatırlatması</b><small>Gerekli belgeler ekli</small></div></div>
+          <div class="mt"><i>Evraklar Tamam</i><div><b>Randevu Evraklarınız Hazır</b></div></div>
+          <div class="mt"><i>Başvuru Yapıldı</i><div><b>Başvurunuz Yapıldı</b></div></div>
+        </div>
+      </div></div>
+      <div>
+        <h3>Müşteri her adımda haberdar</h3>
+        <p>Aşama değiştiği anda müşteriye Türkçe ve İngilizce bilgilendirme maili gider; içinde dosyasıyla ilgilenen kişinin adı ve <a href="musteri-portali.html" style="color:var(--cyan)">başvuru takip linki</a> bulunur.</p>
+        <p>Ekibiniz tek bir mesaj yazmadan müşteri sürecin her adımında bilgilenir.</p>
+      </div>
+    </div>
+
+    <div class="feat-row rev reveal">
+      <div class="fr-visual"><div class="zoom">
+        <div class="counter">
+          <div><b style="color:#D97706">12</b><small>gündür randevu bekliyor<br>(ilk ödemeden beri)</small></div>
+          <div><b style="color:#2563EB">9</b><small>gündür konsoloslukta<br>(başvuru yapılalı)</small></div>
+        </div>
+        <div class="mt" style="margin-top:10px;border-color:#BBF7D0;background:#F0FDF4"><i style="background:#DCFCE7;color:#15803D">🔁 Yenileme</i><div><b>Vize süresi doldu · Elif Demir</b><small>Dosya otomatik olarak satışa "Yeni Kayıt" düştü</small></div></div>
+      </div></div>
+      <div>
+        <h3>Sayaçlar ve yenileme döngüsü</h3>
+        <p>Randevusu alınmamış dosyalar ilk ödemeden itibaren, konsolosluktaki dosyalar başvurunun yapıldığı günden itibaren sayılır. Taksit gelse ya da not eklense de sayaç sıfırlanmaz; bekleyen dosya gözden kaçmaz.</p>
+        <p>Vizesinin süresi dolan müşteri <b style="color:var(--text)">otomatik olarak yeniden satış listesine</b> düşer. Eski müşterileriniz size geri kazanç olarak döner.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-ctrl">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Yönetici kontrolü</div>
+      <h2 id="h-ctrl">Otomatik ama her zaman sizin kontrolünüzde</h2>
+    </div>
+    <div class="grid3">
+      <div class="card reveal" style="--c:#22D3EE"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg></div>
+        <h3>Transfer ve toplu transfer</h3><p>Bir dosyayı ya da seçtiğiniz dosyaları tek seferde başka bir çalışana veya departmana aktarın. İzne çıkan personelin işi yarım kalmaz.</p></div>
+      <div class="card reveal" style="--c:#3B82F6"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+        <h3>Rol bazlı görünürlük</h3><p>Satış kendi adaylarını, evrak ve randevu ekipleri kendi aşamalarını görür. Yönetici her şeyi görür; süper yönetici istediği çalışanın ekranını onun gözünden inceleyebilir.</p></div>
+      <div class="card reveal" style="--c:#39D98A"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+        <h3>Performans ve denetim</h3><p>Her aşama değişikliği ve arama, kimin yaptığıyla kayıtlıdır. Departman sürelerini ve çalışan performansını raporlardan izleyin.</p></div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-gain">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <h2 id="h-gain">Ofisinizin akışına göre kuralım</h2>
+      <p>Departman sayınız, aşamalarınız ve kurallarınız farklı olabilir. Demo görüşmesinde sizin sürecinizi dinleyip akışı ona göre tasarlayalım.</p>
+      <a href="index.html#iletisim" class="btn btn-primary">Ücretsiz Demo İste <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-more" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:30px">
+      <div class="kicker">Diğer özellikler</div>
+      <h2 id="h-more" style="font-size:clamp(24px,2.6vw,32px)">Sistemin geri kalanını keşfedin</h2>
+    </div>
+    <div class="more-grid reveal">
+      <a href="musteri-portali.html"><span>📱</span><div>Müşteri Takip Portalı<small>Müşteriniz sormadan bilsin</small></div></a>
+      <a href="muhasebe.html"><span>💰</span><div>Muhasebe<small>Tahsilat, gider, net kâr</small></div></a>
+      <a href="index.html#ozellikler"><span>📅</span><div>Tüm özellikler<small>Takvim, belgeler, raporlar</small></div></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="font-size:16px;color:var(--text)">
+      <svg viewBox="0 0 52 52" style="width:26px;height:26px" aria-hidden="true"><path d="M21 4h10l19 44H39.5l-4-9.8H16.5l-4 9.8H2L21 4Zm5 11.5L19.8 30h12.4L26 15.5Z" fill="url(#bA)"/></svg>
+      Ahoraclario
+    </div>
+    <div class="links">
+      <a href="index.html#akis">Nasıl İşler</a><a href="index.html#ozellikler">Özellikler</a><a href="index.html#muhasebe">Muhasebe</a><a href="index.html#iletisim">İletişim</a>
+    </div>
+    <div>© <span id="year">2026</span> Ahoraclario</div>
+  </div>
+</footer>
+
+<script>
+// Menü (mobil), kaydırınca üst çubuk, görünür olunca giriş animasyonu
+const nav = document.getElementById('nav'), menuBtn = document.getElementById('menuBtn'), links = document.getElementById('navLinks');
+menuBtn.addEventListener('click', () => { const o = links.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', o); });
+links.addEventListener('click', e => { if(e.target.closest('a')){ links.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); } });
+const onScroll = () => nav.classList.toggle('scrolled', scrollY > 10); addEventListener('scroll', onScroll, { passive:true }); onScroll();
+if('IntersectionObserver' in window){
+  const io = new IntersectionObserver(es => es.forEach(x => { if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } }), { threshold:.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+} else document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<script>
+// ── Canlı demo: bir vize dosyasının departmanlar arası yolculuğu ──
+(() => {
+  const $ = id => document.getElementById(id);
+  const steps = [...document.querySelectorAll('.dstep')];
+  const board = $('board'), tk = $('ticket'), logEl = $('log'), gp = $('gp');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let timers = [], paused = false, current = -1, started = false;
+  const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+  const clear = () => { timers.forEach(clearTimeout); timers = []; };
+  const ORDER = ['c-yeni','c-ilg','c-ilet','c-odeme','c-belgeb','c-belget','c-randar','c-randal','c-randhaz','c-randtam','c-basv','c-sonuc','c-tamam'];
+  const LANE_OF = id => ORDER.indexOf(id) <= 2 ? 0 : ORDER.indexOf(id) <= 8 ? 1 : 2;
+  const COLORS = ['#3B82F6','#F59E0B','#39D98A'];
+  const NAMES = { 'c-yeni':'Yeni Kayıt','c-ilg':'İlgileniyor','c-ilet':'İletişime Geçildi','c-odeme':'Ödeme Alındı','c-belgeb':'Belge Bekleniyor','c-belget':'Belgeler Tamam','c-randar':'Randevu Aranıyor','c-randal':'Randevu Alındı','c-randhaz':'Randevu Evrakları Hazırlanıyor','c-randtam':'Randevu Evrakları Tamamlandı','c-basv':'Başvuru Yapıldı','c-sonuc':'Sonuç Bekleniyor','c-tamam':'Tamamlandı' };
+  let clock = 0;   // demo saatinin dakikası (09:12'den başlar)
+  const tstr = () => { const m = 9 * 60 + 12 + clock, day = Math.floor(m / 1440) + 1, hm = m % 1440; const t = String(Math.floor(hm / 60)).padStart(2,'0') + ':' + String(hm % 60).padStart(2,'0'); return (day > 1 ? day + '. gün ' : '') + t; };
+  function ev(type, icon, html, sub){
+    const d = document.createElement('div'); d.className = 'ev ' + type;
+    d.innerHTML = `<i>${icon}</i><div>${html}<small>${sub ? sub + ' · ' : ''}${tstr()}</small></div>`;
+    logEl.appendChild(d); while(logEl.children.length > 9) logEl.firstChild.remove();
+  }
+  function place(id){
+    const b = board.getBoundingClientRect(), c = $(id).getBoundingClientRect();
+    const w = tk.offsetWidth, h = tk.offsetHeight;
+    let left = c.left - b.left + c.width / 2 - w / 2, top = c.top - b.top + c.height / 2 - h / 2;
+    left = Math.max(6, Math.min(left, b.width - w - 6));
+    tk.style.left = left + 'px'; tk.style.top = top + 'px';
+  }
+  function moveTo(id){
+    const i = ORDER.indexOf(id), lane = LANE_OF(id);
+    ORDER.forEach((c, k) => { $(c).classList.toggle('done', k < i); $(c).classList.toggle('cur', k === i); });
+    [0,1,2].forEach(l => $('L' + l).classList.toggle('act', l === lane));
+    tk.style.setProperty('--tc', COLORS[lane]); $('tst').textContent = NAMES[id];
+    tk.style.opacity = 1; place(id);
+  }
+  function gate(gid, lines, ok, anchor){
+    const g = $(gid); g.classList.remove('ok','bad'); g.classList.add(ok ? 'ok' : 'bad'); g.textContent = ok ? '✓' : '✕';
+    gp.innerHTML = `<h6>${ok ? 'Kontrol geçildi' : 'Geçiş engellendi'}</h6>` + lines.map(([o, t]) => `<div><i>${o ? '✅' : '⛔'}</i>${t}</div>`).join('');
+    const b = board.getBoundingClientRect(), r = $(anchor || gid).getBoundingClientRect();
+    gp.style.left = Math.max(8, Math.min(r.left - b.left - 60, b.width - 240)) + 'px'; gp.style.top = (r.bottom - b.top + 8) + 'px';
+    gp.classList.add('show');
+  }
+  const hideGate = () => gp.classList.remove('show');
+  const rep = n => $('R' + n).classList.add('on');
+  function reset(){
+    clock = 0; logEl.innerHTML = ''; hideGate(); tk.style.opacity = 0; tk.classList.remove('renewing');
+    ORDER.forEach(c => $(c).classList.remove('done','cur'));
+    [0,1,2].forEach(l => { $('L' + l).classList.remove('act'); $('R' + l).classList.remove('on'); });
+    ['g1','g2'].forEach(g => { $(g).classList.remove('ok','bad'); $(g).textContent = '🔒'; });
+    $('srcForm').classList.remove('on');
+  }
+  function mark(i, dur){
+    steps.forEach((s, k) => { s.classList.toggle('on', k === i); s.classList.toggle('done', k < i); s.setAttribute('aria-selected', k === i); });
+    const b = steps[i].querySelector('.bar'); b.style.animation = 'none'; b.offsetWidth; b.style.animation = ''; steps[i].style.setProperty('--dur', dur + 'ms');
+  }
+  const scenes = [
+    { dur: 5200, run(){                                              // 1) Başvuru gelir
+      reset();
+      later(() => { $('srcForm').classList.add('on'); ev('auto', '🌐', '<b>Yeni başvuru</b> web formundan geldi', 'Elif Demir · Yunanistan'); }, 300);
+      later(() => { moveTo('c-yeni'); clock += 1; ev('auto', '🎯', '<b>Ayşe K.</b>\'ya otomatik atandı', 'En uzun süredir aday almayan temsilci'); rep(0); }, 1300);
+      later(() => { ev('ml', '✉️', '<b>"Başvurunuz Alındı"</b> maili gönderildi', 'Danışman adı ve telefonuyla'); }, 2600);
+      later(() => { clock += 14; ev('', '📥', 'Ayşe K. <b>Yeni Data Çek</b> ile dosyayı aldı'); }, 3900);
+    }},
+    { dur: 7600, run(){                                              // 2) Satış kapanır
+      later(() => { clock += 6; ev('', '📞', 'Arama kaydı: <b>İlgileniyor</b>', 'Not: Eşiyle birlikte gidecek'); moveTo('c-ilg'); }, 300);
+      later(() => { clock += 90; moveTo('c-ilet'); ev('', '💬', 'Teklif iletildi, <b>ön ödeme</b> bekleniyor'); }, 1700);
+      later(() => { clock += 35; gate('g1', [[false, 'En az bir belge yüklenmeli (pasaport vb.)']], false); ev('bad', '⛔', '<b>Ödeme Alındı</b>\'ya geçiş engellendi', 'Belge yüklenmemiş'); }, 3100);
+      later(() => { hideGate(); clock += 3; ev('', '📎', '<b>pasaport_elif.pdf</b> yüklendi'); }, 4700);
+      later(() => { gate('g1', [[true, 'Belge yüklendi'], [true, '₺12.000 ön ödeme kaydedildi']], true); ev('rule', '✅', 'Kontrol geçildi', 'Ödeme tahsilata yazıldı'); }, 5500);
+    }},
+    { dur: 9800, run(){                                              // 3) Evrak ve randevu
+      hideGate();
+      later(() => { clock += 1; moveTo('c-odeme'); ev('auto', '🔀', 'Dosya <b>Evrak</b> ekibine geçti'); }, 200);
+      later(() => { rep(1); ev('auto', '🎯', '<b>Selin D.</b>\'ya otomatik atandı', 'Evrak ekibinde sıradaki'); }, 1100);
+      later(() => { ev('ml', '✉️', '<b>"Ödemeniz Alındı"</b> maili gönderildi', 'Evrak sorumlusu + takip linki'); }, 2000);
+      later(() => { clock += 60; moveTo('c-belgeb'); }, 3000);
+      later(() => { clock += 2880; moveTo('c-belget'); ev('', '📂', 'Tüm belgeler tamamlandı', '2 başvuru · 7 belge'); }, 4000);
+      later(() => { clock += 30; moveTo('c-randar'); ev('rule', '⏱️', 'Randevu sayacı çalışıyor', 'İlk ödemeden beri 3. gün'); }, 5000);
+      later(() => { clock += 1440; gate('g2', [[true, 'Elif Demir: 14 Ekim 09:30'], [true, 'Ayşe Aksoy: 14 Ekim 09:45'], [true, 'Randevu gideri girildi (₺2.400)']], true, 'c-randal'); ev('rule', '✅', 'Randevu kontrolleri geçildi', 'Tüm başvurularda tarih var'); }, 6100);
+      later(() => { hideGate(); moveTo('c-randal'); ev('ml', '✉️', '<b>"Randevunuz Alındı"</b> maili gönderildi', 'Tarih, saat ve merkez'); }, 7700);
+      later(() => { clock += 240; moveTo('c-randhaz'); }, 8800);
+    }},
+    { dur: 8600, run(){                                              // 4) Konsolosluk
+      hideGate();
+      later(() => { clock += 1500; moveTo('c-randtam'); ev('auto', '🔀', 'Dosya <b>Randevu</b> ekibine geçti'); }, 300);
+      later(() => { rep(2); ev('auto', '🎯', '<b>Kerem A.</b>\'ya otomatik atandı'); ev('ml', '✉️', '<b>"Randevu Evraklarınız Hazır"</b> maili gönderildi'); }, 1300);
+      later(() => { clock += 1; ev('ml', '⏰', '<b>Randevuya 7 gün kala</b> hatırlatma gitti', 'Gerekli belgeler ekli'); }, 2600);
+      later(() => { clock += 10080; moveTo('c-basv'); ev('ml', '🏛️', 'Başvuru yapıldı · <b>"Başvurunuz Yapıldı"</b> maili'); }, 3900);
+      later(() => { clock += 60; moveTo('c-sonuc'); ev('rule', '⏱️', 'Konsolosluk sayacı başladı'); }, 5100);
+      later(() => { clock += 12960; moveTo('c-tamam'); ev('auto', '🎉', 'Vize çıktı · dosya <b>Tamamlandı</b>', 'Hatırlatıcılar otomatik kapandı'); }, 6500);
+    }},
+    { dur: 5200, run(){                                              // 5) Yenileme döngüsü
+      later(() => { ev('', '📅', 'Vize bitiş tarihi kaydedildi', '180 gün'); }, 300);
+      later(() => { clock += 180 * 1440; tk.classList.add('renewing'); moveTo('c-yeni');
+        ['c-ilg','c-ilet','c-odeme','c-belgeb','c-belget','c-randar','c-randal','c-randhaz','c-randtam','c-basv','c-sonuc','c-tamam'].forEach(c => $(c).classList.remove('done'));
+        ev('auto', '🔁', 'Vize süresi doldu → <b>otomatik Yeni Kayıt</b>', 'Yenileme için satışa döndü'); }, 1600);
+      later(() => { ev('auto', '🎯', 'Yeniden satış ekibinin listesinde', 'Eski müşteri = yeni kazanç'); }, 3000);
+    }},
+  ];
+  function play(i){
+    clear(); current = i; mark(i, scenes[i].dur); scenes[i].run();
+    if(!paused) later(() => play((i + 1) % scenes.length), scenes[i].dur + (i === scenes.length - 1 ? 2200 : 500));
+  }
+  // Bir adıma atlarken önceki adımların sonucunu hazır getir
+  const STATE = [null, { at:'c-yeni', reps:[0] }, { at:'c-ilet', reps:[0], g1:true }, { at:'c-randhaz', reps:[0,1], g1:true, g2:true }, { at:'c-tamam', reps:[0,1,2], g1:true, g2:true }];
+  function jump(i){
+    clear(); reset();
+    const s = STATE[i];
+    if(s){ moveTo(s.at); s.reps.forEach(rep); if(s.g1){ $('g1').classList.add('ok'); $('g1').textContent = '✓'; } if(s.g2){ $('g2').classList.add('ok'); $('g2').textContent = '✓'; }
+      ev('', '⏩', 'Önceki adımlar tamamlandı'); }
+    play(i);
+  }
+  steps.forEach((s, i) => s.addEventListener('click', () => jump(i)));
+  $('replay').addEventListener('click', () => { paused = false; $('pause').textContent = '❚❚ Durdur'; jump(0); });
+  $('pause').addEventListener('click', () => {
+    paused = !paused; $('pause').textContent = paused ? '▶ Devam et' : '❚❚ Durdur';
+    if(!paused) play((current + 1) % scenes.length); else clear();
+  });
+  addEventListener('resize', () => { const c = document.querySelector('.chip2.cur'); if(c) place(c.id); });
+  reset();
+  if(reduce){ jump(4); paused = true; clear(); $('pause').textContent = '▶ Devam et'; return; }
+  const start = () => { if(!started){ started = true; play(0); } };
+  if('IntersectionObserver' in window){
+    new IntersectionObserver((es, o) => es.forEach(e => { if(e.isIntersecting){ start(); o.disconnect(); } }), { threshold:.3 }).observe($('demo'));
+  } else start();
+})();
+</script>
+</body>
+</html>
