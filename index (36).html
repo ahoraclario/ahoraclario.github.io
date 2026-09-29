@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ahoraclario — İşletmenize Özel CRM ve Satış Sistemi</title>
+<meta name="description" content="Ahoraclario, işletmenizin satış sürecine göre özel CRM kurar: müşteri takibi, satış pipeline'ı, otomatik takip görevleri, takvim, e-posta ve WhatsApp, destek talepleri ve raporlar tek ekranda.">
+<meta name="keywords" content="CRM, özel CRM, satış takibi, müşteri takip programı, vize danışmanlığı CRM, satış pipeline, Ahoraclario">
+<link rel="canonical" href="https://ahoraclario.github.io/">
+<meta name="theme-color" content="#020B14">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ahoraclario — İşletmenize Özel CRM ve Satış Sistemi">
+<meta property="og:description" content="Satış sürecinizi tek ekranda yönetin. Müşteri takibi, pipeline, otomatik takipler, takvim ve raporlar — işletmenize göre kurulur.">
+<meta property="og:url" content="https://ahoraclario.github.io/">
+<meta property="og:locale" content="tr_TR">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%2339D98A'/%3E%3Cstop offset='.55' stop-color='%2322D3EE'/%3E%3Cstop offset='1' stop-color='%232563EB'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M21 4h10l19 44H39.5l-4-9.8H16.5l-4 9.8H2L21 4Zm5 11.5L19.8 30h12.4L26 15.5Z' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Ahoraclario","url":"https://ahoraclario.github.io/","email":"ahoraclario@gmail.com","description":"İşletmelere özel CRM ve satış sistemleri kurar.","areaServed":"TR"}
+</script>
+<style>
+:root{
+  --bg:#020B14; --bg2:#061522; --surface:#08192A; --surface2:#0B2033;
+  --border:rgba(59,130,246,.18); --border2:rgba(148,178,210,.12);
+  --text:#EAF2FA; --muted:#9FB3C8; --faint:#6F87A0;
+  --green:#39D98A; --cyan:#22D3EE; --blue:#2563EB; --blue2:#3B82F6;
+  --radius:16px; --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img,svg{display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+h1,h2,h3{line-height:1.15;letter-spacing:-.02em;margin:0}
+p{margin:0}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
+
+/* ── Arka plan ışık sistemi (giriş ekranıyla aynı dil) ── */
+.bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:var(--bg)}
+.bg > *{position:absolute;pointer-events:none}
+.bg-grid{inset:0;background-image:linear-gradient(rgba(34,211,238,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,238,.035) 1px,transparent 1px);background-size:48px 48px;
+  -webkit-mask-image:radial-gradient(ellipse 90% 80% at 50% 40%,#000 25%,transparent 100%);mask-image:radial-gradient(ellipse 90% 80% at 50% 40%,#000 25%,transparent 100%)}
+.bg-glow{inset:-10%;filter:blur(10px);background:
+  radial-gradient(circle at 16% 6%,rgba(57,217,138,.13),rgba(34,211,238,.05) 22%,transparent 50%),
+  radial-gradient(ellipse 55% 35% at 60% -8%,rgba(37,99,235,.08),transparent 70%),
+  radial-gradient(circle at 88% 82%,rgba(37,99,235,.18),rgba(34,211,238,.05) 24%,transparent 52%)}
+.arc{border-radius:50%}
+.arc i{position:absolute;inset:0;border-radius:50%;-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1.5px));mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1.5px))}
+.arc-tl{width:clamp(620px,62vw,1180px);aspect-ratio:1;left:calc(clamp(620px,62vw,1180px) * -.42);top:calc(clamp(620px,62vw,1180px) * -.88);opacity:.75;filter:drop-shadow(0 0 20px rgba(57,217,138,.4))}
+.arc-tl i{background:conic-gradient(from 115deg,transparent 0deg,rgba(57,217,138,.3) 10deg,rgba(80,240,170,.75) 32deg,rgba(57,217,138,.6) 58deg,rgba(34,211,238,.3) 80deg,transparent 108deg)}
+.arc-br{width:clamp(640px,64vw,1240px);aspect-ratio:1;right:calc(clamp(640px,64vw,1240px) * -.62);bottom:calc(clamp(640px,64vw,1240px) * -.66);filter:drop-shadow(0 0 18px rgba(37,99,235,.45))}
+.arc-br i{background:conic-gradient(from 240deg,transparent 0deg,rgba(37,99,235,.25) 30deg,rgba(59,150,255,.85) 62deg,rgba(37,99,235,.7) 95deg,rgba(37,99,235,.2) 135deg,transparent 170deg)}
+
+/* ── Üst menü ── */
+.nav{position:sticky;top:0;z-index:50;transition:background .2s,border-color .2s,backdrop-filter .2s;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(2,11,20,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom-color:var(--border2)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:19px;letter-spacing:-.2px}
+.brand svg{width:34px;height:34px;filter:drop-shadow(0 0 12px rgba(34,211,238,.25))}
+.nav-links{display:flex;align-items:center;gap:30px;font-size:14.5px;color:var(--muted)}
+.nav-links a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:46px;padding:0 22px;border-radius:10px;font-weight:700;font-size:15px;border:1px solid transparent;cursor:pointer;font-family:inherit;transition:filter .15s,transform .15s,border-color .15s,background .15s;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:linear-gradient(90deg,#34DC8F,#10D39A);color:#04140C;box-shadow:0 10px 30px -10px rgba(16,211,154,.6)}
+.btn-primary:hover{filter:brightness(1.06)}
+.btn-ghost{background:rgba(11,32,51,.6);border-color:var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:rgba(34,211,238,.5)}
+.btn-sm{height:40px;padding:0 16px;font-size:14px}
+.menu-btn{display:none;background:none;border:1px solid var(--border);color:var(--text);border-radius:9px;width:42px;height:40px;cursor:pointer}
+
+/* ── Hero ── */
+.hero{padding:72px 0 90px}
+.hero .wrap{display:grid;grid-template-columns:1.02fr 1fr;gap:56px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--green);background:rgba(57,217,138,.08);border:1px solid rgba(57,217,138,.25);padding:6px 12px;border-radius:999px;margin-bottom:22px}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+.hero h1{font-size:clamp(36px,4.6vw,58px);font-weight:800}
+.grad{background:linear-gradient(90deg,#4BE8A4,#22D3EE 50%,#5B9BFF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:clamp(16px,1.35vw,18.5px);color:var(--muted);margin:22px 0 32px;max-width:560px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero-points{display:flex;gap:22px;flex-wrap:wrap;margin-top:30px;font-size:13.5px;color:var(--muted)}
+.hero-points span{display:flex;align-items:center;gap:7px}
+.hero-points svg{width:16px;height:16px;color:var(--green)}
+
+/* CRM önizleme (HTML/CSS ile çizilmiş) */
+.mock{position:relative;border-radius:18px;padding:1.5px;background:linear-gradient(135deg,rgba(57,217,138,.8),rgba(34,211,238,.35) 40%,rgba(37,99,235,.3) 70%,rgba(37,99,235,.8));box-shadow:0 40px 90px -20px rgba(0,0,0,.7),0 0 60px rgba(34,211,238,.08)}
+.mock-in{background:linear-gradient(160deg,#0A1D30,#061423);border-radius:17px;overflow:hidden}
+.mock-bar{display:flex;align-items:center;gap:7px;padding:12px 14px;border-bottom:1px solid var(--border2)}
+.mock-bar i{width:10px;height:10px;border-radius:50%;background:#1E3A55}
+.mock-bar b{margin-left:10px;font-size:12px;color:var(--faint);font-weight:500}
+.mock-body{padding:16px}
+.mock-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.mstat{background:rgba(11,32,51,.7);border:1px solid var(--border2);border-radius:10px;padding:10px 12px}
+.mstat small{display:block;font-size:10.5px;color:var(--faint)}
+.mstat b{font-size:17px}
+.mstat em{font-style:normal;font-size:10.5px;color:var(--green);margin-left:6px}
+.mock-board{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mcol{background:rgba(8,25,42,.8);border:1px solid var(--border2);border-radius:9px;overflow:hidden}
+.mcol h4{margin:0;font-size:10.5px;font-weight:700;padding:7px 9px;color:#04140C}
+.mcol .c{margin:7px;background:#0B2236;border:1px solid var(--border2);border-left:3px solid var(--cc);border-radius:7px;padding:7px 8px;font-size:10.5px}
+.mcol .c b{display:block;font-size:11px;margin-bottom:2px}
+.mcol .c span{color:var(--faint)}
+.mcol .c.hl{box-shadow:0 0 0 1.5px var(--green),0 8px 20px rgba(57,217,138,.25);animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.mock-toast{position:absolute;right:-14px;bottom:28px;background:#0B2236;border:1px solid rgba(57,217,138,.4);border-radius:10px;padding:10px 13px;font-size:12px;box-shadow:0 18px 40px rgba(0,0,0,.5);display:flex;gap:9px;align-items:center}
+.mock-toast .ic{width:26px;height:26px;border-radius:7px;background:rgba(57,217,138,.15);display:grid;place-items:center;color:var(--green);font-size:14px}
+.mock-toast small{display:block;color:var(--faint);font-size:10.5px}
+
+/* ── Bölümler ── */
+section{padding:92px 0;scroll-margin-top:72px}
+.sec-head{text-align:center;max-width:720px;margin:0 auto 52px}
+.sec-head .kicker{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px}
+.sec-head h2{font-size:clamp(28px,3.2vw,42px);font-weight:800}
+.sec-head p{color:var(--muted);font-size:17px;margin-top:16px}
+
+.trust{padding:28px 0 20px}
+.trust .wrap{display:flex;align-items:center;justify-content:center;gap:12px 34px;flex-wrap:wrap;color:var(--faint);font-size:14px}
+.trust b{color:var(--muted);font-weight:600}
+
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{position:relative;background:linear-gradient(160deg,rgba(11,32,51,.72),rgba(6,20,35,.72));border:1px solid var(--border2);border-radius:var(--radius);padding:28px;transition:border-color .2s,transform .2s,box-shadow .2s}
+.card:hover{border-color:rgba(34,211,238,.35);transform:translateY(-3px);box-shadow:0 20px 40px -20px rgba(34,211,238,.25)}
+.ficon{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:18px;background:color-mix(in srgb,var(--c) 14%,transparent);border:1px solid color-mix(in srgb,var(--c) 35%,transparent);color:var(--c)}
+.ficon svg{width:22px;height:22px}
+.card h3{font-size:18.5px;font-weight:700;margin-bottom:9px}
+.card p{color:var(--muted);font-size:15px}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.split h2{font-size:clamp(28px,3.2vw,40px);font-weight:800}
+.split p.lead{color:var(--muted);font-size:17px;margin:18px 0 26px}
+.checks{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.checks li{display:flex;gap:12px;color:var(--muted);font-size:15.5px}
+.checks li b{color:var(--text);font-weight:600}
+.checks svg{flex-shrink:0;width:22px;height:22px;color:var(--green);margin-top:1px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:flex;align-items:center;gap:9px;padding:12px 16px;border-radius:12px;background:rgba(11,32,51,.65);border:1px solid var(--border2);font-size:15px;font-weight:600}
+.chip i{font-style:normal;font-size:18px}
+.sectors{padding:26px;border-radius:20px;border:1px solid var(--border);background:radial-gradient(ellipse at 20% 0%,rgba(57,217,138,.08),transparent 60%),radial-gradient(ellipse at 100% 100%,rgba(37,99,235,.12),transparent 60%),rgba(6,20,35,.6)}
+.sectors h4{margin:0 0 16px;font-size:14px;color:var(--muted);font-weight:600}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
+.step{position:relative;padding:26px 24px;border-radius:var(--radius);background:rgba(8,25,42,.7);border:1px solid var(--border2)}
+.step .n{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-weight:800;font-size:15px;color:#04140C;background:linear-gradient(135deg,var(--green),var(--cyan));margin-bottom:16px}
+.step h3{font-size:17px;margin-bottom:8px}
+.step p{color:var(--muted);font-size:14.5px}
+
+.faq{max-width:820px;margin:0 auto;display:grid;gap:12px}
+.faq details{background:rgba(8,25,42,.7);border:1px solid var(--border2);border-radius:14px;padding:0 22px}
+.faq details[open]{border-color:rgba(34,211,238,.3)}
+.faq summary{cursor:pointer;list-style:none;padding:19px 0;font-weight:600;font-size:16px;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';color:var(--cyan);font-size:22px;line-height:1;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--muted);padding:0 0 20px;font-size:15px}
+
+/* ── İletişim ── */
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:start}
+.contact-info h2{font-size:clamp(28px,3.2vw,40px);font-weight:800}
+.contact-info p{color:var(--muted);font-size:17px;margin:18px 0 28px}
+.cline{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:14px;background:rgba(8,25,42,.7);border:1px solid var(--border2);margin-bottom:12px}
+.cline .ic{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:rgba(34,211,238,.1);color:var(--cyan)}
+.cline .ic svg{width:20px;height:20px}
+.cline small{display:block;color:var(--faint);font-size:12.5px}
+.cline b{font-weight:600}
+.form{border-radius:20px;padding:1.5px;background:linear-gradient(135deg,rgba(57,217,138,.85),rgba(34,211,238,.35) 40%,rgba(37,99,235,.3) 70%,rgba(37,99,235,.85));box-shadow:0 30px 80px -20px rgba(0,0,0,.6),0 0 50px rgba(34,211,238,.07)}
+.form-in{background:linear-gradient(160deg,rgba(9,26,42,.97),rgba(5,17,30,.97));border-radius:19px;padding:32px}
+.form h3{font-size:21px;margin-bottom:6px}
+.form .sub{color:var(--muted);font-size:14.5px;margin-bottom:24px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fld{margin-bottom:16px}
+.fld label{display:block;font-size:13.5px;font-weight:600;color:#C4D3E3;margin-bottom:8px}
+.fld input,.fld textarea{width:100%;background:rgba(10,31,52,.85);border:1px solid rgba(59,130,246,.28);border-radius:10px;color:var(--text);font:inherit;font-size:15px;padding:12px 14px}
+.fld textarea{resize:vertical;min-height:110px}
+.fld input:focus,.fld textarea:focus{outline:none;border-color:rgba(34,211,238,.7);box-shadow:0 0 0 3px rgba(34,211,238,.12)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form .btn{width:100%;height:50px;margin-top:4px}
+.form-note{font-size:12.5px;color:var(--faint);margin-top:12px;text-align:center}
+.form-msg{display:none;margin-top:14px;padding:12px 14px;border-radius:10px;font-size:14.5px}
+.form-msg.ok{display:block;background:rgba(57,217,138,.1);border:1px solid rgba(57,217,138,.35);color:#7CF0B9}
+.form-msg.err{display:block;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.35);color:#FCA5A5}
+
+.cta-band{margin:0 auto;max-width:var(--max);border-radius:24px;padding:56px 40px;text-align:center;position:relative;overflow:hidden;border:1px solid var(--border);
+  background:radial-gradient(ellipse at 0% 0%,rgba(57,217,138,.16),transparent 55%),radial-gradient(ellipse at 100% 100%,rgba(37,99,235,.22),transparent 55%),rgba(6,20,35,.8)}
+.cta-band h2{font-size:clamp(26px,3vw,38px);font-weight:800}
+.cta-band p{color:var(--muted);font-size:17px;margin:14px auto 28px;max-width:560px}
+
+footer{padding:48px 0 40px;border-top:1px solid var(--border2);margin-top:40px;color:var(--faint);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer .links{display:flex;gap:22px;flex-wrap:wrap}
+footer a:hover{color:var(--text)}
+
+/* Görünür olunca yumuşak giriş */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} .reveal{opacity:1;transform:none;transition:none} .mcol .c.hl{animation:none} }
+
+/* ── Duyarlı tasarım ── */
+@media (max-width:980px){
+  .hero .wrap,.split,.contact{grid-template-columns:1fr}
+  .hero{padding:40px 0 70px}
+  .grid3{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .mock-toast{right:10px}
+}
+@media (max-width:760px){
+  .trust .sep{display:none}
+  .nav-links{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:10px 24px 20px;background:rgba(2,11,20,.97);border-bottom:1px solid var(--border2)}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:12px 0;border-bottom:1px solid var(--border2)}
+  .nav-links .btn{margin-top:12px}
+  .menu-btn{display:grid;place-items:center}
+  section{padding:70px 0}
+  .grid3,.steps,.frow{grid-template-columns:1fr}
+  .mock-board{grid-template-columns:repeat(2,1fr)}
+  .mock-board .mcol:nth-child(n+3){display:none}
+  .form-in{padding:24px}
+  .cta-band{padding:40px 22px;border-radius:18px;margin:0 16px}
+}
+@media (max-width:420px){ .wrap{padding:0 16px} .mock-stats{grid-template-columns:1fr 1fr} .mock-stats .mstat:nth-child(3){display:none} }
+</style>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <div class="bg-glow"></div><div class="bg-grid"></div>
+  <div class="arc arc-tl"><i></i></div><div class="arc arc-br"><i></i></div>
+</div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#" class="brand" aria-label="Ahoraclario ana sayfa">
+      <svg viewBox="0 0 52 52" aria-hidden="true"><defs><linearGradient id="bA" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#39D98A"/><stop offset=".55" stop-color="#22D3EE"/><stop offset="1" stop-color="#2563EB"/></linearGradient></defs><path d="M21 4h10l19 44H39.5l-4-9.8H16.5l-4 9.8H2L21 4Zm5 11.5L19.8 30h12.4L26 15.5Z" fill="url(#bA)"/><path d="M2 48 21 4h5L8.5 48Z" fill="#39D98A" opacity=".55"/></svg>
+      Ahoraclario
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Ana menü">
+      <a href="#ozellikler">Özellikler</a>
+      <a href="#size-ozel">Size Özel</a>
+      <a href="#surec">Nasıl Çalışır</a>
+      <a href="#sss">SSS</a>
+      <a href="#iletisim" class="btn btn-primary btn-sm">Ücretsiz Demo İste</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Menüyü aç" aria-expanded="false" aria-controls="navLinks">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="h-hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow"><span class="dot"></span>İşletmenize özel CRM</span>
+      <h1 id="h-hero">Satış sürecinizi <span class="grad">tek ekranda</span> yönetin.</h1>
+      <p class="lead">Excel dosyaları, WhatsApp grupları ve unutulan takipler yerine; müşterilerinizi, tekliflerinizi ve görüşmelerinizi takip eden, <b style="color:var(--text)">sizin iş akışınıza göre kurulmuş</b> bir CRM.</p>
+      <div class="hero-ctas">
+        <a href="#iletisim" class="btn btn-primary">Ücretsiz Demo İste <span aria-hidden="true">→</span></a>
+        <a href="#ozellikler" class="btn btn-ghost">Neler Yapabilir?</a>
+      </div>
+      <div class="hero-points">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5 9-10"/></svg>Kurulum ve eğitim bizden</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5 9-10"/></svg>Türkçe destek</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5 9-10"/></svg>Bilgisayar ve telefonda çalışır</span>
+      </div>
+    </div>
+
+    <div class="mock" aria-label="Ahoraclario CRM ekran önizlemesi" role="img">
+      <div class="mock-in">
+        <div class="mock-bar"><i></i><i></i><i></i><b>Satış Pipeline'ı</b></div>
+        <div class="mock-body">
+          <div class="mock-stats">
+            <div class="mstat"><small>Açık fırsatlar</small><b>₺184.500</b><em>↑ 12%</em></div>
+            <div class="mstat"><small>Bugünkü takipler</small><b>7</b></div>
+            <div class="mstat"><small>Bu ay kazanılan</small><b>5</b><em>↑ 2</em></div>
+          </div>
+          <div class="mock-board">
+            <div class="mcol"><h4 style="background:#64748B;color:#fff">Aday</h4>
+              <div class="c" style="--cc:#64748B"><b>Atlas Turizm</b><span>Yeni · web sitesi</span></div>
+              <div class="c" style="--cc:#64748B"><b>Mavi Eğitim</b><span>2 gün önce</span></div></div>
+            <div class="mcol"><h4 style="background:#22D3EE">Görüşme</h4>
+              <div class="c hl" style="--cc:#22D3EE"><b>Nova Vize</b><span>Bugün 14:00</span></div></div>
+            <div class="mcol"><h4 style="background:#C084FC">Teklif</h4>
+              <div class="c" style="--cc:#C084FC"><b>Delta Danışmanlık</b><span>₺24.000</span></div>
+              <div class="c" style="--cc:#C084FC"><b>Kuzey Emlak</b><span>₺18.500</span></div></div>
+            <div class="mcol"><h4 style="background:#39D98A">Kazanıldı</h4>
+              <div class="c" style="--cc:#39D98A"><b>Ege Ajans</b><span>Müşteri oldu 🎉</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="mock-toast"><span class="ic">✓</span><div>3 takip görevi planlandı<small>E-posta gönderildi · Nova Vize</small></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="trust" aria-label="Öne çıkanlar">
+  <div class="wrap">
+    <span><b>Müşteri</b> takibi</span><span class="sep">·</span><span><b>Satış</b> pipeline'ı</span><span class="sep">·</span><span><b>Otomatik</b> hatırlatmalar</span><span class="sep">·</span><span><b>Raporlar</b> ve günlük özet</span>
+  </div>
+</div>
+
+<section id="ozellikler" aria-labelledby="h-feat">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Özellikler</div>
+      <h2 id="h-feat">Satışta ihtiyacınız olan her şey, tek yerde</h2>
+      <p>Ekibiniz hangi müşteriyle ne konuşulduğunu, sıradaki adımın ne olduğunu ve hangi teklifin cevap beklediğini her an görür.</p>
+    </div>
+    <div class="grid3">
+      <article class="card reveal" style="--c:#39D98A"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="5" height="16" rx="1.5"/><rect x="10" y="4" width="5" height="11" rx="1.5"/><rect x="17" y="4" width="4" height="7" rx="1.5"/></svg></div>
+        <h3>Satış Pipeline'ı</h3><p>Müşterileri aşamalar arasında sürükleyip bırakın. Hangi fırsatın nerede takıldığını ve toplam potansiyel geliri anında görün.</p></article>
+      <article class="card reveal" style="--c:#22D3EE"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>Otomatik Takipler</h3><p>E-posta gönderdiğiniz müşteri için 3, 5 ve 7 gün sonra takip görevleri kendiliğinden oluşur. Hiçbir müşteri unutulmaz.</p></article>
+      <article class="card reveal" style="--c:#3B82F6"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+        <h3>Takvim ve Toplantılar</h3><p>Görüşmeleri ve demoları planlayın, toplantı linkini ekleyin, Google Takvim'e tek tıkla aktarın.</p></article>
+      <article class="card reveal" style="--c:#39D98A"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></div>
+        <h3>E-posta ve WhatsApp</h3><p>Müşteriye CRM'in içinden hazır şablonlarla e-posta atın veya WhatsApp'tan yazın. Gönderilen her şey kayıt altında.</p></article>
+      <article class="card reveal" style="--c:#22D3EE"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></div>
+        <h3>Destek Talepleri</h3><p>Müşterileriniz sorunlarını kendi ekranlarından iletir, siz yanıtlarsınız. Tüm yazışmalar müşterinin dosyasında saklanır.</p></article>
+      <article class="card reveal" style="--c:#3B82F6"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+        <h3>Raporlar ve Sabah Özeti</h3><p>Satış hunisi, kaynak performansı ve kayıp nedenleri. Her sabah günün görevleri ve toplantıları e-postanıza gelir.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="size-ozel" aria-labelledby="h-custom">
+  <div class="wrap split">
+    <div class="reveal">
+      <div class="sec-head" style="text-align:left;margin:0"><div class="kicker">Size Özel</div></div>
+      <h2 id="h-custom">Hazır paket değil, <span class="grad">sizin işinize göre</span> kurulur</h2>
+      <p class="lead">Genel CRM programları her sektöre aynı ekranı sunar. Biz önce sizin satış sürecinizi dinler, sonra aşamaları, alanları ve raporları ona göre kurarız.</p>
+      <ul class="checks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span><b>Kendi aşamalarınız:</b> başvuru, evrak, randevu, teklif… süreciniz neyse pipeline o.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span><b>Mevcut verileriniz:</b> Excel listelerinizi tek seferde içeri aktarırız.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span><b>Güvenli altyapı:</b> şifreli giriş, müşteriye özel dosya alanı ve tek tıkla tam yedek.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="m7 12 3.5 3.5L17 9"/></svg><span><b>Sürekli gelişim:</b> kullandıkça ihtiyaç duyduğunuz özellikleri birlikte ekleriz.</span></li>
+      </ul>
+    </div>
+    <div class="sectors reveal">
+      <h4>Çalıştığımız alanlardan bazıları</h4>
+      <div class="chips">
+        <span class="chip"><i>🛂</i>Vize danışmanlığı</span>
+        <span class="chip"><i>✈️</i>Turizm ve seyahat</span>
+        <span class="chip"><i>🎓</i>Yurt dışı eğitim</span>
+        <span class="chip"><i>🏠</i>Emlak</span>
+        <span class="chip"><i>📣</i>Ajanslar</span>
+        <span class="chip"><i>💼</i>B2B hizmet firmaları</span>
+        <span class="chip"><i>🩺</i>Klinik ve danışmanlık</span>
+        <span class="chip"><i>🏭</i>Toptan satış</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="surec" aria-labelledby="h-steps">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Nasıl Çalışır</div>
+      <h2 id="h-steps">Dört adımda kullanıma hazır</h2>
+      <p>Teknik bilgi gerekmez. Kurulumu, veri aktarımını ve eğitimi biz yaparız.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="n">1</div><h3>Tanışma görüşmesi</h3><p>Satış sürecinizi, ekibinizi ve kullandığınız araçları dinleriz.</p></div>
+      <div class="step reveal"><div class="n">2</div><h3>Kurulum</h3><p>Aşamaları, alanları ve raporları size göre hazırlar, verilerinizi aktarırız.</p></div>
+      <div class="step reveal"><div class="n">3</div><h3>Eğitim</h3><p>Ekibinize sistemi birlikte kullanarak gösteririz, ilk günden verim alırsınız.</p></div>
+      <div class="step reveal"><div class="n">4</div><h3>Destek ve gelişim</h3><p>Sorularınızı yanıtlar, ihtiyaç duydukça yeni özellikler ekleriz.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="sss" aria-labelledby="h-faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Sık Sorulan Sorular</div>
+      <h2 id="h-faq">Aklınıza takılanlar</h2>
+    </div>
+    <div class="faq reveal">
+      <details><summary>Bir program kurmam gerekiyor mu?</summary><p>Hayır. Ahoraclario tarayıcıda çalışır; bilgisayardan, tabletten ve telefondan internet olan her yerden giriş yapabilirsiniz.</p></details>
+      <details><summary>Mevcut müşteri listemi aktarabilir miyim?</summary><p>Evet. Excel veya CSV dosyalarınızı sisteme aktarırız; şirketler, kişiler ve satış aşamaları tek seferde yerine oturur.</p></details>
+      <details><summary>Verilerim güvende mi?</summary><p>Girişler şifrelidir, her müşterinin dosyaları kendi alanında saklanır ve tüm verinizin yedeğini tek tıkla indirebilirsiniz.</p></details>
+      <details><summary>Ekibimdeki birden fazla kişi kullanabilir mi?</summary><p>Evet. Ekip arkadaşlarınız kendi hesaplarıyla giriş yapar; kimin hangi müşteriyle ne konuştuğu zaman çizelgesinde görünür.</p></details>
+      <details><summary>Fiyatlandırma nasıl?</summary><p>Her kurulum işletmenin ihtiyacına göre hazırlandığı için fiyatı ekip büyüklüğüne ve istenen özelliklere göre belirliyoruz. Demo görüşmesinde size özel teklif sunuyoruz.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="iletisim" aria-labelledby="h-contact">
+  <div class="wrap contact">
+    <div class="contact-info reveal">
+      <div class="sec-head" style="text-align:left;margin:0"><div class="kicker">İletişim</div></div>
+      <h2 id="h-contact">Size özel CRM'i birlikte planlayalım</h2>
+      <p>Formu doldurun, en kısa sürede sizi arayalım. Kısa bir görüşmede ihtiyacınızı dinleyip sistemi canlı olarak gösterelim.</p>
+      <a class="cline" href="mailto:ahoraclario@gmail.com">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></span>
+        <span><small>E-posta</small><b>ahoraclario@gmail.com</b></span>
+      </a>
+      <div class="cline">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <span><small>Dönüş</small><b>Formu doldurun, sizi arayalım</b></span>
+      </div>
+    </div>
+
+    <div class="form reveal">
+      <form class="form-in" id="leadForm" novalidate>
+        <h3>Ücretsiz demo isteyin</h3>
+        <p class="sub">Bilgileriniz sadece sizinle iletişime geçmek için kullanılır.</p>
+        <div class="frow">
+          <div class="fld"><label for="f-name">Ad Soyad *</label><input id="f-name" name="name" autocomplete="name" required maxlength="120"></div>
+          <div class="fld"><label for="f-company">Şirket</label><input id="f-company" name="company" autocomplete="organization" maxlength="160"></div>
+        </div>
+        <div class="frow">
+          <div class="fld"><label for="f-email">E-posta</label><input id="f-email" name="email" type="email" autocomplete="email" maxlength="200"></div>
+          <div class="fld"><label for="f-phone">Telefon</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="05xx xxx xx xx"></div>
+        </div>
+        <div class="fld"><label for="f-msg">Mesajınız</label><textarea id="f-msg" name="message" maxlength="3000" placeholder="Kısaca işinizden ve şu an müşterilerinizi nasıl takip ettiğinizden bahsedin."></textarea></div>
+        <div class="hp" aria-hidden="true"><label>Web siteniz<input name="website_url" tabindex="-1" autocomplete="off"></label></div>
+        <button class="btn btn-primary" id="f-submit" type="submit">Gönder <span aria-hidden="true">→</span></button>
+        <div class="form-msg" id="f-msg-box" role="status" aria-live="polite"></div>
+        <p class="form-note">* E-posta veya telefondan en az birini yazın.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Harekete geç" style="padding-top:20px">
+  <div class="cta-band reveal">
+    <h2>Takipleri unutmaya son verin</h2>
+    <p>Müşterileriniz, teklifleriniz ve görüşmeleriniz tek ekranda. 20 dakikalık bir demoyla görün.</p>
+    <a href="#iletisim" class="btn btn-primary">Demo Planla <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="font-size:16px;color:var(--text)">
+      <svg viewBox="0 0 52 52" style="width:26px;height:26px" aria-hidden="true"><path d="M21 4h10l19 44H39.5l-4-9.8H16.5l-4 9.8H2L21 4Zm5 11.5L19.8 30h12.4L26 15.5Z" fill="url(#bA)"/></svg>
+      Ahoraclario
+    </div>
+    <div class="links">
+      <a href="#ozellikler">Özellikler</a><a href="#surec">Nasıl Çalışır</a><a href="#iletisim">İletişim</a><a href="https://ahoraclario.github.io/Ahoraclario/">Müşteri Girişi</a>
+    </div>
+    <div>© <span id="year">2026</span> Ahoraclario</div>
+  </div>
+</footer>
+
+<script>
+// Form → Ahoraclario CRM'e yeni aday olarak düşer
+const API_URL = 'https://tuozgfnjxxwrcuyfrwxq.supabase.co/functions/v1/rapid-service';
+const form = document.getElementById('leadForm'), box = document.getElementById('f-msg-box'), btn = document.getElementById('f-submit');
+function show(type, text){ box.className = 'form-msg ' + type; box.textContent = text; }
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(form).entries());
+  Object.keys(data).forEach(k => data[k] = String(data[k]).trim());
+  if(!data.name){ show('err', 'Lütfen adınızı yazın.'); form.name.focus(); return; }
+  if(!data.email && !data.phone){ show('err', 'Size ulaşabilmemiz için e-posta veya telefon yazın.'); form.email.focus(); return; }
+  if(data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)){ show('err', 'E-posta adresi geçerli görünmüyor.'); form.email.focus(); return; }
+  btn.disabled = true; btn.textContent = 'Gönderiliyor…';
+  try{
+    const res = await fetch(API_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ action:'websiteLead', ...data }) });
+    const d = await res.json().catch(() => ({}));
+    if(d.success){ form.reset(); show('ok', '✓ Teşekkürler! Mesajınız bize ulaştı, en kısa sürede dönüş yapacağız.'); }
+    else show('err', d.error?.message || 'Gönderilemedi. Lütfen ahoraclario@gmail.com adresine yazın.');
+  }catch(err){ show('err', 'Bağlantı hatası. Lütfen ahoraclario@gmail.com adresine yazın.'); }
+  btn.disabled = false; btn.innerHTML = 'Gönder <span aria-hidden="true">→</span>';
+});
+
+// Menü (mobil), kaydırınca üst çubuk, görünür olunca giriş animasyonu
+const nav = document.getElementById('nav'), menuBtn = document.getElementById('menuBtn'), links = document.getElementById('navLinks');
+menuBtn.addEventListener('click', () => { const o = links.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', o); });
+links.addEventListener('click', e => { if(e.target.closest('a')){ links.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); } });
+const onScroll = () => nav.classList.toggle('scrolled', scrollY > 10); addEventListener('scroll', onScroll, { passive:true }); onScroll();
+if('IntersectionObserver' in window){
+  const io = new IntersectionObserver(es => es.forEach(x => { if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } }), { threshold:.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+} else document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
