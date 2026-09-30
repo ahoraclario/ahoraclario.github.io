@@ -89,18 +89,27 @@ try{if(t('\u{1F60A}')&&!t('\u{1F1E8}\u{1F1ED}')){const s=document.createElement(
 @keyframes floaty{50%{translate:0 -8px}}
 .hero-visual:hover .hv-prog i,.hero-visual.paused .hv-prog i{animation-play-state:paused}
 .hv-sub{font-size:10px;color:#5E7A94;margin:-6px 0 9px}
-/* Takvim kesiti */
-.hv-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
-.hv-cal .dw{font-size:8px;font-weight:700;color:#5E7A94;text-align:center;letter-spacing:.05em}
-.hv-cal .d{height:43px;border-radius:6px;border:1px solid rgba(148,178,210,.1);background:rgba(8,25,42,.6);padding:3px;display:flex;flex-direction:column;gap:2px;font-size:8.5px;color:#8FA7BD;font-weight:700}
-.hv-cal .d.b{visibility:hidden}
-.hv-cal .d.t{border-color:rgba(59,130,246,.85);box-shadow:0 0 0 1px rgba(59,130,246,.45)}
-.hv-cal .d.t > span{background:#3B82F6;color:#fff;border-radius:6px;padding:0 4px;align-self:flex-start}
-.hv-cal .c{height:9px;border-radius:3px;border-left:2px solid}
-.hv-cal .c.g{background:rgba(57,217,138,.2);border-color:#39D98A}
-.hv-cal .c.o{background:rgba(245,158,11,.2);border-color:#F59E0B}
-.hv-cal .c.f{animation:hvFlip 1.2s 1.2s both}
-@keyframes hvFlip{0%{background:rgba(245,158,11,.2);border-color:#F59E0B}100%{background:rgba(57,217,138,.35);border-color:#39D98A;box-shadow:0 0 8px rgba(57,217,138,.6)}}
+/* Takvim kesiti: haftalık görünüm, her randevuda evrak durumu yazar */
+.hv-cal{display:grid;gap:5px}
+.hv-cal .d{display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;align-items:center;min-height:46px;padding:5px 6px;border-radius:8px;border:1px solid rgba(148,178,210,.1);background:rgba(8,25,42,.6)}
+.hv-cal .d > span{display:grid;justify-items:center;font-size:14px;font-weight:800;color:#C9D6E3;line-height:1.1}
+.hv-cal .d > span small{font-size:8px;font-weight:700;letter-spacing:.06em;color:#5E7A94}
+.hv-cal .d.t{border-color:rgba(59,130,246,.85);box-shadow:0 0 0 1px rgba(59,130,246,.45);background:rgba(37,99,235,.08)}
+.hv-cal .d.t > span{color:#93C5FD}
+.hv-cal .cs{display:flex;gap:5px;min-width:0}
+.hv-cal .cs em{font-style:normal;font-size:9.5px;color:#5E7A94}
+.hv-cal .c{display:grid;flex:0 1 50%;min-width:0;padding:4px 7px;border-radius:6px;border-left:2px solid;font-size:10px;line-height:1.35}
+.hv-cal .c b{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hv-cal .c small{grid-area:2/1;font-size:8.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.85}
+.hv-cal .c.g{background:rgba(57,217,138,.12);border-color:#39D98A;color:#6EE7B7}
+.hv-cal .c.o{background:rgba(245,158,11,.12);border-color:#F59E0B;color:#FCD34D}
+.hv-s.on .hv-cal .c.f{animation:hvFlip .6s 1.6s both}
+.hv-s.on .hv-cal .c.f .s1{animation:hvOut .3s 1.6s both}
+.hv-s.on .hv-cal .c.f .s2{animation:hvIn2 .3s 1.8s both}
+.hv-cal .c.f .s2{opacity:0}
+@keyframes hvFlip{to{background:rgba(57,217,138,.2);border-color:#39D98A;color:#6EE7B7;box-shadow:0 0 10px rgba(57,217,138,.45)}}
+@keyframes hvOut{to{opacity:0}}
+@keyframes hvIn2{to{opacity:.85}}
 .hv-leg{display:flex;gap:10px;font-size:9px;color:#8FA7BD;font-weight:500}
 .app.dark .app-h .hv-leg span{background:none;color:#8FA7BD;padding:0;font-weight:500;font-size:9px}
 .app.dark .app-h span.nt{background:rgba(148,178,210,.12);color:#C9D6E3}
@@ -202,7 +211,7 @@ try{if(t('\u{1F60A}')&&!t('\u{1F1E8}\u{1F1ED}')){const s=document.createElement(
           <div class="app-side">
             <div class="app-logo"><span>✈</span><div><b>Firmanız</b><small>Operasyon Sistemi</small></div></div>
             <div class="app-nav">
-              <div>📊 Dashboard</div><div data-s="2">🎯 Bugün Ne Yapmalıyım</div><div data-s="0" class="on">👥 Müşteriler</div><div>🧭 Pipeline</div><div data-s="1">📅 Takvim</div><div data-s="3">🏛️ Konsolosluk</div><div>✅ Tamamlandı<em>27</em></div>
+              <div>📊 Dashboard</div><div data-s="2">🎯 Bugün Ne Yapmalıyım</div><div data-s="0" class="on">👥 Müşteriler</div><div>🧭 Pipeline</div><div data-s="1">📅 Takvim</div><div data-s="3">🏛️ Konsolosluk</div><div>✅ Tamamlandı</div>
               <h5>YÖNETİM</h5><div data-s="4">💰 Muhasebe</div><div data-s="5">📈 Performans</div><div>📚 Belge Kütüphanesi</div>
             </div>
           </div>
@@ -220,7 +229,7 @@ try{if(t('\u{1F60A}')&&!t('\u{1F1E8}\u{1F1ED}')){const s=document.createElement(
             </div>
             </div>
             <div class="hv-s" data-s="1">
-              <div class="app-h"><b>Takvim · Ekim 2026</b><div class="hv-leg"><span><i style="background:#39D98A"></i>Evraklar hazır</span><span><i style="background:#F59E0B"></i>Evrak bekleniyor</span></div></div>
+              <div class="app-h"><b>Takvim · 12–16 Ekim</b><div class="hv-leg"><span><i style="background:#39D98A"></i>Evraklar hazır</span><span><i style="background:#F59E0B"></i>Evrak bekleniyor</span></div></div>
               <div class="hv-cal" id="hvCal"></div>
             </div>
             <div class="hv-s" data-s="2">
@@ -598,12 +607,14 @@ document.getElementById('year').textContent = new Date().getFullYear();
     ['muhasebe.html','₺','Net kâr %75','Tahsilat ve giderler tek ekranda'],
     ['performans-raporlari.html','↗','Ayşe K. · 42 işlem','Son 7 gün · gerçek işlemler'],
   ];
-  // Takvim kesiti: Ekim 2026 (1 Ekim Perşembe); 14 Ekim'deki randevu turuncudan yeşile döner
-  const C = { 1:'gg', 2:'g', 5:'go', 6:'g', 8:'o', 9:'g', 12:'o', 13:'g', 14:'f', 15:'oo', 16:'g', 19:'o', 20:'o', 22:'o', 23:'o', 26:'o', 27:'o', 29:'o', 30:'o' };
-  document.getElementById('hvCal').innerHTML = ['PZT','SAL','ÇAR','PER','CUM','CMT','PAZ'].map(d => `<span class="dw">${d}</span>`).join('') + '<span class="d b"></span>'.repeat(3)
-    + Array.from({ length:31 }, (_, i) => { const d = i + 1;
-      return `<span class="d${d === 14 ? ' t' : ''}"><span>${d}</span>${[...(C[d] || '')].map(x => `<i class="c ${x === 'f' ? 'o f' : x}"></i>`).join('')}</span>`; }).join('');
-  dots.innerHTML = S.map((_, i) => `<button type="button" aria-label="${i + 1}. ekran"></button>`).join('');
+  // Takvim kesiti: 12–16 Ekim haftası; 14 Ekim'deki randevunun evrakları hazırlanıp yeşile döner
+  const OK = '✓ Evraklar hazır', WT = 'Evrak hazırlanıyor';
+  const W = [[12,'PZT',[['13:00 Tuna Ateş','o']]], [13,'SAL',[['09:45 Selim Oral','g']]], [14,'ÇAR',[['09:30 Elif Demir','f'],['11:00 Kenan Aydın','g']]],
+             [15,'PER',[['10:00 Aslı Kurt','o'],['15:15 Umut Eren','o']]], [16,'CUM',[['09:30 Ece Bal','g']]]];
+  document.getElementById('hvCal').innerHTML = W.map(([d, w, list]) => `<div class="d${d === 14 ? ' t' : ''}"><span>${d}<small>${w}</small></span><div class="cs">`
+    + list.map(([t, k]) => k === 'f' ? `<div class="c o f"><b>${t}</b><small class="s1">${WT}</small><small class="s2">${OK}</small></div>`
+                                     : `<div class="c ${k}"><b>${t}</b><small>${k === 'g' ? OK : WT}</small></div>`).join('') + '</div></div>').join('');
+dots.innerHTML = S.map((_, i) => `<button type="button" aria-label="${i + 1}. ekran"></button>`).join('');
   const db = [...dots.children];
   let cur = 0;
   function go(i){
