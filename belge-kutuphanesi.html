@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Belge Kütüphanesi — Vize Evrak Şablonları | Ahoraclario</title>
-<meta name="description" content="Vize ofisleri için belge kütüphanesi: davet mektubu, başvuru formu gibi şablonları bir kez yükleyin; sistem her müşterinin vize türüne ve ülkesine uyanları otomatik bulsun, tek tıkla e-postayla gönderin.">
+<meta name="description" content="Vize ofisleri için belge kütüphanesi: davet mektubu, başvuru formu gibi şablonları bir kez yükleyin; sistem her müşterinin vize türüne ve ülkesine uyanları bulur ve randevudan 7 gün önce hatırlatma mailine otomatik ekler.">
 <link rel="canonical" href="https://ahoraclario.github.io/belge-kutuphanesi.html">
 <meta name="theme-color" content="#020B14">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Belge Kütüphanesi — Ahoraclario">
-<meta property="og:description" content="Şablon evrakları bir kez yükleyin, her müşteriye uyanı sistem bulsun.">
+<meta property="og:description" content="Şablon evrakları bir kez yükleyin; uyanlar randevudan 7 gün önce müşteriye kendiliğinden gitsin.">
 <meta property="og:url" content="https://ahoraclario.github.io/belge-kutuphanesi.html">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:site_name" content="Ahoraclario">
@@ -19,7 +19,7 @@
 <meta property="og:image:alt" content="Ahoraclario: vize operasyonunuza özel CRM">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Belge Kütüphanesi — Ahoraclario">
-<meta name="twitter:description" content="Şablon evrakları bir kez yükleyin, her müşteriye uyanı sistem bulsun.">
+<meta name="twitter:description" content="Şablon evrakları bir kez yükleyin; uyanlar randevudan 7 gün önce müşteriye kendiliğinden gitsin.">
 <meta name="twitter:image" content="https://ahoraclario.github.io/og-image.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%2339D98A'/%3E%3Cstop offset='.55' stop-color='%2322D3EE'/%3E%3Cstop offset='1' stop-color='%232563EB'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M21 4h10l19 44H39.5l-4-9.8H16.5l-4 9.8H2L21 4Zm5 11.5L19.8 30h12.4L26 15.5Z' fill='url(%23g)'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -148,8 +148,9 @@
 .cust small{color:var(--faint);font-size:10.5px}
 .mt{grid-template-columns:minmax(0,1fr) auto}
 .mt .pill{padding:4px 8px;font-size:10.5px}
-.sendall{margin-top:6px;opacity:0;transition:opacity .4s}
-.sendall.show{opacity:1}
+.autonote{margin-top:6px;padding:9px 11px;border-radius:9px;background:rgba(57,217,138,.08);border:1px solid rgba(57,217,138,.3);color:#A7F3D0;font-size:11.5px;opacity:0;transition:opacity .4s}
+.autonote b{color:#fff}
+.autonote.show{opacity:1}
 .vis{padding:9px 11px;border-radius:9px;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);color:#93C5FD;font-size:11.5px;margin:2px 0 9px;transition:background .4s}
 .vis b{color:#fff}
 .vis.new{animation:rowIn .45s}
@@ -192,7 +193,7 @@
     <div class="crumb"><a href="index.html">Ana sayfa</a> / <a href="index.html#ozellikler">Özellikler</a> / Belge Kütüphanesi</div>
     <span class="eyebrow"><span class="dot"></span>Belge Kütüphanesi</span>
     <h1 id="h-hero">Evrakları bir kez yükleyin, <span class="grad">doğru müşteriye sistem ulaştırsın</span>.</h1>
-    <p class="lead">Davet mektubu, başvuru formu, sigorta bilgi formu gibi genel evraklar kütüphanede durur. Bir müşterinin dosyasını açtığınızda sistem onun vize türüne ve ülkesine uyan belgeleri kendisi bulur; tek tıkla mail atarsınız.</p>
+    <p class="lead">Davet mektubu, başvuru formu, sigorta bilgi formu gibi genel evraklar kütüphanede durur. Sistem her müşterinin vize türüne ve ülkesine uyan belgeleri kendisi bulur ve randevudan 7 gün önce giden hatırlatma mailine ekler. Kimsenin elle mail atmasına gerek kalmaz.</p>
     <div class="hero-ctas">
       <a href="#canli" class="btn btn-primary">Canlı örneği izle <span aria-hidden="true">↓</span></a>
       <a href="index.html#iletisim" class="btn btn-ghost">Demo İste</a>
@@ -204,8 +205,8 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="kicker">Canlı örnek</div>
-      <h2 id="h-demo">Şablondan müşteriye tek tık</h2>
-      <p>Bir şablonun nasıl eklendiğini, hangi müşterilerde göründüğünü ve maille nasıl gittiğini izleyin.</p>
+      <h2 id="h-demo">Şablondan müşteriye, kendiliğinden</h2>
+      <p>Bir şablonun nasıl eklendiğini, hangi müşterilere uyduğunu ve randevuya 7 gün kala maille kendiliğinden nasıl gittiğini izleyin.</p>
     </div>
 
     <div class="demo reveal" id="demo">
@@ -213,7 +214,7 @@
         <button class="dstep" data-s="0" role="tab"><span class="n">1</span>Şablon eklenir<span class="bar"></span></button>
         <button class="dstep" data-s="1" role="tab"><span class="n">2</span>Kütüphane dolar<span class="bar"></span></button>
         <button class="dstep" data-s="2" role="tab"><span class="n">3</span>Uyanlar bulunur<span class="bar"></span></button>
-        <button class="dstep" data-s="3" role="tab"><span class="n">4</span>Tek tıkla mail<span class="bar"></span></button>
+        <button class="dstep" data-s="3" role="tab"><span class="n">4</span>7 gün kala otomatik<span class="bar"></span></button>
       </div>
 
       <div class="fb-wrap">
@@ -225,7 +226,7 @@
               <div class="view" id="vCust">
                 <div class="cust" id="cust"><span class="av" style="--c:#475569">?</span><div><b>Müşteri paneli</b><small>Bir müşteri dosyası açıldığında burada görünür</small></div></div>
                 <div class="pn-h" style="margin-top:12px">Uyumlu şablon belgeler<span class="n" id="matchN"></span></div><div id="match"></div>
-                <span class="pill pri sendall" id="sendAll">📧 Hepsini mail at</span>
+                <div class="autonote" id="sendAll">🔔 Bu belgeler randevudan <b>7 gün önce</b> hatırlatma mailine otomatik eklenecek.</div>
               </div>
               <div class="view hide" id="vMail"><div class="mailc" id="mail"></div></div>
             </div></div>
@@ -268,7 +269,7 @@
       <div class="card reveal" style="--c:#F59E0B"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
         <h3>Ülkeye özel evrak</h3><p>Sadece Almanya'da istenen bir davet mektubu için ülke seçilir; o belge yalnızca Almanya başvurularında çıkar.</p></div>
       <div class="card reveal" style="--c:#39D98A"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
-        <h3>Tek tıkla e-posta</h3><p>Müşteri panelinde uyumlu belgeler hazır bekler. Tek tıkla ek olarak maille gider; aynı belgeler 7 gün kala hatırlatma mailine de otomatik eklenir.</p></div>
+        <h3>7 gün kala, kendiliğinden</h3><p>Randevudan 7 gün önce giden hatırlatma mailine müşteriye uyan belgeler otomatik eklenir: "Randevunuza 7 gün kaldı, hazırlamanız gereken evraklar ektedir." Kimse elle göndermez.</p></div>
     </div>
   </div>
 </section>
@@ -441,7 +442,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
     LIB.forEach(([n, , , ok], k) => later(() => {
       const r = $('b' + k);
       if(ok[who]){ r.classList.add('hl'); const m = document.createElement('div'); m.className = 'row mt';
-        m.innerHTML = `<div><b>${n}</b></div><span class="pill">📧 Mail</span>`; $('match').appendChild(m); anim(m, 'new');
+        m.innerHTML = `<div><b>${n}</b></div><span class="tg g">otomatik eklenecek</span>`; $('match').appendChild(m); anim(m, 'new');
         $('matchN').textContent = $('match').children.length + ' belge'; stats(); }
       else r.classList.add('dim');
     }, 700 + k * 450));
@@ -475,23 +476,24 @@ document.getElementById('year').textContent = new Date().getFullYear();
         ev('hum', 'up', `<b>${LIB[k][0]}</b> eklendi`, LIB[k][2].map(x => x[0]).join(' · '), 'Samet'); }, 300 + j * 1300));
     }},
     { dur: 8600, run(){                                                  // 3) Uyanlar bulunur
-      later(() => { at(1, '11:20'); openCust('Can Yıldız', 'CY', '#7C3AED', '🇬🇧 İngiltere · İngiltere Vizesi', 1); }, 300);
+      later(() => { at(1, '11:20'); openCust('Can Yıldız', 'CY', '#7C3AED', '🇬🇧 İngiltere · İngiltere Vizesi · randevu 16 Ekim', 1); }, 300);
       later(() => { ev('auto', 'filter', 'Can Yıldız için <b>2 uygun belge</b>', 'Schengen belgeleri gösterilmedi'); }, 2600);
-      later(() => { at(1, '11:34'); openCust('Zeynep Kaya', 'ZK', '#EA580C', '🇩🇪 Almanya · Schengen Turistik', 0); }, 4200);
+      later(() => { at(1, '11:34'); openCust('Zeynep Kaya', 'ZK', '#EA580C', '🇩🇪 Almanya · Schengen Turistik · randevu 21 Ekim', 0); }, 4200);
       later(() => { ev('auto', 'filter', 'Zeynep Kaya için <b>3 uygun belge</b>', 'Schengen + Almanya\'ya özel + herkese'); $('sendAll').classList.add('show'); }, 6600);
     }},
-    { dur: 6400, run(){                                                  // 4) Tek tıkla mail
-      later(() => { press($('sendAll')); }, 300);
-      later(() => { $('mail').innerHTML = `<div class="mp-top"><b>Başvurunuz için gerekli belgeler / Required documents</b><small>Firmanız Vize Danışmanlık · Alıcı: Zeynep Kaya</small></div>
+    { dur: 6600, run(){                                                  // 4) 7 gün kala otomatik
+      later(() => { at(14, '09:00'); ev('auto', 'timer', '<b>Randevuya 7 gün kaldı</b>: Zeynep Kaya', '21 Ekim 10:15 · İstanbul'); }, 300);
+      later(() => { $('mail').innerHTML = `<div class="mp-top"><b>Randevunuza 7 gün kaldı / Your appointment is in 7 days</b><small>Firmanız Vize Danışmanlık · Alıcı: Zeynep Kaya</small></div>
         <div class="mp-brand"><i>✈</i><div><b>FİRMANIZ</b><small>VİZE DANIŞMANLIK</small></div></div>
-        <div class="mp-body"><span class="mp-lang">TÜRKÇE</span><h6>Başvurunuz için belgeler</h6>
-        <p>Sayın <b>Zeynep Kaya</b>, Almanya başvurunuz için doldurmanız gereken belgeler ektedir.</p>
+        <div class="mp-body"><span class="mp-lang">TÜRKÇE</span><h6>Randevunuza 7 gün kaldı</h6>
+        <p>Sayın <b>Zeynep Kaya</b>, randevunuza 7 gün kaldı. Hazırlamanız gereken evraklar ektedir.</p>
+        <div class="mp-info"><span>📅 21 Ekim Çarşamba · 10:15</span><span>📍 İstanbul başvuru merkezi</span></div>
         <div class="mp-att" id="att"></div><span class="mp-btn">Başvurumu Takip Et →</span>
-        <div class="mp-en"><b>ENGLISH</b> · Please find the documents for your application attached.</div></div>`;
-        $('vCust').classList.add('hide'); $('vMail').classList.remove('hide'); }, 900);
+        <div class="mp-en"><b>ENGLISH</b> · Your appointment is in 7 days. The documents you need to prepare are attached.</div></div>`;
+        $('vCust').classList.add('hide'); $('vMail').classList.remove('hide'); }, 1000);
       ['Schengen_Basvuru_Formu.pdf','Almanya_Davet_Mektubu.docx','Vekaletname_Ornegi.pdf'].forEach((a, i) => later(() => {
-        const s = document.createElement('span'); s.textContent = '📎 ' + a; $('att').appendChild(s); anim(s, 'new'); }, 1500 + i * 320));
-      later(() => { nSent++; ev('ml', 'mail', '<b>Belgeler maille gönderildi</b>: Zeynep Kaya', '3 belge ek olarak · Türkçe ve İngilizce', 'Selin D.'); }, 2700);
+        const s = document.createElement('span'); s.textContent = '📎 ' + a; $('att').appendChild(s); anim(s, 'new'); }, 1700 + i * 320));
+      later(() => { nSent++; ev('ml', 'mail', '<b>Hatırlatma maili</b> gönderildi: Zeynep Kaya', '3 belge ekli · kimse elle göndermedi'); }, 2900);
     }},
   ];
 

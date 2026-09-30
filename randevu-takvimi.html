@@ -63,6 +63,23 @@
 .ap.flash{animation:apFlash 1.2s ease-out}
 @keyframes apIn{from{opacity:0;transform:scale(.7)}}
 @keyframes apFlash{0%{box-shadow:0 0 0 1.5px currentColor,0 0 0 0 currentColor}60%{box-shadow:0 0 0 1.5px currentColor,0 0 0 7px transparent}}
+/* Fare imleci ve evrak hazırlık paneli */
+.cur{position:absolute;z-index:8;left:0;top:0;width:22px;height:22px;pointer-events:none;opacity:0;transition:left .8s cubic-bezier(.65,0,.35,1),top .8s cubic-bezier(.65,0,.35,1),opacity .3s;filter:drop-shadow(0 3px 6px rgba(0,0,0,.6))}
+.cur.show{opacity:1}
+.cur::after{content:'';position:absolute;left:-9px;top:-9px;width:18px;height:18px;border-radius:50%;border:2px solid #fff;opacity:0}
+.cur.click::after{animation:clk .5s ease-out}
+@keyframes clk{0%{opacity:.9;transform:scale(.4)}100%{opacity:0;transform:scale(1.6)}}
+.ekp{position:absolute;z-index:7;width:250px;padding:12px;border-radius:12px;background:#0B2236;border:1px solid var(--border);box-shadow:0 20px 44px rgba(0,0,0,.6);font-size:12px;opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s;pointer-events:none}
+.ekp.show{opacity:1;transform:none}
+.ekp h6{margin:0;font-size:12.5px;color:var(--text)}
+.ekp > small{display:block;color:var(--faint);font-size:10.5px;margin-bottom:8px}
+.ek{display:flex;align-items:center;gap:8px;padding:4px 0;color:#C9D6E3}
+.ek i{width:15px;height:15px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;font-style:normal;font-size:9px;font-weight:800;border:1.5px solid #4D6680;color:transparent;transition:all .3s}
+.ek.ok i{background:var(--green);border-color:var(--green);color:#04140C}
+.ek.ok span{color:var(--text)}
+.ekp .go{display:block;margin-top:9px;text-align:center;padding:7px;border-radius:8px;font-size:11.5px;font-weight:700;color:var(--muted);border:1px solid var(--border2);transition:all .3s}
+.ekp .go.on{background:linear-gradient(90deg,#39D98A,#22D3EE);color:#04140C;border-color:transparent}
+.ekp .go.press{animation:apFlash .5s}
 /* Hatırlatma maili önizlemesi */
 .mailpop{position:absolute;z-index:6;right:14px;bottom:14px;width:318px;max-width:calc(100% - 28px);border-radius:12px;overflow:hidden;background:#fff;color:#1F2937;box-shadow:0 24px 60px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08);font-size:11px;opacity:0;transform:translateY(18px) scale(.98);transition:opacity .45s,transform .45s cubic-bezier(.2,.8,.2,1);pointer-events:none}
 .mailpop.show{opacity:1;transform:none}
@@ -234,7 +251,7 @@
     <div class="demo reveal" id="demo">
       <div class="demo-steps d5" role="tablist" aria-label="Demo adımları">
         <button class="dstep" data-s="0" role="tab"><span class="n">1</span>Randevu alınır<span class="bar"></span></button>
-        <button class="dstep" data-s="1" role="tab"><span class="n">2</span>Evraklar hazır<span class="bar"></span></button>
+        <button class="dstep" data-s="1" role="tab"><span class="n">2</span>Evraklar hazırlanır<span class="bar"></span></button>
         <button class="dstep" data-s="2" role="tab"><span class="n">3</span>7 gün kala<span class="bar"></span></button>
         <button class="dstep" data-s="3" role="tab"><span class="n">4</span>Başvuru yapılır<span class="bar"></span></button>
         <button class="dstep" data-s="4" role="tab"><span class="n">5</span>Sonuç girilir<span class="bar"></span></button>
@@ -257,6 +274,9 @@
               <div id="kt"></div>
             </div>
           </div>
+          <div class="ekp" id="ekp"><h6>Elif Demir +1 · randevu evrakları</h6><small>14 Ekim 09:30 · Yunanistan · Schengen Turistik</small>
+            <div id="ekl"></div><span class="go" id="ekGo">✓ Randevu Evrakları Tamamlandı</span></div>
+          <svg class="cur" id="cur" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2l15 9.5-6.5 1.5 3.8 7.2-2.7 1.4-3.8-7.2L5 18.5z" fill="#fff" stroke="#0B1220" stroke-width="1.3" stroke-linejoin="round"/></svg>
           <div class="mailpop" id="mail" aria-hidden="true">
             <div class="mp-top"><b>Randevunuza 7 gün kaldı / Your appointment is in 7 days</b><small>Firmanız Vize Danışmanlık · Alıcı: Elif Demir</small></div>
             <div class="mp-brand"><i>✈</i><div><b>FİRMANIZ</b><small>VİZE DANIŞMANLIK</small></div></div>
@@ -487,10 +507,28 @@ document.getElementById('year').textContent = new Date().getFullYear();
     el.classList.remove('warn','late'); if(lvl(n)) el.classList.add(lvl(n));
   }
   const mail = on => $('mail').classList.toggle('show', on);
+  // Fare imleci: bir öğenin üstüne gider ve tıklar
+  const board = $('board');
+  function point(el, click = true){
+    if(instant || !el) return;
+    const b = board.getBoundingClientRect(), r = el.getBoundingClientRect(), c = $('cur');
+    c.classList.add('show'); c.style.left = (r.left - b.left + Math.min(r.width * .6, 60)) + 'px'; c.style.top = (r.top - b.top + r.height * .55) + 'px';
+    if(click) setTimeout(() => { c.classList.remove('click'); void c.offsetWidth; c.classList.add('click'); }, 820);
+  }
+  const hideCur = () => $('cur').classList.remove('show');
+  const EK = ['Başvuru formları (2 kişi)','Otel rezervasyonu','Uçak rezervasyonu','Seyahat sağlık sigortası','Banka dökümü ve iş yazısı'];
+  function openEk(){
+    $('ekl').innerHTML = EK.map((e, k) => `<div class="ek" id="ek${k}"><i>✓</i><span>${e}</span></div>`).join('');
+    $('ekGo').classList.remove('on');
+    const b = board.getBoundingClientRect(), r = $('focus').getBoundingClientRect(), p = $('ekp');
+    let left = r.right - b.left + 10; if(left + 250 > b.width - 10) left = r.left - b.left - 260;
+    p.style.left = Math.max(10, left) + 'px'; p.style.top = Math.max(10, r.top - b.top - 40) + 'px';
+    p.classList.add('show');
+  }
 
   function reset(){
     today = 2; time = '09:00'; lastDay = 0; nAuto = 0; nMail = 0; nWait = 0;
-    logEl.innerHTML = ''; kt.innerHTML = ''; mail(false); view('cal');
+    logEl.innerHTML = ''; kt.innerHTML = ''; mail(false); view('cal'); $('ekp').classList.remove('show'); hideCur();
     buildCal(); paintToday();
     KT.forEach((r, k) => row(r, 'k' + k));
     stats();
@@ -501,19 +539,24 @@ document.getElementById('year').textContent = new Date().getFullYear();
   }
 
   const scenes = [
-    { dur: 6200, run(){                                              // 1) Randevu alınır
-      later(() => { at(2, '10:05'); ev('hum', 'cal', 'Randevu tarihi girildi: <b>14 Ekim 09:30</b>', 'Elif Demir · Yunanistan · 2 kişi', 'Selin D.'); }, 300);
+    { dur: 6400, run(){                                              // 1) Randevu alınır
+      later(() => { at(2, '10:05'); point($('d14')); }, 300);
       later(() => { const a = addApt(14, '09:30', 'Elif Demir +1', 0, 'focus'); a.classList.add('focus'); anim(a, 'new');
-        ev('rule', 'check', 'Randevu kontrolleri geçildi', 'Her başvuranın tarih ve saati var'); }, 1300);
-      later(() => { time = '10:06'; ev('ml', 'mail', '<b>"Randevunuz Alındı"</b> maili gönderildi', 'Tarih, saat ve başvuru merkezi'); }, 2700);
-      later(() => { ev('auto', 'bell', 'Hatırlatma planlandı', "7 Ekim'de kendiliğinden gidecek"); }, 4000);
+        ev('hum', 'cal', 'Randevu alındı: <b>14 Ekim 09:30</b>', 'Elif Demir · Yunanistan · 2 kişi', 'Selin D.'); }, 1300);
+      later(() => { ev('rule', 'check', 'Randevu kontrolleri geçildi', 'Her başvuranın tarih ve saati var'); }, 2300);
+      later(() => { hideCur(); time = '10:06'; ev('ml', 'mail', '<b>"Randevunuz Alındı"</b> maili gönderildi', 'Tarih, saat ve başvuru merkezi'); }, 3300);
+      later(() => { ev('auto', 'bell', 'Hatırlatma planlandı', "7 Ekim'de kendiliğinden gidecek"); }, 4500);
     }},
-    { dur: 6600, run(){                                              // 2) Evraklar hazır
-      later(() => { at(5, '11:20'); setOk('a6'); ev('hum', 'doc', 'Levent Ak: evraklar tamamlandı', 'Takvimde yeşile döndü', 'Selin D.'); }, 300);
-      later(() => { at(5, '15:40'); setOk('focus'); ev('hum', 'doc', 'Elif Demir: <b>randevu evrakları tamamlandı</b>', '2 başvuru · 9 belge', 'Selin D.'); }, 1800);
-      later(() => { ev('auto', 'move', 'Dosya <b>Randevu</b> ekibine geçti', 'Kerem A.\'ya atandı'); }, 3000);
-      later(() => { ev('ml', 'mail', '<b>"Randevu Evraklarınız Hazır"</b> maili gönderildi', 'Randevu sorumlusu ve takip linkiyle'); }, 4100);
-      later(() => { at(6, '10:10'); setOk('a8'); ev('hum', 'doc', 'Tuna Ateş: evraklar tamamlandı', '', 'Selin D.'); }, 5200);
+    { dur: 8200, run(){                                              // 2) Evraklar hazırlanır
+      later(() => { at(5, '11:20'); point($('focus')); }, 300);
+      later(() => { openEk(); ev('hum', 'doc', 'Elif Demir: <b>randevu evrakları hazırlanıyor</b>', 'Turuncu: evrak bekleniyor', 'Selin D.'); }, 1200);
+      EK.forEach((_, k) => later(() => { if(!instant) $('ek' + k).classList.add('ok'); }, 2000 + k * 520));
+      later(() => { if(!instant){ $('ekGo').classList.add('on'); point($('ekGo')); } }, 4700);
+      later(() => { anim($('ekGo'), 'press'); }, 5500);
+      later(() => { $('ekp').classList.remove('show'); hideCur(); at(5, '15:40'); setOk('focus');
+        ev('hum', 'check', 'Randevu evrakları <b>tamamlandı</b>', 'Takvimde yeşile döndü · 2 başvuru · 9 belge', 'Selin D.'); }, 5900);
+      later(() => { ev('auto', 'move', 'Dosya <b>Randevu</b> ekibine geçti', 'Kerem A.\'ya atandı'); }, 6700);
+      later(() => { ev('ml', 'mail', '<b>"Randevu Evraklarınız Hazır"</b> maili gönderildi', 'Randevu sorumlusu ve takip linkiyle'); }, 7500);
     }},
     { dur: 8400, run(){                                              // 3) 7 gün kala
       later(() => { at(7, '09:00'); ev('auto', 'bell', '<b>Randevuya 7 gün kaldı</b>', 'Elif Demir · 14 Ekim 09:30'); }, 300);
@@ -553,7 +596,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
       instant = []; scenes[k].run();
       while(instant.length){ instant.sort((a, b) => a.ms - b.ms || a.k - b.k); instant.shift().fn(); }
     }
-    instant = null; mail(false);
+    instant = null; mail(false); $('ekp').classList.remove('show'); hideCur();
     void demo.offsetWidth; requestAnimationFrame(() => demo.classList.remove('instant'));
     mark(i, scenes[i].dur); scenes[i].run();
     later(() => play((i + 1) % scenes.length), scenes[i].dur + (i === scenes.length - 1 ? 2400 : 600));
