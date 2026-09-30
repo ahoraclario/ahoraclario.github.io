@@ -424,3 +424,12 @@ a.card{display:block;color:inherit}
   .phone2 .scr{height:520px}
 }
 @media (prefers-reduced-motion:reduce){ .dstep.on .bar{animation:none;width:100%} .ps.now i{animation:none} .cursor{display:none} }
+
+/* WhatsApp butonu (sağ alt köşe) */
+.wa-fab{position:fixed;right:max(20px,env(safe-area-inset-right));bottom:max(20px,env(safe-area-inset-bottom));z-index:60;display:flex;align-items:center;gap:9px;padding:12px 18px 12px 14px;border-radius:999px;background:#25D366;color:#063B1F;font-weight:700;font-size:14.5px;text-decoration:none;box-shadow:0 12px 30px -8px rgba(37,211,102,.55),0 4px 12px rgba(0,0,0,.35);transition:transform .2s,box-shadow .2s}
+.wa-fab svg{width:24px;height:24px;flex-shrink:0}
+.wa-fab:hover{transform:translateY(-2px);box-shadow:0 16px 36px -8px rgba(37,211,102,.7),0 6px 14px rgba(0,0,0,.35)}
+.wa-fab:focus-visible{outline:3px solid #fff;outline-offset:3px}
+@media (max-width:760px){ .wa-fab{padding:14px} .wa-fab span{display:none} .wa-fab svg{width:28px;height:28px} }
+@media print{ .wa-fab{display:none} }
+.cline.wa .ic{background:rgba(37,211,102,.12);color:#25D366}
