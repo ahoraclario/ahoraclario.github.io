@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://ahoraclario.github.io/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://ahoraclario.github.io/musteri-portali.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ahoraclario.github.io/muhasebe.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ahoraclario.github.io/is-akisi.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ahoraclario.github.io/</loc><lastmod>2026-09-29</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://ahoraclario.github.io/musteri-portali.html</loc><lastmod>2026-09-29</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ahoraclario.github.io/muhasebe.html</loc><lastmod>2026-09-29</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ahoraclario.github.io/is-akisi.html</loc><lastmod>2026-09-29</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ahoraclario.github.io/randevu-takvimi.html</loc><lastmod>2026-09-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ahoraclario.github.io/otomatik-hatirlatmalar.html</loc><lastmod>2026-09-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ahoraclario.github.io/belge-kutuphanesi.html</loc><lastmod>2026-09-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ahoraclario.github.io/aile-grup-basvurulari.html</loc><lastmod>2026-09-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ahoraclario.github.io/bugun-ne-yapmaliyim.html</loc><lastmod>2026-09-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ahoraclario.github.io/performans-raporlari.html</loc><lastmod>2026-09-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ahoraclario.github.io/yetki-denetim.html</loc><lastmod>2026-09-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ahoraclario.github.io/toplu-yukleme-excel.html</loc><lastmod>2026-09-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

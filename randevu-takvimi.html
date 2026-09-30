@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Randevu Takvimi ve Konsolosluk Takibi — Vize Ofisi CRM | Ahoraclario</title>
+<meta name="description" content="Vize ofisleri için randevu takvimi: evrakı hazır randevular yeşil, eksikler turuncu. 7 gün kala otomatik hatırlatma maili, konsolosluk takibinde gün sayacı ve tek tıkla vize sonucu.">
+<link rel="canonical" href="https://ahoraclario.github.io/randevu-takvimi.html">
+<meta name="theme-color" content="#020B14">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Randevu Takvimi ve Konsolosluk Takibi — Ahoraclario">
+<meta property="og:description" content="Tüm randevular tek takvimde, konsolosluktaki her dosya gün sayacıyla takipte.">
+<meta property="og:url" content="https://ahoraclario.github.io/randevu-takvimi.html">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="Ahoraclario">
+<meta property="og:image" content="https://ahoraclario.github.io/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ahoraclario: vize operasyonunuza özel CRM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Randevu Takvimi ve Konsolosluk Takibi — Ahoraclario">
+<meta name="twitter:description" content="Tüm randevular tek takvimde, konsolosluktaki her dosya gün sayacıyla takipte.">
+<meta name="twitter:image" content="https://ahoraclario.github.io/og-image.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%2339D98A'/%3E%3Cstop offset='.55' stop-color='%2322D3EE'/%3E%3Cstop offset='1' stop-color='%232563EB'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M21 4h10l19 44H39.5l-4-9.8H16.5l-4 9.8H2L21 4Zm5 11.5L19.8 30h12.4L26 15.5Z' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+/* Randevu takvimi sayfasına özel */
+.demo-steps.d5{grid-template-columns:repeat(5,1fr)}
+.fb-wrap{display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:stretch}
+.fboard{position:relative;border-radius:16px;border:1px solid var(--border2);background:rgba(4,15,27,.75);padding:14px;overflow:hidden}
+/* Uygulama sekmeleri */
+.vtabs{display:flex;gap:6px;margin-bottom:12px}
+.vtabs span{display:flex;align-items:center;gap:7px;padding:7px 12px;border-radius:9px;font-size:12.5px;font-weight:600;color:var(--muted);border:1px solid var(--border2);background:rgba(11,32,51,.6);transition:color .35s,background .35s,border-color .35s}
+.vtabs span.on{color:var(--text);background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.45)}
+.vtabs em{font-style:normal;font-size:10px;font-weight:800;padding:1px 6px;border-radius:6px;background:rgba(148,178,210,.14);color:#C9D6E3;font-variant-numeric:tabular-nums}
+.views{display:grid}
+.view{grid-area:1/1;transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
+.view.hide{opacity:0;transform:translateY(10px);pointer-events:none}
+/* Takvim */
+.cal-h{display:flex;align-items:center;gap:10px 16px;flex-wrap:wrap;margin-bottom:10px}
+.cal-h b{font-size:17px;letter-spacing:-.01em}
+.legend{display:flex;gap:12px;font-size:11.5px;color:var(--muted);margin-left:auto}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend span::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--c)}
+.cal-cnt{font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:7px;background:rgba(148,178,210,.1);color:#C9D6E3;font-variant-numeric:tabular-nums}
+.cal-g{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+.cal-dow{font-size:10px;font-weight:700;letter-spacing:.06em;color:var(--faint);text-align:right;padding:0 6px 2px}
+.cal-d{min-height:76px;border-radius:9px;border:1px solid var(--border2);background:rgba(8,25,42,.6);padding:5px;display:flex;flex-direction:column;gap:3px;min-width:0;transition:border-color .45s,box-shadow .45s,opacity .45s,background .45s}
+.cal-d.blank{visibility:hidden}
+.cal-d .dn{align-self:flex-start;font-size:11px;font-weight:700;color:#C9D6E3;min-width:20px;height:20px;border-radius:10px;display:grid;place-items:center;transition:background .45s,color .45s;font-variant-numeric:tabular-nums}
+.cal-d.past{opacity:.5}
+.cal-d.today{border-color:rgba(59,130,246,.85);box-shadow:0 0 0 1px rgba(59,130,246,.5),0 10px 24px -12px rgba(59,130,246,.7);background:rgba(37,99,235,.08)}
+.cal-d.today .dn{background:#3B82F6;color:#fff}
+.ap{font-size:9.5px;font-weight:600;line-height:1.2;padding:3px 5px;border-radius:5px;border-left:2px solid;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .5s,background .5s,border-color .5s,box-shadow .5s}
+.ap.wait{color:#FCD34D;background:rgba(245,158,11,.11);border-color:#F59E0B}
+.ap.ok{color:#6EE7B7;background:rgba(57,217,138,.11);border-color:#39D98A}
+.ap.ok::before{content:'✓ '}
+.ap.focus{box-shadow:0 0 0 1.5px currentColor}
+.ap.new{animation:apIn .55s cubic-bezier(.2,.8,.2,1)}
+.ap.flash{animation:apFlash 1.2s ease-out}
+@keyframes apIn{from{opacity:0;transform:scale(.7)}}
+@keyframes apFlash{0%{box-shadow:0 0 0 1.5px currentColor,0 0 0 0 currentColor}60%{box-shadow:0 0 0 1.5px currentColor,0 0 0 7px transparent}}
+/* Hatırlatma maili önizlemesi */
+.mailpop{position:absolute;z-index:6;right:14px;bottom:14px;width:318px;max-width:calc(100% - 28px);border-radius:12px;overflow:hidden;background:#fff;color:#1F2937;box-shadow:0 24px 60px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08);font-size:11px;opacity:0;transform:translateY(18px) scale(.98);transition:opacity .45s,transform .45s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.mailpop.show{opacity:1;transform:none}
+.mp-top{padding:8px 12px;background:#F1F4F8;border-bottom:1px solid #E5E9F0}
+.mp-top b{display:block;font-size:11.5px;color:#111827}
+.mp-top small{color:#6B7280;font-size:9.5px}
+.mp-brand{display:flex;align-items:center;gap:9px;padding:11px 14px;background:#10305C;border-top:3px solid #DC2626;color:#fff}
+.mp-brand i{width:22px;height:22px;border-radius:6px;background:#DC2626;display:grid;place-items:center;font-style:normal;font-size:11px}
+.mp-brand b{font-size:11.5px;letter-spacing:.04em}
+.mp-brand small{display:block;font-size:8px;letter-spacing:.12em;color:#9FB3D8}
+.mp-body{padding:11px 14px 13px}
+.mp-lang{display:inline-block;font-size:8.5px;font-weight:700;padding:2px 7px;border-radius:9px;background:#FEE2E2;color:#B91C1C}
+.mp-body h6{margin:7px 0 5px;font-size:13px;color:#10305C}
+.mp-body p{margin:0 0 7px;color:#374151;line-height:1.45}
+.mp-info{display:grid;gap:3px;padding:8px 10px;border-radius:8px;background:#EFF6FF;border:1px solid #DBEAFE;margin-bottom:8px;color:#1E3A8A;font-weight:600}
+.mp-att{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+.mp-att span{font-size:9.5px;font-weight:600;padding:3px 7px;border-radius:6px;background:#F3F4F6;border:1px solid #E5E7EB;color:#374151}
+.mp-btn{display:inline-block;font-size:10.5px;font-weight:700;padding:6px 11px;border-radius:7px;background:#3B82F6;color:#fff}
+.mp-en{margin-top:9px;padding-top:8px;border-top:1px dashed #D1D5DB;color:#6B7280;font-size:10px}
+.mp-en b{color:#1D4ED8}
+/* Konsolosluk takibi */
+.kt-h{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin-bottom:10px}
+.kt-h b{font-size:15px;font-variant-numeric:tabular-nums}
+.kt-f{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+.kt-f span{font-size:11px;color:var(--muted);padding:5px 9px;border-radius:7px;border:1px solid var(--border2);background:rgba(11,32,51,.6)}
+.kt-note{font-size:11.5px;color:var(--faint);margin:-2px 0 10px}
+.kt-note b{color:#FCD34D}.kt-note b.r{color:#F87171}
+.kt-hd,.kt-row{display:grid;grid-template-columns:minmax(0,1.25fr) 88px minmax(0,1.3fr) 78px 118px;gap:10px;align-items:center}
+.kt-hd{padding:0 12px 6px;font-size:9.5px;font-weight:700;letter-spacing:.07em;color:var(--faint)}
+.kt-row{position:relative;padding:10px 12px;border-radius:10px;border:1px solid var(--border2);background:rgba(8,25,42,.6);margin-bottom:6px;font-size:12px;max-height:90px;overflow:visible;transition:background .5s,border-color .5s,box-shadow .5s,opacity .5s,transform .5s,max-height .5s .15s,padding .5s .15s,margin .5s .15s}
+.kt-row.warn{background:rgba(245,158,11,.07);border-color:rgba(245,158,11,.3)}
+.kt-row.late{background:rgba(248,113,113,.07);border-color:rgba(248,113,113,.32)}
+.kt-row.focus{box-shadow:0 0 0 1px rgba(34,211,238,.55),0 12px 30px -16px rgba(34,211,238,.6)}
+.kt-row.new{animation:rowIn .6s cubic-bezier(.2,.8,.2,1)}
+.kt-row.won{background:rgba(57,217,138,.1);border-color:rgba(57,217,138,.5)}
+.kt-row.gone{opacity:0;transform:translateX(30px);max-height:0;padding-top:0;padding-bottom:0;margin-bottom:0;border-width:0}
+@keyframes rowIn{from{opacity:0;transform:translateY(-8px)}}
+.kt-row .nm b{display:block;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kt-row .nm small{color:var(--faint);font-size:10px;font-variant-numeric:tabular-nums}
+.kt-row .co{color:#C9D6E3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kt-row .rs{display:grid;gap:1px;font-size:10px;color:var(--muted);min-width:0}
+.kt-row .rs span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kt-row .rs i{font-style:normal;font-weight:700}
+.kt-row .rs .s i{color:#F472B6}.kt-row .rs .e i{color:#FBBF24}.kt-row .rs .r i{color:#A78BFA}
+.wd{display:flex;align-items:center;gap:6px;font-weight:800;font-size:13px;color:#C9D6E3;font-variant-numeric:tabular-nums;transition:color .4s}
+.wd::before{content:'';width:9px;height:9px;border-radius:50%;background:#5E7A94;transition:background .4s,box-shadow .4s}
+.warn .wd{color:#FCD34D}.warn .wd::before{background:#F59E0B;box-shadow:0 0 8px rgba(245,158,11,.7)}
+.late .wd{color:#F87171}.late .wd::before{background:#EF4444;box-shadow:0 0 8px rgba(239,68,68,.7)}
+.sel{position:relative;display:flex;justify-content:space-between;align-items:center;font-size:11px;padding:6px 9px;border-radius:7px;border:1px solid var(--border2);background:rgba(2,11,20,.5);color:var(--muted);transition:border-color .3s,color .3s,background .3s}
+.sel::after{content:'';width:5px;height:5px;border:solid currentColor;border-width:0 1.5px 1.5px 0;transform:rotate(45deg);margin:-3px 2px 0 8px}
+.sel.open{border-color:rgba(59,130,246,.8)}
+.sel.ok{border-color:rgba(57,217,138,.6);color:#6EE7B7;background:rgba(57,217,138,.1)}
+.dd{position:absolute;z-index:3;left:0;right:0;top:calc(100% + 4px);border-radius:8px;overflow:hidden;background:#0B2236;border:1px solid var(--border);box-shadow:0 14px 30px rgba(0,0,0,.5);opacity:0;transform:translateY(-4px);transition:opacity .25s,transform .25s;pointer-events:none}
+.sel.open .dd{opacity:1;transform:none}
+.dd div{padding:6px 9px;font-size:11px;color:#C9D6E3}
+.dd div.hl{background:#2563EB;color:#fff}
+/* Sistem kaydı */
+.log{border-radius:16px;border:1px solid var(--border2);background:rgba(4,15,27,.85);display:flex;flex-direction:column;overflow:hidden}
+.log-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--border2)}
+.log-h b{display:block;font-size:13px}
+.log-h small{display:block;font-size:10.5px;color:var(--faint)}
+.live{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--green);font-weight:600;white-space:nowrap}
+.live::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor;animation:blink2 1.4s infinite}
+.demo.is-paused .live{color:#F59E0B}
+@keyframes blink2{50%{opacity:.3}}
+.log-list{flex:1 1 0;min-height:0;overflow:hidden;padding:10px 12px;display:flex;flex-direction:column;gap:3px;justify-content:flex-end;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 70px);mask-image:linear-gradient(to bottom,transparent,#000 70px)}
+.ev{display:grid;grid-template-columns:24px 1fr auto;gap:9px;align-items:start;padding:6px 7px;border-radius:9px;font-size:12px;line-height:1.35;color:#C9D6E3;animation:evIn .45s cubic-bezier(.2,.8,.2,1) both,evNew 1.8s ease-out}
+.ev.ff{animation:none}
+@keyframes evIn{from{opacity:0;transform:translateY(8px)}}
+@keyframes evNew{0%,30%{background:rgba(148,178,210,.08)}100%{background:transparent}}
+.ev i{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-style:normal;color:#9FB3C8;background:rgba(148,178,210,.1)}
+.ev i svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.ev.auto i{color:var(--green);background:rgba(57,217,138,.13)}
+.ev.ml i{color:#60A5FA;background:rgba(59,130,246,.15)}
+.ev.rule i{color:#F59E0B;background:rgba(245,158,11,.14)}
+.ev.bad i{color:#F87171;background:rgba(248,113,113,.15)}
+.ev b{color:var(--text);font-weight:600}
+.ev small{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-top:2px;color:var(--faint);font-size:10.5px}
+.ev em{font-style:normal;font-size:9.5px;font-weight:700;padding:1px 5px;border-radius:4px;color:#B7C9DA;background:rgba(148,178,210,.12)}
+.ev em.sys{color:var(--green);background:rgba(57,217,138,.1)}
+.ev time{font-size:10.5px;color:var(--faint);font-variant-numeric:tabular-nums;padding-top:1px}
+.ev-day{display:flex;align-items:center;gap:8px;margin:6px 2px 3px;font-size:10px;font-weight:700;color:var(--faint);animation:evIn .45s both}
+.ev-day::after{content:'';flex:1;height:1px;background:var(--border2)}
+.ev-day.ff{animation:none}
+.log-f{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border2)}
+.log-f div{padding:10px 8px;text-align:center}
+.log-f div+div{border-left:1px solid var(--border2)}
+.log-f b{display:block;font-size:16px;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.log-f small{color:var(--faint);font-size:10px}
+/* Durdur: tüm CSS animasyonları da olduğu yerde donar */
+.demo.is-paused *,.demo.is-paused *::before,.demo.is-paused *::after{animation-play-state:paused!important}
+/* Adıma atlarken önceki adımlar anında uygulanır */
+.demo.instant *,.demo.instant *::before,.demo.instant *::after{transition:none!important}
+.demo-ctrl button[aria-pressed="true"]{color:var(--text);border-color:rgba(245,158,11,.55)}
+/* Alt bölüm: renk anahtarı */
+.swatch{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:4px 9px;border-radius:7px;border-left:3px solid;margin-bottom:12px}
+.swatch.g{color:#6EE7B7;background:rgba(57,217,138,.11);border-color:#39D98A}
+.swatch.o{color:#FCD34D;background:rgba(245,158,11,.11);border-color:#F59E0B}
+.swatch.b{color:#fff;background:#3B82F6;border-color:#93C5FD;border-left-width:0;border-radius:12px}
+@media (max-width:1100px){ .fb-wrap{grid-template-columns:1fr} .log-list{flex:none;height:300px} }
+@media (max-width:980px){ .demo-steps.d5{grid-template-columns:repeat(3,1fr)} }
+@media (max-width:760px){
+  .demo-steps.d5{grid-template-columns:1fr 1fr}
+  .legend{margin-left:0;width:100%}
+  .cal-d{min-height:54px;padding:4px;gap:2px}
+  .cal-dow{text-align:center;padding:0}
+  .cal-d .dn{font-size:10px;min-width:18px;height:18px}
+  .ap{font-size:0;padding:0;height:5px;border-left-width:0;border-radius:3px}
+  .ap.wait{background:#F59E0B}.ap.ok{background:#39D98A}.ap.ok::before{content:none}
+  .kt-hd{display:none}
+  .kt-hd,.kt-row{grid-template-columns:minmax(0,1fr) 64px 104px}
+  .kt-row .co,.kt-row .rs{display:none}
+  .kt-f{display:none}
+}
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana sayfa", "item": "https://ahoraclario.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Randevu Takvimi", "item": "https://ahoraclario.github.io/randevu-takvimi.html"}]}
+</script>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <div class="bg-glow"></div><div class="bg-grid"></div>
+  <div class="arc arc-tl"><i></i></div><div class="arc arc-br"><i></i></div>
+</div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand" aria-label="Ahoraclario ana sayfa">
+      <svg viewBox="0 0 52 52" aria-hidden="true"><defs><linearGradient id="bA" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#39D98A"/><stop offset=".55" stop-color="#22D3EE"/><stop offset="1" stop-color="#2563EB"/></linearGradient></defs><path d="M21 4h10l19 44H39.5l-4-9.8H16.5l-4 9.8H2L21 4Zm5 11.5L19.8 30h12.4L26 15.5Z" fill="url(#bA)"/><path d="M2 48 21 4h5L8.5 48Z" fill="#39D98A" opacity=".55"/></svg>
+      Ahoraclario
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Ana menü">
+      <a href="index.html#akis">Nasıl İşler</a>
+      <a href="index.html#ozellikler">Özellikler</a>
+      <a href="index.html#muhasebe">Muhasebe</a>
+      <a href="index.html#referans">Referans</a>
+      <a href="index.html#sss">SSS</a>
+      <a href="index.html#iletisim" class="btn btn-primary btn-sm">Ücretsiz Demo İste</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Menüyü aç" aria-expanded="false" aria-controls="navLinks">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+<section class="page-hero" aria-labelledby="h-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">Ana sayfa</a> / <a href="index.html#ozellikler">Özellikler</a> / Randevu Takvimi</div>
+    <span class="eyebrow"><span class="dot"></span>Randevu Takvimi ve Konsolosluk Takibi</span>
+    <h1 id="h-hero">Hiçbir randevu <span class="grad">gözden kaçmaz</span>.</h1>
+    <p class="lead">Tüm randevular tek takvimde: evrakı hazır olanlar yeşil, eksik olanlar turuncu. Başvurusu yapılan dosyalar konsolosluk listesine geçer ve gün sayacıyla izlenir; uzun bekleyenler kendiliğinden işaretlenir.</p>
+    <div class="hero-ctas">
+      <a href="#canli" class="btn btn-primary">Canlı örneği izle <span aria-hidden="true">↓</span></a>
+      <a href="index.html#iletisim" class="btn btn-ghost">Demo İste</a>
+    </div>
+  </div>
+</section>
+
+<section id="canli" style="padding-top:40px" aria-labelledby="h-demo">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Canlı örnek</div>
+      <h2 id="h-demo">Randevudan vize sonucuna bir dosya</h2>
+      <p>Takvimdeki renk değişimini, 7 gün kala giden hatırlatmayı ve konsolosluk sayacını izleyin. Sağdaki kayıt, sistemin sizin yerinize yaptıklarını gösterir.</p>
+    </div>
+
+    <div class="demo reveal" id="demo">
+      <div class="demo-steps d5" role="tablist" aria-label="Demo adımları">
+        <button class="dstep" data-s="0" role="tab"><span class="n">1</span>Randevu alınır<span class="bar"></span></button>
+        <button class="dstep" data-s="1" role="tab"><span class="n">2</span>Evraklar hazır<span class="bar"></span></button>
+        <button class="dstep" data-s="2" role="tab"><span class="n">3</span>7 gün kala<span class="bar"></span></button>
+        <button class="dstep" data-s="3" role="tab"><span class="n">4</span>Başvuru yapılır<span class="bar"></span></button>
+        <button class="dstep" data-s="4" role="tab"><span class="n">5</span>Sonuç girilir<span class="bar"></span></button>
+      </div>
+
+      <div class="fb-wrap">
+        <div class="fboard" id="board" aria-label="Randevu takvimi ve konsolosluk takibi (örnek)">
+          <div class="vtabs"><span id="tabCal" class="on">📅 Takvim</span><span id="tabKt">🏛️ Konsolosluk Takibi <em id="ktBadge">4</em></span></div>
+          <div class="views">
+            <div class="view" id="vCal">
+              <div class="cal-h"><b id="calTitle">Ekim 2026</b><span class="cal-cnt"><span id="calCnt">0</span> randevu bu ay</span>
+                <div class="legend"><span style="--c:#39D98A">Evraklar hazır</span><span style="--c:#F59E0B">Evrak bekleniyor</span></div></div>
+              <div class="cal-g" id="cal"></div>
+            </div>
+            <div class="view hide" id="vKt">
+              <div class="kt-h"><b><span id="ktCnt">4</span> müşteri sonuç bekliyor</b>
+                <div class="kt-f"><span>Tüm ülkeler</span><span>Tüm temsilciler</span><span>Tüm bekleme süreleri</span><span>📥 Excel</span></div></div>
+              <p class="kt-note">Süre, başvurunun yapıldığı günden sayılır. <b>30+ gün</b> sarı, <b class="r">45+ gün</b> kırmızı işaretlenir.</p>
+              <div class="kt-hd"><span>MÜŞTERİ</span><span>ÜLKE</span><span>SORUMLULAR</span><span>BEKLEME</span><span>VİZE SONUCU</span></div>
+              <div id="kt"></div>
+            </div>
+          </div>
+          <div class="mailpop" id="mail" aria-hidden="true">
+            <div class="mp-top"><b>Randevunuza 7 gün kaldı / Your appointment is in 7 days</b><small>Firmanız Vize Danışmanlık · Alıcı: Elif Demir</small></div>
+            <div class="mp-brand"><i>✈</i><div><b>FİRMANIZ</b><small>VİZE DANIŞMANLIK</small></div></div>
+            <div class="mp-body">
+              <span class="mp-lang">TÜRKÇE</span>
+              <h6>Randevunuza 7 gün kaldı</h6>
+              <p>Sayın <b>Elif Demir</b>, randevu bilgileriniz ve yanınızda getirmeniz gereken belgeler aşağıdadır.</p>
+              <div class="mp-info"><span>📅 14 Ekim Çarşamba · 09:30</span><span>📍 İstanbul başvuru merkezi</span><span>👥 2 kişi (Elif Demir, Ayşe Aksoy)</span></div>
+              <div class="mp-att"><span>📎 Basvuru_Formu.pdf</span><span>📎 Randevu_Onayi.pdf</span><span>📎 Belge_Listesi.pdf</span></div>
+              <span class="mp-btn">Başvurumu Takip Et →</span>
+              <div class="mp-en"><b>ENGLISH</b> · Your appointment is in 7 days. Please be at the center 30 minutes early.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="log" aria-label="Sistem kaydı (örnek)">
+          <div class="log-h"><div><b>Sistem kaydı</b><small>Dosya VZ-2026-4172 · Elif Demir</small></div><span class="live" id="liveTag">canlı</span></div>
+          <div class="log-list" id="log" aria-live="polite"></div>
+          <div class="log-f"><div><b id="stAuto">0</b><small>otomatik işlem</small></div><div><b id="stMail">0</b><small>müşteri maili</small></div><div><b id="stWait">4</b><small>sonuç bekleyen</small></div></div>
+        </div>
+      </div>
+
+      <div class="demo-ctrl"><button id="replay" type="button">↻ Baştan oynat</button><button id="pause" type="button" aria-pressed="false">❚❚ Durdur</button></div>
+    </div>
+    <p class="demo-note" style="text-align:center;margin-top:14px">Örnek görünüm · isimler ve bilgiler temsilidir</p>
+  </div>
+</section>
+
+<section aria-labelledby="h-colors">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Takvim</div>
+      <h2 id="h-colors">Renkler bir bakışta anlatır</h2>
+      <p>Takvimi açan herkes, hangi randevunun hazır olduğunu tek bakışta görür. Bir güne ya da randevuya tıklayınca müşteri dosyası açılır.</p>
+    </div>
+    <div class="grid3">
+      <div class="card reveal" style="--c:#39D98A"><span class="swatch g">✓ 09:30 Örnek Müşteri</span>
+        <h3>Yeşil: evraklar hazır</h3><p>Evrak ekibi randevu evraklarını tamamladığında randevu kendiliğinden yeşile döner. Randevu ekibi o dosya için içi rahat şekilde güne hazırlanır.</p></div>
+      <div class="card reveal" style="--c:#F59E0B"><span class="swatch o">09:30 Örnek Müşteri</span>
+        <h3>Turuncu: evrak bekleniyor</h3><p>Randevusu yaklaşan ama evrakları hâlâ eksik olan dosyalar turuncu kalır. Kimse sormadan hangi dosyaya öncelik verilmesi gerektiği görünür.</p></div>
+      <div class="card reveal" style="--c:#3B82F6"><span class="swatch b">14</span>
+        <h3>Mavi çerçeve: bugün</h3><p>Günün randevuları mavi çerçeveyle öne çıkar. Ay boyunca kaç randevu olduğu sağ üstte yazar; önceki ve sonraki aylara tek tıkla geçilir.</p></div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-kt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Konsolosluk takibi</div>
+      <h2 id="h-kt">Başvurudan sonra da takip sürer</h2>
+    </div>
+    <div class="grid3">
+      <div class="card reveal" style="--c:#F87171"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg></div>
+        <h3>Gün sayacı</h3><p>Bekleme süresi başvurunun yapıldığı günden sayılır; dosyaya not eklemek sayacı sıfırlamaz. 30 günü geçenler sarı, 45 günü geçenler kırmızı işaretlenir.</p></div>
+      <div class="card reveal" style="--c:#22D3EE"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18l-7 8v6l-4 2v-8L3 5Z"/></svg></div>
+        <h3>Filtre ve Excel</h3><p>Listeyi aşamaya, ülkeye, temsilciye ve bekleme süresine göre süzün. Her dosyada satıştan randevuya kadar sorumluların adı yazar; liste tek tıkla Excel'e iner.</p></div>
+      <div class="card reveal" style="--c:#39D98A"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></div>
+        <h3>Tek tıkla sonuç</h3><p>Vize sonucu "Onaylandı" ya da "Reddedildi" olarak girilir. Müşteriye bilgilendirme maili gider, dosya tamamlananlara geçer ve hatırlatıcılar kapanır.</p></div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-gain">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <h2 id="h-gain">Randevularınızı tek ekrandan yönetin</h2>
+      <p>Demo görüşmesinde takvimi ve konsolosluk takibini gerçek ekranlarıyla gösterelim; ofisinizin çalışma şekline göre uyarlayalım.</p>
+      <a href="index.html#iletisim" class="btn btn-primary">Ücretsiz Demo İste <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-more" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:30px">
+      <div class="kicker">Diğer özellikler</div>
+      <h2 id="h-more" style="font-size:clamp(24px,2.6vw,32px)">Sistemin geri kalanını keşfedin</h2>
+    </div>
+    <div class="more-grid reveal">
+      <a href="is-akisi.html"><span>🔀</span><div>Departmanlar Arası Akış<small>Satış → evrak → randevu</small></div></a>
+      <a href="musteri-portali.html"><span>📱</span><div>Müşteri Takip Portalı<small>Müşteriniz sormadan bilsin</small></div></a>
+      <a href="muhasebe.html"><span>💰</span><div>Muhasebe<small>Tahsilat, gider, net kâr</small></div></a>
+    </div>
+  </div>
+</section>
+</main>
+
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="font-size:16px;color:var(--text)">
+      <svg viewBox="0 0 52 52" style="width:26px;height:26px" aria-hidden="true"><path d="M21 4h10l19 44H39.5l-4-9.8H16.5l-4 9.8H2L21 4Zm5 11.5L19.8 30h12.4L26 15.5Z" fill="url(#bA)"/></svg>
+      Ahoraclario
+    </div>
+    <div class="links">
+      <a href="index.html#akis">Nasıl İşler</a><a href="index.html#ozellikler">Özellikler</a><a href="index.html#muhasebe">Muhasebe</a><a href="index.html#iletisim">İletişim</a>
+    </div>
+    <div>© <span id="year">2026</span> Ahoraclario</div>
+  </div>
+</footer>
+
+<a class="wa-fab" href="https://wa.me/905514089810?text=Merhaba%20Samet%2C%20vize%20dan%C4%B1%C5%9Fmanl%C4%B1k%20CRM%27i%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" aria-label="WhatsApp'tan yazın"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span>WhatsApp'tan yazın</span></a>
+
+<script>
+// Menü (mobil), kaydırınca üst çubuk, görünür olunca giriş animasyonu
+const nav = document.getElementById('nav'), menuBtn = document.getElementById('menuBtn'), links = document.getElementById('navLinks');
+menuBtn.addEventListener('click', () => { const o = links.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', o); });
+links.addEventListener('click', e => { if(e.target.closest('a')){ links.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); } });
+const onScroll = () => nav.classList.toggle('scrolled', scrollY > 10); addEventListener('scroll', onScroll, { passive:true }); onScroll();
+if('IntersectionObserver' in window){
+  const io = new IntersectionObserver(es => es.forEach(x => { if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } }), { threshold:.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+} else document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<script>
+// ── Canlı demo: randevudan vize sonucuna bir dosya ──
+(() => {
+  const $ = id => document.getElementById(id);
+  const demo = $('demo'), steps = [...document.querySelectorAll('.dstep')];
+  const logEl = $('log'), pauseBtn = $('pause'), cal = $('cal'), kt = $('kt');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Duraklatılabilir zamanlayıcı: "Durdur"da bekleyen her adım olduğu yerde donar,
+  // "Devam et"te kalan süresiyle kaldığı yerden sürer.
+  const T = (() => {
+    let list = [], pausedAt = null, offset = 0;
+    const now = () => (pausedAt ?? performance.now()) - offset;
+    const arm = t => { t.id = setTimeout(() => { list = list.filter(x => x !== t); t.fn(); }, Math.max(0, t.due - now())); };
+    return {
+      add(fn, ms){ const t = { fn, due: now() + ms }; list.push(t); if(pausedAt === null) arm(t); },
+      clear(){ list.forEach(t => clearTimeout(t.id)); list = []; },
+      pause(){ if(pausedAt !== null) return; pausedAt = performance.now(); list.forEach(t => clearTimeout(t.id)); },
+      resume(){ if(pausedAt === null) return; offset += performance.now() - pausedAt; pausedAt = null; list.forEach(arm); },
+    };
+  })();
+  // Anında mod: bir adıma atlarken önceki sahneler animasyonsuz, sırasıyla uygulanır
+  let instant = null;
+  const later = (fn, ms) => instant ? instant.push({ fn, ms, k: instant.length }) : T.add(fn, ms);
+  const anim = (el, cls) => { if(instant) return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); };
+
+  // Çizgi ikonlar
+  const P = {
+    cal:'<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/>',
+    check:'<path d="M20 6 9 17l-5-5"/>',
+    mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+    timer:'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/>',
+    doc:'<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/>',
+    move:'<path d="M4 8h14l-4-4M20 16H6l4 4"/>',
+    bell:'<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21a2 2 0 0 0 4 0"/>',
+    list:'<path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/>',
+    bank:'<path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/>',
+    flag:'<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',
+    done:'<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>',
+  };
+  const svg = k => `<svg viewBox="0 0 24 24" aria-hidden="true">${P[k]}</svg>`;
+
+  // Demo takvimi: Ekim 2026 (1 Ekim Perşembe)
+  const DAYS = ['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'];
+  const dow = d => (d + 2) % 7;
+  const dateLabel = d => d <= 31 ? `${d} Ekim ${DAYS[dow(d)]}` : `${d - 31} Kasım ${DAYS[dow(d)]}`;
+  const SEED = [[1,'09:30','Kerem Aydın',1],[1,'11:00','Nazlı Er',1],[2,'10:15','Oğuz Tan',1],[5,'09:00','Derya Kılıç',1],[5,'14:30','Cem Uslu',0],
+    [6,'10:45','Pınar Sezer',1],[8,'09:15','Levent Ak',0],[9,'11:30','Irmak Çelik',1],[12,'13:00','Tuna Ateş',0],[13,'09:45','Selim Oral',1],
+    [15,'10:00','Aslı Kurt',0],[15,'15:15','Umut Eren',0],[16,'09:30','Ece Bal',1],[19,'11:15','Deniz Koç',0],[20,'10:30','Mert Sarı',0],
+    [22,'09:00','Hande Us',0],[23,'14:00','Barış Yel',0],[26,'10:15','Gizem Ay',0],[27,'09:45','Onur Tek',0],[29,'11:00','Sena Işık',0],[30,'13:30','Kaan Er',0]];
+  const KT = [ // ad, dosya no, ülke, satış, evrak, randevu, gün
+    ['Mert Kaya','VZ-2026-3981','🇩🇰 Danimarka','Tayfur K.','Selin D.','Kerem A.',47],
+    ['Selin Aydın','VZ-2026-4027','🇳🇱 Hollanda','Ayşe K.','Selin D.','Kerem A.',35],
+    ['Ayla Yurt','VZ-2026-4066','🇫🇷 Fransa','Ayşe K.','Selin D.','Kerem A.',29],
+    ['Burak Şahin','VZ-2026-4103','🇬🇷 Yunanistan','Tayfur K.','Selin D.','Kerem A.',12],
+  ];
+
+  let today = 2, time = '09:00', lastDay = 0, nAuto = 0, nMail = 0, nApt = 0, nWait = 0;
+  function stats(){ $('stAuto').textContent = nAuto; $('stMail').textContent = nMail; $('stWait').textContent = nWait; $('calCnt').textContent = nApt; $('ktCnt').textContent = nWait; $('ktBadge').textContent = nWait; }
+
+  // Sistem kaydı. who: işlemi yapan kişi; boşsa işlem otomatiktir.
+  function ev(kind, icon, html, sub, who){
+    const ff = instant ? ' ff' : '';
+    if(today !== lastDay){
+      lastDay = today;
+      const d = document.createElement('div'); d.className = 'ev-day' + ff; d.textContent = dateLabel(today);
+      logEl.appendChild(d);
+    }
+    const tag = who ? `<em>${who}</em>` : '<em class="sys">Otomatik</em>';
+    const r = document.createElement('div'); r.className = 'ev ' + kind + ff;
+    r.innerHTML = `<i>${svg(icon)}</i><div>${html}<small>${tag}${sub ? '<span>' + sub + '</span>' : ''}</small></div><time>${time}</time>`;
+    logEl.appendChild(r);
+    while(logEl.children.length > 24) logEl.firstChild.remove();
+    if(kind === 'ml') nMail++; else if(!who) nAuto++;
+    stats();
+  }
+  const at = (d, t) => { if(d !== today){ today = d; paintToday(); } time = t; };
+
+  // Takvim
+  function buildCal(){
+    cal.innerHTML = ['PZT','SAL','ÇAR','PER','CUM','CMT','PAZ'].map(x => `<div class="cal-dow">${x}</div>`).join('')
+      + '<div class="cal-d blank"></div>'.repeat(dow(1))
+      + Array.from({ length:31 }, (_, i) => `<div class="cal-d" id="d${i + 1}"><span class="dn">${i + 1}</span></div>`).join('');
+    nApt = 0;
+    SEED.forEach(([d, t, n, ok], k) => addApt(d, t, n, ok, 'a' + k));
+  }
+  function addApt(d, t, name, ok, id){
+    const a = document.createElement('div');
+    a.className = 'ap ' + (ok ? 'ok' : 'wait'); a.id = id; a.textContent = `${t} ${name}`;
+    $('d' + d).appendChild(a); nApt++; stats(); return a;
+  }
+  const setOk = id => { const a = $(id); a.classList.replace('wait', 'ok'); anim(a, 'flash'); };
+  function paintToday(){ for(let d = 1; d <= 31; d++){ const c = $('d' + d); c.classList.toggle('today', d === today); c.classList.toggle('past', d < today); } }
+
+  // Görünüm geçişi: Takvim ↔ Konsolosluk Takibi
+  function view(v){
+    $('vCal').classList.toggle('hide', v !== 'cal'); $('vKt').classList.toggle('hide', v !== 'kt');
+    $('tabCal').classList.toggle('on', v === 'cal'); $('tabKt').classList.toggle('on', v === 'kt');
+  }
+
+  // Konsolosluk listesi
+  const lvl = n => n >= 45 ? 'late' : n >= 30 ? 'warn' : '';
+  function row([name, no, co, s, e, r, days], id){
+    const el = document.createElement('div'); el.className = 'kt-row ' + lvl(days); el.id = id; el.dataset.days = days;
+    el.innerHTML = `<div class="nm"><b>${name}</b><small>${no}</small></div><span class="co">${co}</span>`
+      + `<div class="rs"><span class="s"><i>Satış:</i> ${s}</span><span class="e"><i>Evrak:</i> ${e}</span><span class="r"><i>Randevu:</i> ${r}</span></div>`
+      + `<span class="wd">${days} gün</span><div class="sel">Sonuç gir…<div class="dd"><div>Sonuç gir…</div><div>✅ Onaylandı</div><div>❌ Reddedildi</div></div></div>`;
+    kt.appendChild(el); nWait++; stats(); return el;
+  }
+  function setDays(el, n){
+    el.dataset.days = n; el.querySelector('.wd').textContent = n + ' gün';
+    el.classList.remove('warn','late'); if(lvl(n)) el.classList.add(lvl(n));
+  }
+  const mail = on => $('mail').classList.toggle('show', on);
+
+  function reset(){
+    today = 2; time = '09:00'; lastDay = 0; nAuto = 0; nMail = 0; nWait = 0;
+    logEl.innerHTML = ''; kt.innerHTML = ''; mail(false); view('cal');
+    buildCal(); paintToday();
+    KT.forEach((r, k) => row(r, 'k' + k));
+    stats();
+  }
+  function mark(i, dur){
+    steps.forEach((s, k) => { s.classList.toggle('on', k === i); s.classList.toggle('done', k < i); s.setAttribute('aria-selected', k === i); });
+    const b = steps[i].querySelector('.bar'); b.style.animation = 'none'; void b.offsetWidth; b.style.animation = ''; steps[i].style.setProperty('--dur', dur + 'ms');
+  }
+
+  const scenes = [
+    { dur: 6200, run(){                                              // 1) Randevu alınır
+      later(() => { at(2, '10:05'); ev('hum', 'cal', 'Randevu tarihi girildi: <b>14 Ekim 09:30</b>', 'Elif Demir · Yunanistan · 2 kişi', 'Selin D.'); }, 300);
+      later(() => { const a = addApt(14, '09:30', 'Elif Demir +1', 0, 'focus'); a.classList.add('focus'); anim(a, 'new');
+        ev('rule', 'check', 'Randevu kontrolleri geçildi', 'Her başvuranın tarih ve saati var'); }, 1300);
+      later(() => { time = '10:06'; ev('ml', 'mail', '<b>"Randevunuz Alındı"</b> maili gönderildi', 'Tarih, saat ve başvuru merkezi'); }, 2700);
+      later(() => { ev('auto', 'bell', 'Hatırlatma planlandı', "7 Ekim'de kendiliğinden gidecek"); }, 4000);
+    }},
+    { dur: 6600, run(){                                              // 2) Evraklar hazır
+      later(() => { at(5, '11:20'); setOk('a6'); ev('hum', 'doc', 'Levent Ak: evraklar tamamlandı', 'Takvimde yeşile döndü', 'Selin D.'); }, 300);
+      later(() => { at(5, '15:40'); setOk('focus'); ev('hum', 'doc', 'Elif Demir: <b>randevu evrakları tamamlandı</b>', '2 başvuru · 9 belge', 'Selin D.'); }, 1800);
+      later(() => { ev('auto', 'move', 'Dosya <b>Randevu</b> ekibine geçti', 'Kerem A.\'ya atandı'); }, 3000);
+      later(() => { ev('ml', 'mail', '<b>"Randevu Evraklarınız Hazır"</b> maili gönderildi', 'Randevu sorumlusu ve takip linkiyle'); }, 4100);
+      later(() => { at(6, '10:10'); setOk('a8'); ev('hum', 'doc', 'Tuna Ateş: evraklar tamamlandı', '', 'Selin D.'); }, 5200);
+    }},
+    { dur: 8400, run(){                                              // 3) 7 gün kala
+      later(() => { at(7, '09:00'); ev('auto', 'bell', '<b>Randevuya 7 gün kaldı</b>', 'Elif Demir · 14 Ekim 09:30'); }, 300);
+      later(() => { mail(true); ev('ml', 'mail', '<b>Hatırlatma maili</b> gönderildi', 'Belgeler ekli · Türkçe ve İngilizce'); }, 1300);
+      later(() => { mail(false); }, 6100);
+      later(() => { at(13, '17:30'); ev('rule', 'list', 'Yarının randevuları listelendi', 'Randevu ekibinin "Bugün" listesine düştü'); }, 6800);
+    }},
+    { dur: 7800, run(){                                              // 4) Başvuru yapılır
+      later(() => { at(14, '10:15'); anim($('focus'), 'flash'); ev('hum', 'bank', 'Başvuru yapıldı', 'İstanbul başvuru merkezi · 2 kişi', 'Kerem A.'); }, 300);
+      later(() => { ev('ml', 'mail', '<b>"Başvurunuz Yapıldı"</b> maili gönderildi'); }, 1400);
+      later(() => { view('kt'); }, 2500);
+      later(() => { const r = row(['Elif Demir +1','VZ-2026-4172','🇬🇷 Yunanistan','Ayşe K.','Selin D.','Kerem A.',0], 'kf');
+        r.classList.add('focus'); anim(r, 'new'); ev('rule', 'timer', 'Konsolosluk sayacı başladı', 'Başvuru tarihinden itibaren sayılır'); }, 3200);
+      later(() => { at(15, '09:00'); document.querySelectorAll('.kt-row').forEach(r => setDays(r, +r.dataset.days + 1));
+        ev('rule', 'flag', 'Ayla Yurt <b>30 günü geçti</b>', 'Listede sarıyla işaretlendi'); }, 5000);
+    }},
+    { dur: 7800, run(){                                              // 5) Sonuç girilir
+      for(let k = 1; k <= 10; k++) later(() => { at(15 + k, '09:00'); document.querySelectorAll('.kt-row:not(.gone)').forEach(r => setDays(r, +r.dataset.days + 1));
+        if(k === 10) ev('rule', 'flag', 'Selin Aydın <b>45 günü geçti</b>', 'Kırmızıyla işaretlendi · konsolosluğu kontrol edin'); }, 200 + k * 140);
+      later(() => { time = '11:40'; $('kf').querySelector('.sel').classList.add('open'); }, 2700);
+      later(() => { $('kf').querySelectorAll('.dd div')[1].classList.add('hl'); }, 3300);
+      later(() => { const s = $('kf').querySelector('.sel'); s.classList.remove('open'); s.classList.add('ok'); s.firstChild.textContent = '✓ Onaylandı';
+        $('kf').classList.add('won'); ev('hum', 'done', 'Vize sonucu girildi: <b>Onaylandı</b>', 'Elif Demir, Ayşe Aksoy', 'Kerem A.'); }, 3900);
+      later(() => { ev('ml', 'mail', '<b>"Vizeniz Onaylandı"</b> maili gönderildi'); }, 4900);
+      later(() => { $('kf').classList.add('gone'); nWait--; stats(); ev('auto', 'done', 'Dosya <b>Tamamlandı</b>', 'Hatırlatıcılar kendiliğinden kapandı'); }, 5900);
+    }},
+  ];
+
+  function play(i){
+    T.clear(); if(i === 0) reset(); mark(i, scenes[i].dur); scenes[i].run();
+    later(() => play((i + 1) % scenes.length), scenes[i].dur + (i === scenes.length - 1 ? 2400 : 600));
+  }
+  // Bir adıma atlarken: sıfırla, önceki sahneleri anında uygula, sonra seçilen adımı oynat
+  function jump(i){
+    T.clear(); demo.classList.add('instant'); reset();
+    for(let k = 0; k < i; k++){
+      instant = []; scenes[k].run();
+      while(instant.length){ instant.sort((a, b) => a.ms - b.ms || a.k - b.k); instant.shift().fn(); }
+    }
+    instant = null; mail(false);
+    void demo.offsetWidth; requestAnimationFrame(() => demo.classList.remove('instant'));
+    mark(i, scenes[i].dur); scenes[i].run();
+    later(() => play((i + 1) % scenes.length), scenes[i].dur + (i === scenes.length - 1 ? 2400 : 600));
+  }
+
+  // Durdurma: kullanıcı durdurduysa, sekme gizliyse ya da demo ekrandan çıktıysa her şey donar
+  let userPaused = false, onScreen = false;
+  function sync(){
+    const stop = userPaused || document.hidden || !onScreen;
+    stop ? T.pause() : T.resume();
+    demo.classList.toggle('is-paused', stop);
+    $('liveTag').textContent = userPaused ? 'durduruldu' : 'canlı';
+  }
+  function setPaused(p){ userPaused = p; pauseBtn.textContent = p ? '▶ Devam et' : '❚❚ Durdur'; pauseBtn.setAttribute('aria-pressed', p); sync(); }
+  steps.forEach((s, i) => s.addEventListener('click', () => { jump(i); setPaused(false); }));
+  $('replay').addEventListener('click', () => { jump(0); setPaused(false); });
+  pauseBtn.addEventListener('click', () => setPaused(!userPaused));
+  document.addEventListener('visibilitychange', sync);
+
+  reset();
+  if(reduce){ onScreen = true; jump(4); setPaused(true); return; }
+  let started = false;
+  const seen = on => { onScreen = on; if(on && !started){ started = true; play(0); } sync(); };
+  // Ekranda en az ~160px'i görünüyorsa oynar; tamamen kaydırılıp gidilince durur
+  if('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => seen(e.isIntersecting && e.intersectionRect.height >= Math.min(160, e.boundingClientRect.height / 2))), { threshold:Array.from({ length:21 }, (_, k) => k / 20) }).observe(demo);
+  else seen(true);
+})();
+</script>
+</body>
+</html>

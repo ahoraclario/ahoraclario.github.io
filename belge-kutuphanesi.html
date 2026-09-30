@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Belge Kütüphanesi — Vize Evrak Şablonları | Ahoraclario</title>
+<meta name="description" content="Vize ofisleri için belge kütüphanesi: davet mektubu, başvuru formu gibi şablonları bir kez yükleyin; sistem her müşterinin vize türüne ve ülkesine uyanları otomatik bulsun, tek tıkla e-postayla gönderin.">
+<link rel="canonical" href="https://ahoraclario.github.io/belge-kutuphanesi.html">
+<meta name="theme-color" content="#020B14">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Belge Kütüphanesi — Ahoraclario">
+<meta property="og:description" content="Şablon evrakları bir kez yükleyin, her müşteriye uyanı sistem bulsun.">
+<meta property="og:url" content="https://ahoraclario.github.io/belge-kutuphanesi.html">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="Ahoraclario">
+<meta property="og:image" content="https://ahoraclario.github.io/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ahoraclario: vize operasyonunuza özel CRM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Belge Kütüphanesi — Ahoraclario">
+<meta name="twitter:description" content="Şablon evrakları bir kez yükleyin, her müşteriye uyanı sistem bulsun.">
+<meta name="twitter:image" content="https://ahoraclario.github.io/og-image.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%2339D98A'/%3E%3Cstop offset='.55' stop-color='%2322D3EE'/%3E%3Cstop offset='1' stop-color='%232563EB'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M21 4h10l19 44H39.5l-4-9.8H16.5l-4 9.8H2L21 4Zm5 11.5L19.8 30h12.4L26 15.5Z' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+/* Belge Kütüphanesi sayfasına özel */
+/* ── Canlı demo ortak stilleri ── */
+.fb-wrap{display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:stretch}
+.fboard{position:relative;border-radius:16px;border:1px solid var(--border2);background:rgba(4,15,27,.75);padding:14px;overflow:hidden;min-height:470px}
+.app-t{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.app-t b{font-size:16px;letter-spacing:-.01em}
+.app-t small{color:var(--faint);font-size:11.5px}
+.app-t .r{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--muted);padding:5px 10px;border-radius:8px;border:1px solid var(--border2);background:rgba(11,32,51,.6);transition:color .35s,background .35s,border-color .35s,box-shadow .35s;white-space:nowrap}
+.pill.on{color:var(--text);background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.5)}
+.pill.pri{color:#04140C;background:linear-gradient(90deg,#39D98A,#22D3EE);border-color:transparent;font-weight:700}
+.pill.press{animation:press .5s}
+@keyframes press{40%{transform:scale(.93);box-shadow:0 0 0 4px rgba(34,211,238,.25)}}
+.pn{border-radius:12px;border:1px solid var(--border2);background:rgba(8,25,42,.6);padding:12px}
+.pn-h{display:flex;align-items:center;gap:8px;margin-bottom:9px;font-size:10.5px;font-weight:700;letter-spacing:.07em;color:var(--faint);text-transform:uppercase}
+.pn-h .n{margin-left:auto;font-size:10.5px;letter-spacing:0;text-transform:none;color:var(--muted);font-variant-numeric:tabular-nums}
+.row{display:grid;align-items:center;gap:10px;padding:9px 11px;border-radius:10px;border:1px solid var(--border2);background:rgba(8,25,42,.55);margin-bottom:6px;font-size:12px;color:#C9D6E3;max-height:120px;transition:background .45s,border-color .45s,box-shadow .45s,opacity .45s,transform .45s,max-height .45s .12s,padding .45s .12s,margin .45s .12s}
+.row b{color:var(--text);font-weight:600}
+.row small{display:block;color:var(--faint);font-size:10.5px}
+.row.new{animation:rowIn .55s cubic-bezier(.2,.8,.2,1)}
+.row.hl{border-color:rgba(34,211,238,.6);box-shadow:0 0 0 1px rgba(34,211,238,.35),0 12px 28px -16px rgba(34,211,238,.6)}
+.row.ok{background:rgba(57,217,138,.08);border-color:rgba(57,217,138,.4)}
+.row.dim{opacity:.35}
+.row.gone{opacity:0;transform:translateX(26px);max-height:0;padding-top:0;padding-bottom:0;margin-bottom:0;border-width:0}
+.row.hide{display:none}
+@keyframes rowIn{from{opacity:0;transform:translateY(-8px)}}
+.tg{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;white-space:nowrap;background:rgba(148,178,210,.12);color:#C9D6E3;transition:background .4s,color .4s}
+.tg.g{background:rgba(57,217,138,.14);color:#6EE7B7}.tg.o{background:rgba(245,158,11,.15);color:#FCD34D}
+.tg.b{background:rgba(59,130,246,.17);color:#93C5FD}.tg.r{background:rgba(248,113,113,.15);color:#FCA5A5}
+.tg.p{background:rgba(139,92,246,.18);color:#C4B5FD}.tg.c{background:rgba(34,211,238,.14);color:#67E8F9}
+.tg.pk{background:rgba(236,72,153,.16);color:#F9A8D4}.tg.lm{background:rgba(132,204,22,.16);color:#BEF264}
+.av{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;font-size:9.5px;font-weight:800;color:#fff;background:var(--c,#3B82F6)}
+.fld{display:block;margin-bottom:9px}
+.fld > span{display:block;font-size:10px;font-weight:700;letter-spacing:.05em;color:var(--faint);margin-bottom:4px}
+.fld > div{min-height:32px;display:flex;align-items:center;gap:6px;padding:7px 10px;border-radius:8px;border:1px solid var(--border2);background:rgba(2,11,20,.55);font-size:12px;color:var(--text);transition:border-color .3s,box-shadow .3s}
+.fld > div:empty::before{content:attr(data-ph);color:#4D6680}
+.fld.act > div{border-color:rgba(59,130,246,.8);box-shadow:0 0 0 3px rgba(59,130,246,.15)}
+.fld.act > div::after{content:'';width:1.5px;height:14px;background:#93C5FD;animation:caret 1s steps(1) infinite}
+@keyframes caret{50%{opacity:0}}
+.modal{position:absolute;z-index:6;left:50%;top:50%;width:min(420px,calc(100% - 28px));transform:translate(-50%,-46%) scale(.97);opacity:0;pointer-events:none;border-radius:14px;border:1px solid var(--border);background:#0B2034;box-shadow:0 30px 70px rgba(0,0,0,.65);padding:16px;transition:opacity .4s,transform .4s cubic-bezier(.2,.8,.2,1)}
+.modal.show{opacity:1;transform:translate(-50%,-50%)}
+.modal h5{margin:0 0 3px;font-size:14.5px;color:var(--text)}
+.modal > small{display:block;color:var(--faint);font-size:11px;margin-bottom:12px}
+.shade{position:absolute;inset:0;z-index:5;background:rgba(2,11,20,.55);opacity:0;pointer-events:none;transition:opacity .4s}
+.shade.show{opacity:1}
+.mbtns{display:grid;grid-template-columns:1fr 1.4fr;gap:8px;margin-top:12px}
+.mbtns span{text-align:center;padding:8px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--border2);color:var(--muted)}
+.mbtns span.go{background:#2563EB;border-color:#2563EB;color:#fff}
+.mbtns span.press{animation:press .5s}
+/* Beyaz mail önizlemesi (müşterinin gördüğü) */
+.mailc{border-radius:12px;overflow:hidden;background:#fff;color:#1F2937;box-shadow:0 24px 60px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.08);font-size:11px}
+.mp-top{padding:8px 12px;background:#F1F4F8;border-bottom:1px solid #E5E9F0}
+.mp-top b{display:block;font-size:11.5px;color:#111827}
+.mp-top small{color:#6B7280;font-size:9.5px}
+.mp-brand{display:flex;align-items:center;gap:9px;padding:10px 14px;background:#10305C;border-top:3px solid #DC2626;color:#fff}
+.mp-brand i{width:22px;height:22px;border-radius:6px;background:#DC2626;display:grid;place-items:center;font-style:normal;font-size:11px}
+.mp-brand b{font-size:11.5px;letter-spacing:.04em}
+.mp-brand small{display:block;font-size:8px;letter-spacing:.12em;color:#9FB3D8}
+.mp-body{padding:11px 14px 13px}
+.mp-lang{display:inline-block;font-size:8.5px;font-weight:700;padding:2px 7px;border-radius:9px;background:#FEE2E2;color:#B91C1C}
+.mp-body h6{margin:7px 0 5px;font-size:13px;color:#10305C}
+.mp-body p{margin:0 0 7px;color:#374151;line-height:1.45}
+.mp-info{display:grid;gap:3px;padding:8px 10px;border-radius:8px;background:#EFF6FF;border:1px solid #DBEAFE;margin-bottom:8px;color:#1E3A8A;font-weight:600}
+.mp-att{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+.mp-att span{font-size:9.5px;font-weight:600;padding:3px 7px;border-radius:6px;background:#F3F4F6;border:1px solid #E5E7EB;color:#374151}
+.mp-att span.new{animation:rowIn .5s}
+.mp-btn{display:inline-block;font-size:10.5px;font-weight:700;padding:6px 11px;border-radius:7px;background:#3B82F6;color:#fff}
+.mp-en{margin-top:9px;padding-top:8px;border-top:1px dashed #D1D5DB;color:#6B7280;font-size:10px}
+.mp-en b{color:#1D4ED8}
+/* Sistem kaydı */
+.log{border-radius:16px;border:1px solid var(--border2);background:rgba(4,15,27,.85);display:flex;flex-direction:column;overflow:hidden}
+.log-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--border2)}
+.log-h b{display:block;font-size:13px}
+.log-h small{display:block;font-size:10.5px;color:var(--faint)}
+.live{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--green);font-weight:600;white-space:nowrap}
+.live::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor;animation:blink2 1.4s infinite}
+.demo.is-paused .live{color:#F59E0B}
+@keyframes blink2{50%{opacity:.3}}
+.log-list{flex:1 1 0;min-height:0;overflow:hidden;padding:10px 12px;display:flex;flex-direction:column;gap:3px;justify-content:flex-end;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 70px);mask-image:linear-gradient(to bottom,transparent,#000 70px)}
+.ev{display:grid;grid-template-columns:24px 1fr auto;gap:9px;align-items:start;padding:6px 7px;border-radius:9px;font-size:12px;line-height:1.35;color:#C9D6E3;animation:evIn .45s cubic-bezier(.2,.8,.2,1) both,evNew 1.8s ease-out}
+.ev.ff{animation:none}
+@keyframes evIn{from{opacity:0;transform:translateY(8px)}}
+@keyframes evNew{0%,30%{background:rgba(148,178,210,.08)}100%{background:transparent}}
+.ev i{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-style:normal;color:#9FB3C8;background:rgba(148,178,210,.1)}
+.ev i svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.ev.auto i{color:var(--green);background:rgba(57,217,138,.13)}
+.ev.ml i{color:#60A5FA;background:rgba(59,130,246,.15)}
+.ev.rule i{color:#F59E0B;background:rgba(245,158,11,.14)}
+.ev.bad i{color:#F87171;background:rgba(248,113,113,.15)}
+.ev b{color:var(--text);font-weight:600}
+.ev small{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-top:2px;color:var(--faint);font-size:10.5px}
+.ev em{font-style:normal;font-size:9.5px;font-weight:700;padding:1px 5px;border-radius:4px;color:#B7C9DA;background:rgba(148,178,210,.12)}
+.ev em.sys{color:var(--green);background:rgba(57,217,138,.1)}
+.ev time{font-size:10.5px;color:var(--faint);font-variant-numeric:tabular-nums;padding-top:1px}
+.ev-day{display:flex;align-items:center;gap:8px;margin:6px 2px 3px;font-size:10px;font-weight:700;color:var(--faint);animation:evIn .45s both}
+.ev-day::after{content:'';flex:1;height:1px;background:var(--border2)}
+.ev-day.ff{animation:none}
+.log-f{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border2)}
+.log-f div{padding:10px 8px;text-align:center}
+.log-f div+div{border-left:1px solid var(--border2)}
+.log-f b{display:block;font-size:16px;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.log-f small{color:var(--faint);font-size:10px}
+.demo.is-paused *,.demo.is-paused *::before,.demo.is-paused *::after{animation-play-state:paused!important}
+.demo.instant *,.demo.instant *::before,.demo.instant *::after{transition:none!important}
+.demo-ctrl button[aria-pressed="true"]{color:var(--text);border-color:rgba(245,158,11,.55)}
+@media (max-width:1100px){ .fb-wrap{grid-template-columns:1fr} .log-list{flex:none;height:300px} }
+@media (max-width:980px){ .demo-steps{grid-template-columns:repeat(3,1fr)!important} }
+@media (max-width:760px){ .demo-steps{grid-template-columns:1fr 1fr!important} .fboard{min-height:0} .app-t .r{margin-left:0} }
+.bgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:start}
+.views{display:grid}.view{grid-area:1/1;transition:opacity .5s,transform .5s cubic-bezier(.2,.8,.2,1)}
+.view.hide{opacity:0;transform:translateY(10px);pointer-events:none}
+.empty{padding:34px 14px;text-align:center;color:var(--faint);font-size:12px;border:1px dashed var(--border2);border-radius:10px}
+.lb{grid-template-columns:22px minmax(0,1fr)}
+.lb > span{font-size:14px}
+.lb .rule{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px}
+.cust{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;background:rgba(11,32,51,.6);border:1px solid var(--border2);transition:border-color .4s}
+.cust.new{animation:rowIn .5s}
+.cust b{display:block;font-size:13px;color:var(--text)}
+.cust small{color:var(--faint);font-size:10.5px}
+.mt{grid-template-columns:minmax(0,1fr) auto}
+.mt .pill{padding:4px 8px;font-size:10.5px}
+.sendall{margin-top:6px;opacity:0;transition:opacity .4s}
+.sendall.show{opacity:1}
+.vis{padding:9px 11px;border-radius:9px;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);color:#93C5FD;font-size:11.5px;margin:2px 0 9px;transition:background .4s}
+.vis b{color:#fff}
+.vis.new{animation:rowIn .45s}
+@media (max-width:760px){ .bgrid{grid-template-columns:1fr} }
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana sayfa", "item": "https://ahoraclario.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Belge Kütüphanesi", "item": "https://ahoraclario.github.io/belge-kutuphanesi.html"}]}
+</script>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <div class="bg-glow"></div><div class="bg-grid"></div>
+  <div class="arc arc-tl"><i></i></div><div class="arc arc-br"><i></i></div>
+</div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="index.html" class="brand" aria-label="Ahoraclario ana sayfa">
+      <svg viewBox="0 0 52 52" aria-hidden="true"><defs><linearGradient id="bA" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#39D98A"/><stop offset=".55" stop-color="#22D3EE"/><stop offset="1" stop-color="#2563EB"/></linearGradient></defs><path d="M21 4h10l19 44H39.5l-4-9.8H16.5l-4 9.8H2L21 4Zm5 11.5L19.8 30h12.4L26 15.5Z" fill="url(#bA)"/><path d="M2 48 21 4h5L8.5 48Z" fill="#39D98A" opacity=".55"/></svg>
+      Ahoraclario
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Ana menü">
+      <a href="index.html#akis">Nasıl İşler</a>
+      <a href="index.html#ozellikler">Özellikler</a>
+      <a href="index.html#muhasebe">Muhasebe</a>
+      <a href="index.html#referans">Referans</a>
+      <a href="index.html#sss">SSS</a>
+      <a href="index.html#iletisim" class="btn btn-primary btn-sm">Ücretsiz Demo İste</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Menüyü aç" aria-expanded="false" aria-controls="navLinks">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+<section class="page-hero" aria-labelledby="h-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">Ana sayfa</a> / <a href="index.html#ozellikler">Özellikler</a> / Belge Kütüphanesi</div>
+    <span class="eyebrow"><span class="dot"></span>Belge Kütüphanesi</span>
+    <h1 id="h-hero">Evrakları bir kez yükleyin, <span class="grad">doğru müşteriye sistem ulaştırsın</span>.</h1>
+    <p class="lead">Davet mektubu, başvuru formu, sigorta bilgi formu gibi genel evraklar kütüphanede durur. Bir müşterinin dosyasını açtığınızda sistem onun vize türüne ve ülkesine uyan belgeleri kendisi bulur; tek tıkla mail atarsınız.</p>
+    <div class="hero-ctas">
+      <a href="#canli" class="btn btn-primary">Canlı örneği izle <span aria-hidden="true">↓</span></a>
+      <a href="index.html#iletisim" class="btn btn-ghost">Demo İste</a>
+    </div>
+  </div>
+</section>
+
+<section id="canli" style="padding-top:40px" aria-labelledby="h-demo">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Canlı örnek</div>
+      <h2 id="h-demo">Şablondan müşteriye tek tık</h2>
+      <p>Bir şablonun nasıl eklendiğini, hangi müşterilerde göründüğünü ve maille nasıl gittiğini izleyin.</p>
+    </div>
+
+    <div class="demo reveal" id="demo">
+      <div class="demo-steps" role="tablist" aria-label="Demo adımları" style="grid-template-columns:repeat(4,1fr)">
+        <button class="dstep" data-s="0" role="tab"><span class="n">1</span>Şablon eklenir<span class="bar"></span></button>
+        <button class="dstep" data-s="1" role="tab"><span class="n">2</span>Kütüphane dolar<span class="bar"></span></button>
+        <button class="dstep" data-s="2" role="tab"><span class="n">3</span>Uyanlar bulunur<span class="bar"></span></button>
+        <button class="dstep" data-s="3" role="tab"><span class="n">4</span>Tek tıkla mail<span class="bar"></span></button>
+      </div>
+
+      <div class="fb-wrap">
+        <div class="fboard" id="board" aria-label="Belge Kütüphanesi (örnek)">
+          <div class="app-t"><b>Belge Kütüphanesi</b><small>Bir kez yükleyin, uyan her müşteride görünsün</small><div class="r"><span class="pill pri" id="addBtn">+ Şablon Ekle</span></div></div>
+          <div class="bgrid">
+            <div class="pn"><div class="pn-h">Şablonlar<span class="n" id="libN">0 belge</span></div><div id="lib"><div class="empty" id="libE">📂 Henüz şablon evrak eklenmedi.</div></div></div>
+            <div class="pn"><div class="views">
+              <div class="view" id="vCust">
+                <div class="cust" id="cust"><span class="av" style="--c:#475569">?</span><div><b>Müşteri paneli</b><small>Bir müşteri dosyası açıldığında burada görünür</small></div></div>
+                <div class="pn-h" style="margin-top:12px">Uyumlu şablon belgeler<span class="n" id="matchN"></span></div><div id="match"></div>
+                <span class="pill pri sendall" id="sendAll">📧 Hepsini mail at</span>
+              </div>
+              <div class="view hide" id="vMail"><div class="mailc" id="mail"></div></div>
+            </div></div>
+          </div>
+          <div class="shade" id="shade"></div>
+          <div class="modal" id="modal">
+            <h5>+ Şablon Evrak Ekle</h5><small>Bu evrakı hangi müşterilerin panelinde görmek istediğinizi belirleyin.</small>
+            <label class="fld"><span>1 · ŞABLON ADI *</span><div id="fName" data-ph="Örn: Schengen Başvuru Formu"></div></label>
+            <label class="fld"><span>2 · VİZE TÜRÜ (asıl belirleyici filtre)</span><div id="fType">— Tüm Vize Türleri (fark etmez) —</div></label>
+            <label class="fld"><span>3 · ÜLKE (sadece tek ülkeye özel evrak için)</span><div id="fCountry">— Tüm Ülkeler (fark etmez) —</div></label>
+            <div class="vis" id="fVis">👁 Bu evrak şu an: <b>tüm müşterilerde</b> görünecek</div>
+            <label class="fld"><span>5 · DOSYA *</span><div id="fFile" data-ph="Dosya seçilmedi"></div></label>
+            <div class="mbtns"><span>Vazgeç</span><span class="go" id="save">✓ Kaydet</span></div>
+          </div>
+        </div>
+
+        <div class="log" aria-label="Sistem kaydı (örnek)">
+          <div class="log-h"><div><b>Sistem kaydı</b><small>Belge kütüphanesi işlemleri</small></div><span class="live" id="liveTag">canlı</span></div>
+          <div class="log-list" id="log" aria-live="polite"></div>
+          <div class="log-f"><div><b id="s1">0</b><small>şablon belge</small></div><div><b id="s2">0</b><small>uyumlu belge</small></div><div><b id="s3">0</b><small>gönderilen mail</small></div></div>
+        </div>
+      </div>
+
+      <div class="demo-ctrl"><button id="replay" type="button">↻ Baştan oynat</button><button id="pause" type="button" aria-pressed="false">❚❚ Durdur</button></div>
+    </div>
+    <p class="demo-note" style="text-align:center;margin-top:14px">Örnek görünüm · isimler ve bilgiler temsilidir</p>
+  </div>
+</section>
+
+<section aria-labelledby="h-filtremant">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Filtre mantığı</div>
+      <h2 id="h-filtremant">Her belge sadece uyan müşteride görünür</h2>
+      <p>Asıl belirleyici filtre vize türüdür; ülke sadece tek bir ülkeye özel evraklar için seçilir.</p>
+    </div>
+    <div class="grid3">
+      <div class="card reveal" style="--c:#3B82F6"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18l-7 8v6l-4 2v-8L3 5Z"/></svg></div>
+        <h3>Vize türüne göre</h3><p>"Schengen Turistik" seçilen bir form Almanya, Fransa, İtalya… bütün Schengen başvurularında görünür; İngiltere, Amerika ya da Çin başvurularına karışmaz.</p></div>
+      <div class="card reveal" style="--c:#F59E0B"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+        <h3>Ülkeye özel evrak</h3><p>Sadece Almanya'da istenen bir davet mektubu için ülke seçilir; o belge yalnızca Almanya başvurularında çıkar.</p></div>
+      <div class="card reveal" style="--c:#39D98A"><div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
+        <h3>Tek tıkla e-posta</h3><p>Müşteri panelinde uyumlu belgeler hazır bekler. Tek tıkla ek olarak maille gider; aynı belgeler 7 gün kala hatırlatma mailine de otomatik eklenir.</p></div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-gain">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <h2 id="h-gain">Evrak göndermeyi hızlandırın</h2>
+      <p>Demo görüşmesinde kendi şablonlarınızla kütüphaneyi birlikte kuralım.</p>
+      <a href="index.html#iletisim" class="btn btn-primary">Ücretsiz Demo İste <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-more" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:30px">
+      <div class="kicker">Diğer özellikler</div>
+      <h2 id="h-more" style="font-size:clamp(24px,2.6vw,32px)">Sistemin geri kalanını keşfedin</h2>
+    </div>
+    <div class="more-grid reveal">
+      <a href="otomatik-hatirlatmalar.html"><span>🔔</span><div>Otomatik Hatırlatmalar<small>7 gün kala, belgeler ekli</small></div></a>
+      <a href="aile-grup-basvurulari.html"><span>👨‍👩‍👧</span><div>Aile ve Grup Başvuruları<small>Her başvuran ayrı takipte</small></div></a>
+      <a href="musteri-portali.html"><span>📱</span><div>Müşteri Takip Portalı<small>Müşteriniz sormadan bilsin</small></div></a>
+    </div>
+  </div>
+</section>
+</main>
+
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="font-size:16px;color:var(--text)">
+      <svg viewBox="0 0 52 52" style="width:26px;height:26px" aria-hidden="true"><path d="M21 4h10l19 44H39.5l-4-9.8H16.5l-4 9.8H2L21 4Zm5 11.5L19.8 30h12.4L26 15.5Z" fill="url(#bA)"/></svg>
+      Ahoraclario
+    </div>
+    <div class="links">
+      <a href="index.html#akis">Nasıl İşler</a><a href="index.html#ozellikler">Özellikler</a><a href="index.html#muhasebe">Muhasebe</a><a href="index.html#iletisim">İletişim</a>
+    </div>
+    <div>© <span id="year">2026</span> Ahoraclario</div>
+  </div>
+</footer>
+
+<a class="wa-fab" href="https://wa.me/905514089810?text=Merhaba%20Samet%2C%20vize%20dan%C4%B1%C5%9Fmanl%C4%B1k%20CRM%27i%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" aria-label="WhatsApp'tan yazın"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span>WhatsApp'tan yazın</span></a>
+
+<script>
+// Menü (mobil), kaydırınca üst çubuk, görünür olunca giriş animasyonu
+const nav = document.getElementById('nav'), menuBtn = document.getElementById('menuBtn'), links = document.getElementById('navLinks');
+menuBtn.addEventListener('click', () => { const o = links.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', o); });
+links.addEventListener('click', e => { if(e.target.closest('a')){ links.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); } });
+const onScroll = () => nav.classList.toggle('scrolled', scrollY > 10); addEventListener('scroll', onScroll, { passive:true }); onScroll();
+if('IntersectionObserver' in window){
+  const io = new IntersectionObserver(es => es.forEach(x => { if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } }), { threshold:.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+} else document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<script>
+// ── Canlı demo ──
+(() => {
+  const $ = id => document.getElementById(id);
+  const demo = $('demo'), steps = [...document.querySelectorAll('.dstep')];
+  const logEl = $('log'), pauseBtn = $('pause');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Duraklatılabilir zamanlayıcı: "Durdur"da bekleyen her adım olduğu yerde donar,
+  // "Devam et"te kalan süresiyle kaldığı yerden sürer.
+  const T = (() => {
+    let list = [], pausedAt = null, offset = 0;
+    const now = () => (pausedAt ?? performance.now()) - offset;
+    const arm = t => { t.id = setTimeout(() => { list = list.filter(x => x !== t); t.fn(); }, Math.max(0, t.due - now())); };
+    return {
+      add(fn, ms){ const t = { fn, due: now() + ms }; list.push(t); if(pausedAt === null) arm(t); },
+      clear(){ list.forEach(t => clearTimeout(t.id)); list = []; },
+      pause(){ if(pausedAt !== null) return; pausedAt = performance.now(); list.forEach(t => clearTimeout(t.id)); },
+      resume(){ if(pausedAt === null) return; offset += performance.now() - pausedAt; pausedAt = null; list.forEach(arm); },
+    };
+  })();
+  // Anında mod: bir adıma atlarken önceki sahneler animasyonsuz, sırasıyla uygulanır
+  let instant = null;
+  const later = (fn, ms) => instant ? instant.push({ fn, ms, k: instant.length }) : T.add(fn, ms);
+  const anim = (el, cls) => { if(instant || !el) return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); };
+  const press = el => anim(el, 'press');
+  // Yazı yazma efekti: metni harf harf doldurur
+  function type(el, text, at, per = 45){
+    later(() => { el.closest('.fld')?.classList.add('act'); el.textContent = ''; }, at);
+    [...text].forEach((ch, i) => later(() => { el.textContent += ch; }, at + 60 + i * per));
+    later(() => el.closest('.fld')?.classList.remove('act'), at + 60 + text.length * per + 250);
+    return at + 60 + text.length * per + 250;
+  }
+  // Sayı sayma efekti
+  function count(el, from, to, at, dur = 900, fmt = n => n){
+    const n = 12; for(let k = 0; k <= n; k++) later(() => { el.textContent = fmt(Math.round(from + (to - from) * k / n)); }, at + dur * k / n);
+  }
+
+  // Çizgi ikonlar
+  const P = {
+    web:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+    user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+    users:'<circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M16 3.5a4 4 0 0 1 0 8M22 21a7 7 0 0 0-4-6.3"/>',
+    assign:'<circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M16 11l2 2 4-4"/>',
+    mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+    phone:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>',
+    clip:'<path d="m21 11-8.5 8.5a5 5 0 0 1-7-7L14 4a3.5 3.5 0 0 1 5 5l-8.5 8.5a2 2 0 0 1-3-3L15 7"/>',
+    check:'<path d="M20 6 9 17l-5-5"/>',
+    cal:'<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/>',
+    bell:'<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21a2 2 0 0 0 4 0"/>',
+    timer:'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/>',
+    doc:'<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/>',
+    folder:'<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>',
+    filter:'<path d="M3 5h18l-7 8v6l-4 2v-8L3 5Z"/>',
+    move:'<path d="M4 8h14l-4-4M20 16H6l4 4"/>',
+    list:'<path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/>',
+    flag:'<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',
+    done:'<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>',
+    chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+    lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+    eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
+    key:'<circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M17 6l3 3"/>',
+    pay:'<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/>',
+    stage:'<path d="M3 12a9 9 0 0 1 15.5-6.3L21 8M21 3v5h-5M21 12a9 9 0 0 1-15.5 6.3L3 16M3 21v-5h5"/>',
+    down:'<path d="M12 3v12M7 10l5 5 5-5M4 21h16"/>',
+    up:'<path d="M12 21V9M7 14l5-5 5 5M4 3h16"/>',
+    paste:'<rect x="8" y="3" width="8" height="4" rx="1"/><path d="M8 5H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>',
+    session:'<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',
+  };
+  const svg = k => `<svg viewBox="0 0 24 24" aria-hidden="true">${P[k]}</svg>`;
+
+  // Sistem kaydı. who: işlemi yapan kişi; boşsa işlem otomatiktir.
+  const C = { auto:0, mail:0 };
+  let day = 0, time = '09:00', lastDay = null;
+  const dayLabel = d => new Date(2026, 8, 30 + d).toLocaleDateString('tr-TR', { day:'numeric', month:'long', weekday:'long' });
+  const at = (d, t) => { day = d; time = t; };
+  function ev(kind, icon, html, sub, who){
+    const ff = instant ? ' ff' : '';
+    if(day !== lastDay){
+      lastDay = day;
+      const d = document.createElement('div'); d.className = 'ev-day' + ff; d.textContent = dayLabel(day);
+      logEl.appendChild(d);
+    }
+    const tag = who ? `<em>${who}</em>` : '<em class="sys">Otomatik</em>';
+    const r = document.createElement('div'); r.className = 'ev ' + kind + ff;
+    r.innerHTML = `<i>${svg(icon)}</i><div>${html}<small>${tag}${sub ? '<span>' + sub + '</span>' : ''}</small></div><time>${time}</time>`;
+    logEl.appendChild(r);
+    while(logEl.children.length > 24) logEl.firstChild.remove();
+    if(kind === 'ml') C.mail++; else if(!who) C.auto++;
+    stats();
+  }
+  function resetLog(){ logEl.innerHTML = ''; C.auto = 0; C.mail = 0; lastDay = null; day = 0; time = '09:00'; }
+  const show = (id, on) => $(id).classList.toggle('show', on);
+
+  const LIB = [ // ad, simge, etiketler [metin, renk], (Zeynep, Can) için uygun mu
+    ['Schengen Başvuru Formu','📄',[['Schengen Turistik','b'],['Ülke: hepsi','']],[1,0]],
+    ["Almanya'ya Özel Davet Mektubu",'✉️',[['Ülke: 🇩🇪 Almanya','o']],[1,0]],
+    ['Vekaletname Örneği','📝',[['Herkese','g']],[1,1]],
+    ['İngiltere Vize Formu','🇬🇧',[['İngiltere Vizesi','p']],[0,1]],
+  ];
+  let nSent = 0;
+  function stats(){ $('s1').textContent = $('lib').querySelectorAll('.row').length; $('s2').textContent = $('match').children.length; $('s3').textContent = nSent; }
+  function addLib(k){
+    $('libE').style.display = 'none';
+    const [n, e, tags] = LIB[k], r = document.createElement('div'); r.className = 'row lb'; r.id = 'b' + k;
+    r.innerHTML = `<span>${e}</span><div><b>${n}</b><div class="rule">${tags.map(([t, c]) => `<span class="tg ${c}">${t}</span>`).join('')}</div></div>`;
+    $('lib').appendChild(r); anim(r, 'new'); $('libN').textContent = $('lib').querySelectorAll('.row').length + ' belge'; stats();
+  }
+  function openCust(name, init, color, meta, who){
+    const c = $('cust'); c.innerHTML = `<span class="av" style="--c:${color}">${init}</span><div><b>${name}</b><small>${meta}</small></div>`; anim(c, 'new');
+    $('match').innerHTML = ''; $('matchN').textContent = ''; $('sendAll').classList.remove('show');
+    LIB.forEach(([, , , ok], k) => { const r = $('b' + k); r.classList.remove('hl', 'dim'); });
+    LIB.forEach(([n, , , ok], k) => later(() => {
+      const r = $('b' + k);
+      if(ok[who]){ r.classList.add('hl'); const m = document.createElement('div'); m.className = 'row mt';
+        m.innerHTML = `<div><b>${n}</b></div><span class="pill">📧 Mail</span>`; $('match').appendChild(m); anim(m, 'new');
+        $('matchN').textContent = $('match').children.length + ' belge'; stats(); }
+      else r.classList.add('dim');
+    }, 700 + k * 450));
+  }
+  function reset(){
+    resetLog(); nSent = 0;
+    $('lib').innerHTML = '<div class="empty" id="libE">📂 Henüz şablon evrak eklenmedi.</div>'; $('libN').textContent = '0 belge';
+    $('cust').innerHTML = '<span class="av" style="--c:#475569">?</span><div><b>Müşteri paneli</b><small>Bir müşteri dosyası açıldığında burada görünür</small></div>';
+    $('match').innerHTML = ''; $('matchN').textContent = ''; $('sendAll').classList.remove('show');
+    $('fName').textContent = ''; $('fType').textContent = '— Tüm Vize Türleri (fark etmez) —'; $('fFile').textContent = '';
+    $('fVis').innerHTML = '👁 Bu evrak şu an: <b>tüm müşterilerde</b> görünecek';
+    show('modal', false); show('shade', false); $('vMail').classList.add('hide'); $('vCust').classList.remove('hide'); stats();
+  }
+  const settle = () => { show('modal', false); show('shade', false); };
+
+  const scenes = [
+    { dur: 8200, run(){                                                  // 1) Şablon eklenir
+      later(() => { at(0, '10:12'); press($('addBtn')); }, 300);
+      later(() => { show('shade', true); show('modal', true); }, 800);
+      const t = type($('fName'), 'Schengen Başvuru Formu', 1400, 55);
+      later(() => { $('fType').closest('.fld').classList.add('act'); }, t + 200);
+      later(() => { $('fType').textContent = 'Schengen Turistik'; }, t + 700);
+      later(() => { $('fType').closest('.fld').classList.remove('act');
+        $('fVis').innerHTML = '👁 Bu evrak şu an: <b>Schengen Turistik</b> vizesine başvuran müşterilerde görünecek'; anim($('fVis'), 'new'); }, t + 1100);
+      later(() => { $('fFile').textContent = '📎 Schengen_Basvuru_Formu.pdf'; }, t + 1900);
+      later(() => { press($('save')); }, t + 2500);
+      later(() => { show('modal', false); show('shade', false); addLib(0); ev('hum', 'up', '<b>Schengen Başvuru Formu</b> eklendi', 'Vize türü: Schengen Turistik · ülke boş', 'Samet'); }, t + 3000);
+    }},
+    { dur: 5000, run(){                                                  // 2) Kütüphane dolar
+      [1,2,3].forEach((k, j) => later(() => { at(0, ['10:14','10:15','10:17'][j]); addLib(k);
+        ev('hum', 'up', `<b>${LIB[k][0]}</b> eklendi`, LIB[k][2].map(x => x[0]).join(' · '), 'Samet'); }, 300 + j * 1300));
+    }},
+    { dur: 8600, run(){                                                  // 3) Uyanlar bulunur
+      later(() => { at(1, '11:20'); openCust('Can Yıldız', 'CY', '#7C3AED', '🇬🇧 İngiltere · İngiltere Vizesi', 1); }, 300);
+      later(() => { ev('auto', 'filter', 'Can Yıldız için <b>2 uygun belge</b>', 'Schengen belgeleri gösterilmedi'); }, 2600);
+      later(() => { at(1, '11:34'); openCust('Zeynep Kaya', 'ZK', '#EA580C', '🇩🇪 Almanya · Schengen Turistik', 0); }, 4200);
+      later(() => { ev('auto', 'filter', 'Zeynep Kaya için <b>3 uygun belge</b>', 'Schengen + Almanya\'ya özel + herkese'); $('sendAll').classList.add('show'); }, 6600);
+    }},
+    { dur: 6400, run(){                                                  // 4) Tek tıkla mail
+      later(() => { press($('sendAll')); }, 300);
+      later(() => { $('mail').innerHTML = `<div class="mp-top"><b>Başvurunuz için gerekli belgeler / Required documents</b><small>Firmanız Vize Danışmanlık · Alıcı: Zeynep Kaya</small></div>
+        <div class="mp-brand"><i>✈</i><div><b>FİRMANIZ</b><small>VİZE DANIŞMANLIK</small></div></div>
+        <div class="mp-body"><span class="mp-lang">TÜRKÇE</span><h6>Başvurunuz için belgeler</h6>
+        <p>Sayın <b>Zeynep Kaya</b>, Almanya başvurunuz için doldurmanız gereken belgeler ektedir.</p>
+        <div class="mp-att" id="att"></div><span class="mp-btn">Başvurumu Takip Et →</span>
+        <div class="mp-en"><b>ENGLISH</b> · Please find the documents for your application attached.</div></div>`;
+        $('vCust').classList.add('hide'); $('vMail').classList.remove('hide'); }, 900);
+      ['Schengen_Basvuru_Formu.pdf','Almanya_Davet_Mektubu.docx','Vekaletname_Ornegi.pdf'].forEach((a, i) => later(() => {
+        const s = document.createElement('span'); s.textContent = '📎 ' + a; $('att').appendChild(s); anim(s, 'new'); }, 1500 + i * 320));
+      later(() => { nSent++; ev('ml', 'mail', '<b>Belgeler maille gönderildi</b>: Zeynep Kaya', '3 belge ek olarak · Türkçe ve İngilizce', 'Selin D.'); }, 2700);
+    }},
+  ];
+
+  function mark(i, dur){
+    steps.forEach((s, k) => { s.classList.toggle('on', k === i); s.classList.toggle('done', k < i); s.setAttribute('aria-selected', k === i); });
+    const b = steps[i].querySelector('.bar'); b.style.animation = 'none'; void b.offsetWidth; b.style.animation = ''; steps[i].style.setProperty('--dur', dur + 'ms');
+  }
+  const gap = i => scenes[i].dur + (i === scenes.length - 1 ? 2400 : 600);
+  function play(i){
+    T.clear(); if(i === 0) reset(); mark(i, scenes[i].dur); scenes[i].run();
+    later(() => play((i + 1) % scenes.length), gap(i));
+  }
+  // Bir adıma atlarken: sıfırla, önceki sahneleri anında uygula, sonra seçilen adımı oynat
+  function jump(i){
+    T.clear(); demo.classList.add('instant'); reset();
+    for(let k = 0; k < i; k++){
+      instant = []; scenes[k].run();
+      while(instant.length){ instant.sort((a, b) => a.ms - b.ms || a.k - b.k); instant.shift().fn(); }
+    }
+    instant = null; settle();
+    void demo.offsetWidth; requestAnimationFrame(() => demo.classList.remove('instant'));
+    mark(i, scenes[i].dur); scenes[i].run();
+    later(() => play((i + 1) % scenes.length), gap(i));
+  }
+
+  // Durdurma: kullanıcı durdurduysa, sekme gizliyse ya da demo ekrandan çıktıysa her şey donar
+  let userPaused = false, onScreen = false;
+  function sync(){
+    const stop = userPaused || document.hidden || !onScreen;
+    stop ? T.pause() : T.resume();
+    demo.classList.toggle('is-paused', stop);
+    $('liveTag').textContent = userPaused ? 'durduruldu' : 'canlı';
+  }
+  function setPaused(p){ userPaused = p; pauseBtn.textContent = p ? '▶ Devam et' : '❚❚ Durdur'; pauseBtn.setAttribute('aria-pressed', p); sync(); }
+  steps.forEach((s, i) => s.addEventListener('click', () => { jump(i); setPaused(false); }));
+  $('replay').addEventListener('click', () => { jump(0); setPaused(false); });
+  pauseBtn.addEventListener('click', () => setPaused(!userPaused));
+  document.addEventListener('visibilitychange', sync);
+
+  reset();
+  if(reduce){ onScreen = true; jump(scenes.length - 1); setPaused(true); return; }
+  let started = false;
+  const seen = on => { onScreen = on; if(on && !started){ started = true; play(0); } sync(); };
+  // Ekranda en az ~160px'i görünüyorsa oynar; tamamen kaydırılıp gidilince durur
+  if('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => seen(e.isIntersecting && e.intersectionRect.height >= Math.min(160, e.boundingClientRect.height / 2))), { threshold:Array.from({ length:21 }, (_, k) => k / 20) }).observe(demo);
+  else seen(true);
+})();
+</script>
+</body>
+</html>
