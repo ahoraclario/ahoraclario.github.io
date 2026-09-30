@@ -219,6 +219,34 @@ footer a:hover{color:var(--text)}
 .pstep.todo b{color:#9CA3AF}
 .hero-visual{position:relative;margin-right:26px}
 
+/* Hero ekranı: sitenin koyu temasına uyumlu görünüm */
+.app.dark{background:#081A2B;color:#C9D6E3;box-shadow:0 40px 90px -20px rgba(0,0,0,.75),0 0 0 1px rgba(148,178,210,.14),0 0 70px rgba(34,211,238,.07)}
+.app.dark .app-top{background:#0B2034;border-bottom-color:rgba(148,178,210,.1)}
+.app.dark .app-top i{background:#1E3A55}
+.app.dark .app-top b{color:#6F8AA3}
+.app.dark .app-side{background:#0A1D30;border-right-color:rgba(148,178,210,.1)}
+.app.dark .app-logo span{background:linear-gradient(135deg,#39D98A,#22D3EE 55%,#2563EB)}
+.app.dark .app-logo b{color:#EAF2F9}
+.app.dark .app-logo small,.app.dark .app-nav h5{color:#5E7A94}
+.app.dark .app-nav div{color:#8FA7BD}
+.app.dark .app-nav div.on{background:rgba(34,211,238,.1);color:#67E8F9}
+.app.dark .app-nav em{background:rgba(248,113,113,.18);color:#FCA5A5}
+.app.dark .app-h b{color:#EAF2F9}
+.app.dark .app-h span{background:linear-gradient(90deg,#39D98A,#22D3EE);color:#04140C}
+.app.dark .app-tbl{background:rgba(4,15,27,.55);border-color:rgba(148,178,210,.12)}
+.app.dark .app-tr{grid-template-columns:minmax(0,1fr) 76px 100px 26px;gap:8px;border-bottom-color:rgba(148,178,210,.07)}
+.app.dark .app-tr.hd{background:rgba(11,32,51,.6);color:#5E7A94}
+.app.dark .app-tr .who{display:flex;flex-direction:column;min-width:0}
+.app.dark .app-tr b{color:#EAF2F9}
+.app.dark .app-tr .fn{color:#5E7A94;font-size:8.5px;margin-top:1px}
+.app.dark .rep{justify-content:flex-end}
+.app.dark .rep i{width:18px;height:18px;font-size:7.5px;box-shadow:0 0 0 2px #081A2B}
+.app.dark .st.g{background:rgba(57,217,138,.14);color:#6EE7B7}
+.app.dark .st.b{background:rgba(59,130,246,.17);color:#93C5FD}
+.app.dark .st.a{background:rgba(245,158,11,.15);color:#FCD34D}
+.app.dark .st.p{background:rgba(139,92,246,.18);color:#C4B5FD}
+.app.dark .st.c{background:rgba(34,211,238,.14);color:#67E8F9}
+
 /* Departman akışı */
 .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative}
 .lane{position:relative;border-radius:18px;padding:24px;background:rgba(8,25,42,.72);border:1px solid var(--border2)}
@@ -279,7 +307,7 @@ footer a:hover{color:var(--text)}
 }
 @media (max-width:760px){
   .app-body{grid-template-columns:1fr}.app-side{display:none}
-  .app-tr{grid-template-columns:1fr 92px 58px}.app-tr > :nth-child(1),.app-tr > :nth-child(3){display:none}
+  .app.dark .app-tr{grid-template-columns:minmax(0,1fr) 100px 22px}.app-tr > :nth-child(2){display:none}
   .phone{right:-6px;bottom:-40px;width:150px}
   .money{grid-template-columns:1fr 1fr}.money .mcard:nth-child(3){grid-column:span 2}
   .ref{padding:24px}
