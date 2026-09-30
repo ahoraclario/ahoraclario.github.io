@@ -227,7 +227,7 @@
             <div class="view" id="vU"><div class="uh">YÖNETİCİLER</div><div id="uA"></div><div class="uh">SATIŞ &amp; OPERASYON</div><div id="uB"></div></div>
             <div class="view hide" id="vAs"><div class="asb">👁 <b>Ayşe Korkmaz</b> olarak görüntülüyorsunuz · Satış rolü sadece kendi müşterilerini görür</div><div id="cl"></div></div>
             <div class="view hide" id="vH"><div class="hgrid">
-              <div class="pn"><div class="pn-h">Aşama geçmişi · Celal Turgay</div><div id="tl"></div></div>
+              <div class="pn"><div class="pn-h">Aşama geçmişi · Cemil Toprak</div><div id="tl"></div></div>
               <div class="pn"><div class="pn-h">Denetim kaydı<span class="n" id="audN"></span></div><div id="aud"></div></div>
             </div></div>
           </div>
@@ -412,20 +412,20 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const show = (id, on) => $(id).classList.toggle('show', on);
 
   const US = [ // grup, ad, kullanıcı adı, baş harf, renk, rol
-    ['A','Samet','@samet · süper yönetici','S','#7C3AED','⭐ Süper Admin'],
-    ['A','Eray Balk','@eraybalk','EB','#D97706','👑 Yönetici'],
-    ['B','Ayşe Korkmaz','@aysek · 94 müşteri','AK','#0D9488','💼 Satış'],
-    ['B','Selin Demir','@selind · 41 müşteri','SD','#2563EB','📄 Evrak'],
-    ['B','Kerem Aslan','@kerema · 28 müşteri','KA','#16A34A','📅 Randevu'],
-    ['B','Tayfur Koç','@tayfurk · 57 müşteri','TK','#DC2626','💼 Satış'],
-    ['B','Mert Yılmaz','@merty · yeni kullanıcı','MY','#9333EA','Rol seçin'],
+    ['A','Kaan Yüce','@kaany · süper yönetici','KY','#7C3AED','⭐ Süper Admin'],
+    ['A','Ercan Bilgin','@ercanb','EB','#D97706','👑 Yönetici'],
+    ['B','Ayşe Korkmaz','@aysek','AK','#0D9488','💼 Satış'],
+    ['B','Selin Demir','@selind','SD','#2563EB','📄 Evrak'],
+    ['B','Kerem Aslan','@kerema','KA','#16A34A','📅 Randevu'],
+    ['B','Tolga Kurt','@tolgak','TK','#DC2626','💼 Satış'],
+    ['B','Ece Tan','@ecet · yeni kullanıcı','ET','#9333EA','Rol seçin'],
   ];
-  const CL = [['Berfin Kaya','🇨🇭 İsviçre','Yeni Kayıt','b','AK','#0D9488',1],['Murat Aksoy','🇳🇱 Hollanda','İlgileniyor','b','TK','#DC2626',0],
-    ['Celal Turgay','🇬🇷 Yunanistan','Ödeme Alındı','g','AK','#0D9488',1],['Deniz Arslan','🇮🇹 İtalya','Sonra Ara','o','TK','#DC2626',0],
-    ['Aydın Bayram','🇳🇱 Hollanda','İlgileniyor','b','AK','#0D9488',1],['Seda Er','🇫🇷 Fransa','İletişime Geçildi','c','TK','#DC2626',0]];
+  const CL = [['Büşra Kaplan','🇨🇭 İsviçre','Yeni Kayıt','b','AK','#0D9488',1],['Nil Uçar','🇳🇱 Hollanda','İlgileniyor','b','TK','#DC2626',0],
+    ['Cemil Toprak','🇬🇷 Yunanistan','Ödeme Alındı','g','AK','#0D9488',1],['Rıza Kol','🇮🇹 İtalya','Sonra Ara','o','TK','#DC2626',0],
+    ['Alper Doğan','🇳🇱 Hollanda','İlgileniyor','b','AK','#0D9488',1],['Pelin Sarı','🇫🇷 Fransa','İletişime Geçildi','c','TK','#DC2626',0]];
   const TL = [['Yeni Kayıt','24 Eyl 17:23 · Ayşe K.'],['İlgileniyor','24 Eyl 17:24 · Ayşe K.'],['Ödeme Alındı','24 Eyl 17:26 · Ayşe K.'],['Belge Bekleniyor','24 Eyl 17:26 · otomatik geçiş'],['Randevu Alındı','29 Eyl 11:05 · Selin D.']];
-  const AU = [['💰 Ödeme: <b>₺0 → ₺14.000</b>','Ayşe K. · 24 Eyl 17:26',''],['📎 Dosya yüklendi: celal_pasaport.jpeg','Ayşe K. · 24 Eyl 17:25',''],
-    ['📅 Randevu: <b>12 Ekim → 14 Ekim 09:30</b>','Selin D. · 29 Eyl 11:05',''],['⛔ Ödeme kaydı silme denemesi engellendi','Tayfur K. · yetkisi yok','bad']];
+  const AU = [['💰 Ödeme: <b>₺0 → ₺14.000</b>','Ayşe K. · 24 Eyl 17:26',''],['📎 Dosya yüklendi: cemil_toprak_pasaport.jpeg','Ayşe K. · 24 Eyl 17:25',''],
+    ['📅 Randevu tarihi girildi: <b>14 Ekim 09:30</b>','Selin D. · 29 Eyl 11:05',''],['⛔ Ödeme kaydı silme denemesi engellendi','Tolga K. · yetkisi yok','bad']];
   let nBlock = 0;
   function stats(){ $('s1').textContent = $('uA').children.length + $('uB').children.length; $('s2').textContent = $('aud').children.length + $('tl').children.length; $('s3').textContent = nBlock; }
   function view(v){ ['vU','vAs','vH'].forEach(x => $(x).classList.toggle('hide', x !== v)); }
@@ -448,7 +448,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
       later(() => { addUser(6); const p = $('us6').querySelector('.role'); p.classList.add('on'); }, 3000);
       later(() => { const p = $('us6').querySelector('.role'); p.textContent = '💼 Satış'; press(p); }, 3800);
       later(() => { $('us6').querySelector('.role').classList.remove('on');
-        ev('hum', 'key', 'Yeni kullanıcı: <b>Mert Yılmaz</b>', 'Rol: Satış · sadece kendi adaylarını görecek', 'Samet'); }, 4300);
+        ev('hum', 'key', 'Yeni kullanıcı: <b>Ece Tan</b>', 'Rol: Satış · sadece kendi adaylarını görecek', 'Kaan Y.'); }, 4300);
     }},
     { dur: 7400, run(){                                                  // 2) Kendi dosyaları
       later(() => { press($('us2').querySelector('.vw')); }, 300);
@@ -456,13 +456,13 @@ document.getElementById('year').textContent = new Date().getFullYear();
         CL.forEach(([n, co, st, c, i, col], k) => { const e = document.createElement('div'); e.className = 'row cr'; e.id = 'c' + k;
           e.innerHTML = `<b>${n}</b><span class="co">${co}</span><span class="tg ${c}">${st}</span><span class="av" style="--c:${col};width:22px;height:22px;font-size:8px">${i}</span>`;
           $('cl').appendChild(e); }); }, 900);
-      later(() => { at(0, '09:14'); ev('hum', 'eye', 'Ekran görüntüleniyor: <b>Ayşe K.</b>', 'Yönetici, çalışanın gözünden', 'Samet'); }, 1400);
+      later(() => { at(0, '09:14'); ev('hum', 'eye', 'Ekran görüntüleniyor: <b>Ayşe K.</b>', 'Yönetici, çalışanın gözünden', 'Kaan Y.'); }, 1400);
       CL.forEach((x, k) => { if(!x[6]) later(() => $('c' + k).classList.add('dim'), 2400 + k * 150); });
       CL.forEach((x, k) => { if(!x[6]) later(() => $('c' + k).classList.add('gone'), 3700 + k * 150); });
-      later(() => { ev('rule', 'lock', 'Satış rolü: <b>sadece kendi müşterileri</b>', 'Tayfur K.\'nın 3 dosyası gizlendi'); }, 4800);
+      later(() => { ev('rule', 'lock', 'Satış rolü: <b>sadece kendi müşterileri</b>', 'Tolga K.\'nın 3 dosyası gizlendi'); }, 4800);
     }},
     { dur: 6400, run(){                                                  // 3) Aşama geçmişi
-      later(() => { $('ttl').textContent = 'Celal Turgay'; $('sub').textContent = 'VZ-2026-4133 · 🇬🇷 Yunanistan'; view('vH'); }, 300);
+      later(() => { $('ttl').textContent = 'Cemil Toprak'; $('sub').textContent = 'VZ-2026-4133 · 🇬🇷 Yunanistan'; view('vH'); }, 300);
       TL.forEach(([s, w], k) => later(() => { const e = document.createElement('div'); e.className = 'st';
         e.innerHTML = `<div><b>${s}</b><small>${w}</small></div>`; $('tl').appendChild(e); anim(e, 'new'); stats(); }, 900 + k * 550));
       later(() => { at(0, '09:20'); ev('auto', 'stage', 'Aşama geçmişi: <b>5 değişiklik</b>', 'Her biri tarih ve kişiyle'); }, 3900);
@@ -471,7 +471,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
       later(() => press($('audBtn')), 300);
       AU.forEach(([t, w, c], k) => later(() => { const e = document.createElement('div'); e.className = 'row au ' + c;
         e.innerHTML = `<div>${t}<small>${w}</small></div>`; $('aud').appendChild(e); anim(e, 'new'); $('audN').textContent = `${k + 1} kayıt`;
-        if(c === 'bad'){ nBlock++; ev('bad', 'lock', 'İşlem engellendi: <b>ödeme silme</b>', 'Tayfur K. · yetkisi yok'); } stats(); }, 800 + k * 900));
+        if(c === 'bad'){ nBlock++; ev('bad', 'lock', 'İşlem engellendi: <b>ödeme silme</b>', 'Tolga K. · yetkisi yok'); } stats(); }, 800 + k * 900));
       later(() => { ev('auto', 'pay', 'Ödeme değişikliği kayıtlı: <b>₺0 → ₺14.000</b>', 'Kim, ne zaman, hangi dosya'); }, 1400);
     }},
   ];

@@ -427,7 +427,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
     ['Buse Aydın','0544 310 77 09','buse@mail.com','İtalya','Schengen Turistik','32000',''],
     ['Oğuz Şahin','0505 662 91 30','','Hollanda','Schengen Ticari','40000','15000'],
     ['Merve Kara','0538 207 55 14','merve.k@mail.com','ABD','Amerika Vizesi','72000','36000']];
-  const REPS = [['AK','#0D9488','Ayşe K.'],['TK','#DC2626','Tayfur K.'],['SN','#16A34A','Seda N.']];
+  const REPS = [['AK','#0D9488','Ayşe K.'],['TK','#DC2626','Tolga K.'],['SN','#16A34A','Sinan N.']];
   const FL = { 'Almanya':'🇩🇪','Fransa':'🇫🇷','İngiltere':'🇬🇧','İtalya':'🇮🇹','Hollanda':'🇳🇱','ABD':'🇺🇸' };
   let secs = 0, added = 0;
   function stats(){ $('s1').textContent = added; $('s2').textContent = Math.min(added, 3); $('s3').textContent = secs + ' sn'; }
@@ -450,7 +450,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
     { dur: 5200, run(){                                                  // 1) Excel'den kopyala
       R.forEach((_, k) => later(() => document.querySelectorAll('.r' + k).forEach(c => c.classList.add('sel')), 400 + k * 280));
       later(() => { $('kC').classList.add('show'); }, 2400);
-      later(() => { at(0, '10:00'); ev('hum', 'paste', '<b>6 satır</b> kopyalandı', 'Excel · başlık satırı hariç', 'Samet'); }, 2800);
+      later(() => { at(0, '10:00'); ev('hum', 'paste', '<b>6 satır</b> kopyalandı', 'Excel · başlık satırı hariç', 'Kaan Y.'); }, 2800);
       tick(4, 400, 3000);
     }},
     { dur: 6600, run(){                                                  // 2) Yapıştır
@@ -471,13 +471,13 @@ document.getElementById('year').textContent = new Date().getFullYear();
         $('list').appendChild(e); anim(e, 'new'); added++; stats(); }, 1400 + k * 380));
       later(() => { $('dist').innerHTML = REPS.map(([i, c, n]) => `<span class="tg" style="background:color-mix(in srgb,${c} 22%,transparent);color:#fff">${n} · 2 müşteri</span>`).join(''); }, 3800);
       later(() => { at(0, '10:01'); ev('auto', 'users', '<b>6 müşteri</b> eklendi', 'Her satır bir müşteri'); }, 3900);
-      later(() => { ev('auto', 'assign', 'Temsilcilere <b>sırayla dağıtıldı</b>', 'Ayşe K. 2 · Tayfur K. 2 · Seda N. 2'); }, 4700);
+      later(() => { ev('auto', 'assign', 'Temsilcilere <b>sırayla dağıtıldı</b>', 'Ayşe K. 2 · Tolga K. 2 · Sinan N. 2'); }, 4700);
       tick(21, 300, 4800);
     }},
     { dur: 5400, run(){                                                  // 4) Excel'e indir
       later(() => press($('xlBtn')), 400);
       later(() => { show('dl', true); }, 900);
-      later(() => { at(0, '10:02'); ev('hum', 'down', 'Müşteri listesi <b>Excel</b> olarak indirildi', 'musteri_listesi_2026-09-30.xlsx', 'Samet'); }, 2400);
+      later(() => { at(0, '10:02'); ev('hum', 'down', 'Müşteri listesi <b>Excel</b> olarak indirildi', 'musteri_listesi_2026-09-30.xlsx', 'Kaan Y.'); }, 2400);
       tick(28, 300, 2400);
     }},
   ];

@@ -402,14 +402,14 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
   const G = { r:['Acil','#EF4444','hemen aranmalı / işlem yapılmalı'], o:['Bugün','#F59E0B','bugün yapılacaklar'], b:['Yaklaşan','#3B82F6','önümüzdeki günler'] };
   const L = {
-    a:[['d','r','Deniz Arslan','Yeni Kayıt','Dün akşam geldi, henüz aranmadı','0532 118 42 07'],
-       ['m','r','Murat Aksoy','İlgileniyor','14 gündür son güncellemeden beri bekliyor','0544 902 13 55'],
-       ['k','o','Kemal Öz','Sonra Ara','Bugün 14:00\'te aranacak','0505 371 88 20'],
-       ['s','o','Seda Er','İletişime Geçildi','Teklif iletildi, ödeme bekleniyor','0533 640 27 91']],
-    s:[['g','r','Gamze Tüysüz','Ödeme Alındı','16 gündür ilk ödemeden beri bekliyor','0536 214 90 12'],
-       ['v','r','Volkan Laçin','Randevu Aranıyor','15 gündür ilk ödemeden beri bekliyor','0531 668 23 51'],
-       ['e','o','Elif Demir','Belge Bekleniyor','Pasaport fotokopisi eksik','0542 773 05 18'],
-       ['c','b','Can Yıldız','Randevu Alındı','Randevuya 2 gün kaldı · evraklar hazırlanmalı','0555 309 64 40']],
+    a:[['d','r','Berk Aydemir','Yeni Kayıt','Dün akşam geldi, henüz aranmadı','0555 118 42 07'],
+       ['m','r','Onur Balcı','İlgileniyor','14 gündür son güncellemeden beri bekliyor','0555 902 13 55'],
+       ['k','o','Kemal Öz','Sonra Ara','Bugün 14:00\'te aranacak','0555 371 88 20'],
+       ['s','o','Seda Er','İletişime Geçildi','Teklif iletildi, ödeme bekleniyor','0555 640 27 91']],
+    s:[['g','r','Hülya Tez','Ödeme Alındı','16 gündür ilk ödemeden beri bekliyor','0555 214 90 12'],
+       ['v','r','Serkan Uysal','Randevu Aranıyor','15 gündür ilk ödemeden beri bekliyor','0555 668 30 74'],
+       ['e','o','Elif Demir','Belge Bekleniyor','Pasaport fotokopisi eksik','0555 773 05 18'],
+       ['c','b','Gökhan Er','Randevu Alındı','Randevuya 2 gün kaldı · evraklar hazırlanmalı','0555 309 64 40']],
   };
   let done = 0;
   const rows = () => [...$('groups').querySelectorAll('.tk:not(.gone)')];
@@ -456,13 +456,13 @@ document.getElementById('year').textContent = new Date().getFullYear();
       later(() => press($('pA')), 300);
       load('a', 600);
       handle('d', '📞 İlgileniyor', 2600);
-      later(() => { at(0, '09:40'); ev('hum', 'phone', 'Arama sonucu: <b>İlgileniyor</b>', 'Deniz Arslan · listeden düştü', 'Ayşe K.'); }, 4300);
+      later(() => { at(0, '09:40'); ev('hum', 'phone', 'Arama sonucu: <b>İlgileniyor</b>', 'Berk Aydemir · listeden düştü', 'Ayşe K.'); }, 4300);
       handle('m', '📅 Sonra Ara · yarın 11:00', 4600);
-      later(() => { at(0, '10:05'); ev('hum', 'phone', 'Arama sonucu: <b>Sonra Ara</b>', 'Murat Aksoy · yarın listeye dönecek', 'Ayşe K.'); }, 6300);
+      later(() => { at(0, '10:05'); ev('hum', 'phone', 'Arama sonucu: <b>Sonra Ara</b>', 'Onur Balcı · yarın listeye dönecek', 'Ayşe K.'); }, 6300);
     }},
     { dur: 5600, run(){                                                  // 4) Liste kendini günceller
       later(() => { at(0, '13:40'); ev('auto', 'web', '<b>Yeni başvuru</b> web formundan geldi', 'Ayşe K.\'ya atandı'); }, 300);
-      later(() => { addRow(['n','r','Ozan Tekin','Yeni Kayıt','5 dakika önce geldi','0538 421 70 66'], true); ev('auto', 'list', 'Listeye eklendi: <b>Ozan Tekin</b>', 'Acil · hemen aranmalı'); }, 1300);
+      later(() => { addRow(['n','r','Ozan Tekin','Yeni Kayıt','5 dakika önce geldi','0555 421 70 66'], true); ev('auto', 'list', 'Listeye eklendi: <b>Ozan Tekin</b>', 'Acil · hemen aranmalı'); }, 1300);
       handle('k', '📞 Ulaşıldı', 3000);
       later(() => { at(0, '14:02'); ev('hum', 'phone', 'Arama sonucu: <b>Ulaşıldı</b>', 'Kemal Öz · zamanında arandı', 'Ayşe K.'); }, 4700);
     }},

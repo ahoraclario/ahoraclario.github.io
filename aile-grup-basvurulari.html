@@ -484,16 +484,18 @@ document.getElementById('year').textContent = new Date().getFullYear();
           ev('hum', 'users', `Refakatçi eklendi: <b>${FAM[k][0]}</b>`, FAM[k][1], 'Ayşe K.'); }, t + 550);
       });
     }},
-    { dur: 5200, run(){                                                  // 3) Pasaportlar yüklenir
+    { dur: 6000, run(){                                                  // 3) Pasaportlar yüklenir
       [0,1,2,3].forEach(k => later(() => { at(0, '10:31'); addFile(k); }, 300 + k * 600));
       later(() => { ev('hum', 'clip', '<b>4 pasaport</b> yüklendi', 'Her başvuran için ayrı dosya', 'Ayşe K.'); }, 2800);
-      later(() => { $('cStage').className = 'tg o'; $('cStage').textContent = 'Randevu Aranıyor'; ev('auto', 'move', 'Dosya <b>Evrak</b> ekibine geçti', 'Selin D.\'ya atandı'); }, 3800);
+      later(() => { at(0, '10:40'); $('cStage').className = 'tg g'; $('cStage').textContent = 'Ödeme Alındı'; ev('hum', 'pay', 'Ödeme alındı: <b>₺48.000</b>', '4 başvuru · belgeler yüklü olduğu için geçiş açık', 'Ayşe K.'); }, 3600);
+      later(() => { $('cStage').className = 'tg o'; $('cStage').textContent = 'Belge Bekleniyor'; ev('auto', 'move', 'Dosya <b>Evrak</b> ekibine geçti', 'Selin D.\'ya atandı'); }, 4600);
     }},
     { dur: 8200, run(){                                                  // 4) Randevular ayrı
-      [0,1,2].forEach(k => later(() => { at(3, '14:0' + k); setRdv(k); }, 300 + k * 700));
+      later(() => { at(5, '13:55'); $('cStage').textContent = 'Randevu Aranıyor'; }, 100);
+      [0,1,2].forEach(k => later(() => { at(5, '14:0' + k); setRdv(k); }, 300 + k * 700));
       later(() => { ev('hum', 'cal', '3 başvuruya randevu girildi', '14 Ekim · 09:30 / 09:45 / 10:00', 'Selin D.'); }, 2500);
       later(() => { gate('bad', '⛔ Randevu Alındı\'ya geçilemez: <b>Nermin Kaya</b> için tarih girilmedi'); ev('bad', 'lock', 'Aşama geçişi engellendi', 'Bir başvuruda randevu tarihi yok'); }, 3300);
-      later(() => { at(4, '11:10'); setRdv(3); gate('ok', '✓ Tüm başvurularda randevu tarihi var'); ev('hum', 'cal', 'Nermin Kaya: <b>16 Ekim 11:00</b>', 'Ayrı güne randevu', 'Selin D.'); }, 5300);
+      later(() => { at(6, '11:10'); setRdv(3); gate('ok', '✓ Tüm başvurularda randevu tarihi var'); ev('hum', 'cal', 'Nermin Kaya: <b>16 Ekim 11:00</b>', 'Ayrı güne randevu', 'Selin D.'); }, 5300);
       later(() => { $('cStage').className = 'tg g'; $('cStage').textContent = 'Randevu Alındı'; ev('rule', 'check', 'Dosya <b>Randevu Alındı</b>', '4 başvuru · 2 farklı gün'); }, 6500);
     }},
     { dur: 6400, run(){                                                  // 5) Portalda birlikte

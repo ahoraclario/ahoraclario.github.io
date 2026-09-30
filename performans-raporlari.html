@@ -227,7 +227,7 @@
           <div id="tbl"></div>
           <div class="shade" id="shade"></div>
           <div class="modal big" id="modal">
-            <h5>Ayşe Korkmaz — İşlem Geçmişi</h5><small>24 Eyl – 30 Eyl 2026 · <b>46</b> işlem · <b>9</b> giriş · 5s 55dk aktif</small>
+            <h5>Ayşe Korkmaz — İşlem Geçmişi</h5><small>24 Eyl – 30 Eyl 2026 · <b>42</b> işlem · <b>8</b> giriş · 6s 10dk aktif</small>
             <div class="sum" id="sum"></div>
             <div class="hist" id="hist"></div>
             <div class="sess"><div class="pn-h">🕘 Giriş oturumları<span class="n" id="sesN"></span></div><div id="ses"></div></div>
@@ -413,16 +413,16 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const show = (id, on) => $(id).classList.toggle('show', on);
 
   const U = [ // ad, rol, giriş, aktif (dk), işlem, dağılım
-    ['Ayşe Korkmaz','💼 Satış',9,355,46,[['Arama',16,'b'],['Aşama',13,'c'],['Yeni Müşteri',7,'g'],['Not',4,'lm'],['Dosya',4,'lm'],['Ödeme',2,'p']]],
-    ['Selin Demir','📄 Evrak',6,653,20,[['Aşama',13,'c'],['Randevu Tarihi',7,'o']]],
+    ['Ayşe Korkmaz','💼 Satış',8,370,42,[['Arama',15,'b'],['Aşama',12,'c'],['Yeni Müşteri',6,'g'],['Not',4,'lm'],['Dosya',3,'lm'],['Ödeme',2,'p']]],
+    ['Selin Demir','📄 Evrak',7,580,22,[['Aşama',14,'c'],['Randevu Tarihi',8,'o']]],
     ['Kerem Aslan','📅 Randevu',5,250,12,[['Aşama',8,'c'],['Not',4,'lm']]],
-    ['Tayfur Koç','💼 Satış',6,170,3,[['Arama',3,'b']]],
-    ['Mert Yılmaz','💼 Satış',0,0,0,[]],
+    ['Tolga Kurt','💼 Satış',5,160,3,[['Arama',3,'b']]],
+    ['Ece Tan','💼 Satış',0,0,0,[]],
   ];
-  const H = [['29 Eyl 17:35','g','Yeni Müşteri','Berfin Kaya → Ayşe K.\'ya atandı'],['29 Eyl 17:20','b','Arama Kaydı','Aydın Bayram (ulaşıldı)'],
-    ['29 Eyl 17:14','c','Aşama Değişikliği','Bahtiyar Er → İlgilenmiyor'],['24 Eyl 17:26','p','Ödeme Değişikliği','Celal Turgay: ₺0 → ₺14.000'],
-    ['24 Eyl 17:25','lm','Dosya Yükleme','celal_turgay_pasaport.jpeg'],['24 Eyl 17:24','c','Aşama Değişikliği','Celal Turgay → Ödeme Alındı']];
-  const S = [['29 Eyl 16:49',78],['29 Eyl 13:21',68],['29 Eyl 12:08',31],['26 Eyl 13:51',30],['25 Eyl 18:17',40]];
+  const H = [['29 Eyl 17:35','g','Yeni Müşteri','Büşra Kaplan → Ayşe K.\'ya atandı'],['29 Eyl 17:20','b','Arama Kaydı','Alper Doğan (ulaşıldı)'],
+    ['29 Eyl 17:14','c','Aşama Değişikliği','Tarık Er → İlgilenmiyor'],['24 Eyl 17:26','p','Ödeme Değişikliği','Cemil Toprak: ₺0 → ₺14.000'],
+    ['24 Eyl 17:25','lm','Dosya Yükleme','cemil_toprak_pasaport.jpeg'],['24 Eyl 17:24','c','Aşama Değişikliği','Cemil Toprak → Ödeme Alındı']];
+  const S = [['29 Eyl 16:40',72],['29 Eyl 13:05',64],['28 Eyl 11:52',35],['26 Eyl 14:10',28],['25 Eyl 17:45',44]];
   const hm = m => m ? (m >= 60 ? Math.floor(m / 60) + 's ' : '') + (m % 60) + 'dk' : '0dk';
   let shown = 0;
   function stats(){ const r = U.slice(0, shown); $('s1').textContent = r.reduce((a, u) => a + u[4], 0); $('s2').textContent = r.filter(u => u[2]).length; $('s3').textContent = r.filter(u => !u[4]).length; }
@@ -450,26 +450,26 @@ document.getElementById('year').textContent = new Date().getFullYear();
     { dur: 5600, run(){                                                  // 1) Dönem seçilir
       later(() => { at(0, '18:30'); press($('p7')); $('p7').classList.add('on'); $('per').textContent = '24.09.2026 – 30.09.2026 · 7 günlük dönem'; }, 300);
       U.forEach((_, k) => addU(k, 800 + k * 450));
-      later(() => { ev('auto', 'chart', 'Rapor hazırlandı: <b>Son 7 gün</b>', '5 kullanıcı · gerçek işlemler sayıldı', 'Samet'); }, 3600);
+      later(() => { ev('auto', 'chart', 'Rapor hazırlandı: <b>Son 7 gün</b>', '5 kullanıcı · gerçek işlemler sayıldı', 'Kaan Y.'); }, 3600);
     }},
     { dur: 6000, run(){                                                  // 2) Kim ne yaptı
       [0,1,2,3].forEach((k, j) => showDist(k, 300 + j * 900));
-      later(() => { ev('auto', 'chart', 'En çok işlem: <b>Ayşe K. · 46</b>', '16 arama · 13 aşama değişikliği'); }, 3800);
-      later(() => { anim($('u4'), 'new'); ev('rule', 'flag', '<b>Mert Y.</b> 7 gündür giriş yapmadı', 'Tabloda soluk ve kırmızı'); }, 4800);
+      later(() => { ev('auto', 'chart', 'En çok işlem: <b>Ayşe K. · 42</b>', '15 arama · 12 aşama değişikliği'); }, 3800);
+      later(() => { anim($('u4'), 'new'); ev('rule', 'flag', '<b>Ece T.</b> henüz giriş yapmadı', 'Yeni eklenen kullanıcı · tabloda soluk'); }, 4800);
     }},
     { dur: 7600, run(){                                                  // 3) İşlem geçmişi
       later(() => { $('u0').classList.add('pick'); }, 300);
       later(() => { show('shade', true); show('modal', true);
-        [['📞 Arama Kaydı',16,'b'],['🔄 Aşama Değişikliği',13,'c'],['👥 Yeni Müşteri',7,'g'],['📝 Not',4,'lm'],['📎 Dosya',4,'lm'],['💰 Ödeme',2,'p']]
+        [['📞 Arama Kaydı',15,'b'],['🔄 Aşama Değişikliği',12,'c'],['👥 Yeni Müşteri',6,'g'],['📝 Not',4,'lm'],['📎 Dosya',3,'lm'],['💰 Ödeme',2,'p']]
           .forEach(([l, v, c]) => { const s = document.createElement('span'); s.className = 'tg ' + c; s.textContent = `${l}: ${v}`; $('sum').appendChild(s); }); }, 900);
       H.forEach(([t, c, l, d], i) => later(() => { const r = document.createElement('div'); r.className = 'hr';
         r.innerHTML = `<time>${t}</time><span class="tg ${c}">${l}</span><span>${d}</span>`; $('hist').appendChild(r); anim(r, 'new'); }, 1500 + i * 550));
-      later(() => { ev('hum', 'eye', 'İşlem geçmişi açıldı: <b>Ayşe K.</b>', 'Her işlem, dosyasıyla birlikte', 'Samet'); }, 2200);
+      later(() => { ev('hum', 'eye', 'İşlem geçmişi açıldı: <b>Ayşe K.</b>', 'Her işlem, dosyasıyla birlikte', 'Kaan Y.'); }, 2200);
     }},
     { dur: 5400, run(){                                                  // 4) Giriş oturumları
       S.forEach(([t, m], i) => later(() => { const r = document.createElement('div'); r.className = 'se';
-        r.innerHTML = `${t}<span>${m} dk aktif</span>`; $('ses').appendChild(r); anim(r, 'new'); $('sesN').textContent = `(${i + 1})`; }, 300 + i * 450));
-      later(() => { ev('auto', 'session', '<b>9 giriş</b> · 5 saat 55 dk aktif', '30 dk hareketsizlikte oturum kapanır'); }, 2800);
+        r.innerHTML = `${t}<span>${m} dk aktif</span>`; $('ses').appendChild(r); anim(r, 'new'); $('sesN').textContent = `(8) · son ${i + 1}`; }, 300 + i * 450));
+      later(() => { ev('auto', 'session', '<b>8 giriş</b> · 6 saat 10 dk aktif', '30 dk hareketsizlikte oturum kapanır'); }, 2800);
     }},
   ];
 

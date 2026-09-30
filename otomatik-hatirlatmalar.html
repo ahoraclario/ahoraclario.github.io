@@ -409,7 +409,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
   const UP = [
     ['Elif Demir','#0D9488','ED','🇬🇷 Yunanistan · Schengen Turistik','14 Ekim 09:30',"7 Ekim'de gidecek"],
-    ['Can Yıldız','#7C3AED','CY','🇬🇧 İngiltere · İngiltere Vizesi','16 Ekim 11:00',"9 Ekim'de gidecek"],
+    ['Emre Kılıç','#7C3AED','EK','🇬🇧 İngiltere · İngiltere Vizesi','16 Ekim 11:00',"9 Ekim'de gidecek"],
     ['Zeynep Kaya','#EA580C','ZK','🇩🇪 Almanya · Schengen Turistik','21 Ekim 10:15',"14 Ekim'de gidecek"],
   ];
   const LIB = [ // ad, kural, Elif'e uygun mu
@@ -469,17 +469,17 @@ document.getElementById('year').textContent = new Date().getFullYear();
       later(() => { sent(0); ev('ml', 'mail', '<b>Hatırlatma maili</b> gönderildi: Elif Demir', '3 belge ekli · Türkçe ve İngilizce'); }, 3100);
     }},
     { dur: 6400, run(){                                                  // 4) Her müşteriye kendi belgesi
-      later(() => { at(9, '09:00'); setToday(); ev('auto', 'filter', 'Can Yıldız için <b>2 uygun belge</b> bulundu', 'İngiltere Vizesi'); }, 300);
-      later(() => { mailFor('Can Yıldız', '16 Ekim Cuma · 11:00', 'İstanbul başvuru merkezi', '1 kişi'); anim($('mail'), 'new'); }, 1100);
+      later(() => { at(9, '09:00'); setToday(); ev('auto', 'filter', 'Emre Kılıç için <b>2 uygun belge</b> bulundu', 'İngiltere Vizesi'); }, 300);
+      later(() => { mailFor('Emre Kılıç', '16 Ekim Cuma · 11:00', 'İstanbul başvuru merkezi', '1 kişi'); anim($('mail'), 'new'); }, 1100);
       attach(['Ingiltere_Vize_Formu.pdf','Vekaletname_Ornegi.pdf'], 1800);
-      later(() => { sent(1); ev('ml', 'mail', '<b>Hatırlatma maili</b> gönderildi: Can Yıldız', 'Schengen belgeleri eklenmedi'); }, 3000);
+      later(() => { sent(1); ev('ml', 'mail', '<b>Hatırlatma maili</b> gönderildi: Emre Kılıç', 'Schengen belgeleri eklenmedi'); }, 3000);
       later(() => { ev('rule', 'bell', 'Zeynep Kaya sırada', "14 Ekim'de Almanya belgeleriyle gidecek"); }, 4400);
     }},
     { dur: 7000, run(){                                                  // 5) Süreç boyunca
       later(() => { $('rpH').textContent = 'Bir müşterinin aldığı mailler'; view('vTl'); }, 300);
       TL.forEach(([t, s], k) => later(() => { const e = document.createElement('div'); e.className = 'row tl';
         e.innerHTML = `<i>${svg('mail')}</i><div><b>${t}</b><small>${s}</small></div><span class="tg g">✓ otomatik</span>`; $('tl').appendChild(e); anim(e, 'new'); }, 800 + k * 480));
-      later(() => { at(14, '10:00'); ev('auto', 'done', 'Süreç boyunca <b>7 mail</b>', 'Hepsi aşama değişince kendiliğinden gitti'); }, 4400);
+      later(() => { at(25, '11:45'); ev('auto', 'done', 'Süreç boyunca <b>7 mail</b>', 'Hepsi aşama değişince kendiliğinden gitti'); }, 4400);
     }},
   ];
 

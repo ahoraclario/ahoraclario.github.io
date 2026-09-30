@@ -469,15 +469,15 @@ document.getElementById('year').textContent = new Date().getFullYear();
         $('fVis').innerHTML = '👁 Bu evrak şu an: <b>Schengen Turistik</b> vizesine başvuran müşterilerde görünecek'; anim($('fVis'), 'new'); }, t + 1100);
       later(() => { $('fFile').textContent = '📎 Schengen_Basvuru_Formu.pdf'; }, t + 1900);
       later(() => { press($('save')); }, t + 2500);
-      later(() => { show('modal', false); show('shade', false); addLib(0); ev('hum', 'up', '<b>Schengen Başvuru Formu</b> eklendi', 'Vize türü: Schengen Turistik · ülke boş', 'Samet'); }, t + 3000);
+      later(() => { show('modal', false); show('shade', false); addLib(0); ev('hum', 'up', '<b>Schengen Başvuru Formu</b> eklendi', 'Vize türü: Schengen Turistik · ülke boş', 'Kaan Y.'); }, t + 3000);
     }},
     { dur: 5000, run(){                                                  // 2) Kütüphane dolar
       [1,2,3].forEach((k, j) => later(() => { at(0, ['10:14','10:15','10:17'][j]); addLib(k);
-        ev('hum', 'up', `<b>${LIB[k][0]}</b> eklendi`, LIB[k][2].map(x => x[0]).join(' · '), 'Samet'); }, 300 + j * 1300));
+        ev('hum', 'up', `<b>${LIB[k][0]}</b> eklendi`, LIB[k][2].map(x => x[0]).join(' · '), 'Kaan Y.'); }, 300 + j * 1300));
     }},
     { dur: 8600, run(){                                                  // 3) Uyanlar bulunur
-      later(() => { at(1, '11:20'); openCust('Can Yıldız', 'CY', '#7C3AED', '🇬🇧 İngiltere · İngiltere Vizesi · randevu 16 Ekim', 1); }, 300);
-      later(() => { ev('auto', 'filter', 'Can Yıldız için <b>2 uygun belge</b>', 'Schengen belgeleri gösterilmedi'); }, 2600);
+      later(() => { at(1, '11:20'); openCust('Emre Kılıç', 'EK', '#7C3AED', '🇬🇧 İngiltere · İngiltere Vizesi · randevu 16 Ekim', 1); }, 300);
+      later(() => { ev('auto', 'filter', 'Emre Kılıç için <b>2 uygun belge</b>', 'Schengen belgeleri gösterilmedi'); }, 2600);
       later(() => { at(1, '11:34'); openCust('Zeynep Kaya', 'ZK', '#EA580C', '🇩🇪 Almanya · Schengen Turistik · randevu 21 Ekim', 0); }, 4200);
       later(() => { ev('auto', 'filter', 'Zeynep Kaya için <b>3 uygun belge</b>', 'Schengen + Almanya\'ya özel + herkese'); $('sendAll').classList.add('show'); }, 6600);
     }},

@@ -285,7 +285,7 @@
               <h6>Randevunuza 7 gün kaldı</h6>
               <p>Sayın <b>Elif Demir</b>, randevu bilgileriniz ve yanınızda getirmeniz gereken belgeler aşağıdadır.</p>
               <div class="mp-info"><span>📅 14 Ekim Çarşamba · 09:30</span><span>📍 İstanbul başvuru merkezi</span><span>👥 2 kişi (Elif Demir, Ayşe Aksoy)</span></div>
-              <div class="mp-att"><span>📎 Basvuru_Formu.pdf</span><span>📎 Randevu_Onayi.pdf</span><span>📎 Belge_Listesi.pdf</span></div>
+              <div class="mp-att"><span>📎 Schengen_Basvuru_Formu.pdf</span><span>📎 Otel_Rezervasyon_Ornegi.pdf</span><span>📎 Vekaletname_Ornegi.pdf</span></div>
               <span class="mp-btn">Başvurumu Takip Et →</span>
               <div class="mp-en"><b>ENGLISH</b> · Your appointment is in 7 days. Please be at the center 30 minutes early.</div>
             </div>
@@ -439,15 +439,15 @@ document.getElementById('year').textContent = new Date().getFullYear();
   const DAYS = ['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'];
   const dow = d => (d + 2) % 7;
   const dateLabel = d => d <= 31 ? `${d} Ekim ${DAYS[dow(d)]}` : `${d - 31} Kasım ${DAYS[dow(d)]}`;
-  const SEED = [[1,'09:30','Kerem Aydın',1],[1,'11:00','Nazlı Er',1],[2,'10:15','Oğuz Tan',1],[5,'09:00','Derya Kılıç',1],[5,'14:30','Cem Uslu',0],
+  const SEED = [[1,'09:30','Kenan Aydın',1],[1,'11:00','Nazlı Er',1],[2,'10:15','Oğuz Tan',1],[5,'09:00','Derya Kılıç',1],[5,'14:30','Cem Uslu',0],
     [6,'10:45','Pınar Sezer',1],[8,'09:15','Levent Ak',0],[9,'11:30','Irmak Çelik',1],[12,'13:00','Tuna Ateş',0],[13,'09:45','Selim Oral',1],
     [15,'10:00','Aslı Kurt',0],[15,'15:15','Umut Eren',0],[16,'09:30','Ece Bal',1],[19,'11:15','Deniz Koç',0],[20,'10:30','Mert Sarı',0],
     [22,'09:00','Hande Us',0],[23,'14:00','Barış Yel',0],[26,'10:15','Gizem Ay',0],[27,'09:45','Onur Tek',0],[29,'11:00','Sena Işık',0],[30,'13:30','Kaan Er',0]];
   const KT = [ // ad, dosya no, ülke, satış, evrak, randevu, gün
-    ['Mert Kaya','VZ-2026-3981','🇩🇰 Danimarka','Tayfur K.','Selin D.','Kerem A.',47],
-    ['Selin Aydın','VZ-2026-4027','🇳🇱 Hollanda','Ayşe K.','Selin D.','Kerem A.',35],
+    ['Mert Kaya','VZ-2026-3981','🇩🇰 Danimarka','Tolga K.','Selin D.','Kerem A.',47],
+    ['Sibel Aydın','VZ-2026-4027','🇳🇱 Hollanda','Ayşe K.','Selin D.','Kerem A.',35],
     ['Ayla Yurt','VZ-2026-4066','🇫🇷 Fransa','Ayşe K.','Selin D.','Kerem A.',29],
-    ['Burak Şahin','VZ-2026-4103','🇬🇷 Yunanistan','Tayfur K.','Selin D.','Kerem A.',12],
+    ['Burak Şahin','VZ-2026-4103','🇬🇷 Yunanistan','Tolga K.','Selin D.','Kerem A.',12],
   ];
 
   let today = 2, time = '09:00', lastDay = 0, nAuto = 0, nMail = 0, nApt = 0, nWait = 0;
@@ -554,7 +554,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
       later(() => { if(!instant){ $('ekGo').classList.add('on'); point($('ekGo')); } }, 4700);
       later(() => { anim($('ekGo'), 'press'); }, 5500);
       later(() => { $('ekp').classList.remove('show'); hideCur(); at(5, '15:40'); setOk('focus');
-        ev('hum', 'check', 'Randevu evrakları <b>tamamlandı</b>', 'Takvimde yeşile döndü · 2 başvuru · 9 belge', 'Selin D.'); }, 5900);
+        ev('hum', 'check', 'Randevu evrakları <b>tamamlandı</b>', 'Takvimde yeşile döndü · 2 başvuru · 5 kalem evrak', 'Selin D.'); }, 5900);
       later(() => { ev('auto', 'move', 'Dosya <b>Randevu</b> ekibine geçti', 'Kerem A.\'ya atandı'); }, 6700);
       later(() => { ev('ml', 'mail', '<b>"Randevu Evraklarınız Hazır"</b> maili gönderildi', 'Randevu sorumlusu ve takip linkiyle'); }, 7500);
     }},
@@ -575,7 +575,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
     }},
     { dur: 7800, run(){                                              // 5) Sonuç girilir
       for(let k = 1; k <= 10; k++) later(() => { at(15 + k, '09:00'); document.querySelectorAll('.kt-row:not(.gone)').forEach(r => setDays(r, +r.dataset.days + 1));
-        if(k === 10) ev('rule', 'flag', 'Selin Aydın <b>45 günü geçti</b>', 'Kırmızıyla işaretlendi · konsolosluğu kontrol edin'); }, 200 + k * 140);
+        if(k === 10) ev('rule', 'flag', 'Sibel Aydın <b>45 günü geçti</b>', 'Kırmızıyla işaretlendi · konsolosluğu kontrol edin'); }, 200 + k * 140);
       later(() => { time = '11:40'; $('kf').querySelector('.sel').classList.add('open'); }, 2700);
       later(() => { $('kf').querySelectorAll('.dd div')[1].classList.add('hl'); }, 3300);
       later(() => { const s = $('kf').querySelector('.sel'); s.classList.remove('open'); s.classList.add('ok'); s.firstChild.textContent = '✓ Onaylandı';
