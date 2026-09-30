@@ -161,19 +161,48 @@ try{if(t('\u{1F60A}')&&!t('\u{1F1E8}\u{1F1ED}')){const s=document.createElement(
 .gate.show{max-height:80px;opacity:1;padding:8px 10px;margin-top:4px}
 .gate.bad{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.35);color:#FCA5A5}
 .gate.ok{background:rgba(57,217,138,.1);border:1px solid rgba(57,217,138,.35);color:#6EE7B7}
-.phone3{max-width:250px;margin:4px auto;border-radius:30px;padding:8px;background:#0B1623;box-shadow:0 30px 60px -20px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.08)}
-.ph-in{border-radius:23px;background:#fff;color:#1F2937;padding:16px 14px;font-size:11px;min-height:330px}
-.ph-in h6{margin:0 0 2px;font-size:14px;color:#111827}
-.ph-in > small{color:#6B7280;font-size:10px}
-.ph-st{display:flex;gap:8px;margin-top:12px;padding:9px;border-radius:10px;background:#EFF6FF}
-.ph-st i{width:16px;height:16px;border-radius:50%;background:#2563EB;color:#fff;display:grid;place-items:center;font-style:normal;font-size:10px;box-shadow:0 0 0 3px #DBEAFE;flex-shrink:0}
-.ph-st b{display:block;font-size:11px;color:#111827}.ph-st span{font-size:10px;color:#6B7280}
-.ph-sep{margin:14px 0 6px;font-size:9.5px;font-weight:700;letter-spacing:.08em;color:#9CA3AF;text-transform:uppercase}
-.pp{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #F0F2F6}
+.phone3{max-width:262px;margin:4px auto;border-radius:32px;padding:8px;background:#0B1623;box-shadow:0 30px 60px -20px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.08)}
+.ph-in{border-radius:25px;background:#fff;color:#1F2937;font-size:11px;height:470px;overflow:hidden;position:relative}
+.ph-in::after{content:'';position:absolute;left:0;right:0;bottom:0;height:34px;background:linear-gradient(transparent,#fff);pointer-events:none}
+.ph-sc{padding:14px 14px 30px;transition:transform 1.1s cubic-bezier(.65,0,.35,1)}
+.ph-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.ph-top span{display:flex;align-items:center;gap:6px;font-weight:800;font-size:11px;color:#10305C}
+.ph-top i{width:18px;height:18px;border-radius:5px;background:#2563EB;color:#fff;display:grid;place-items:center;font-style:normal;font-size:9px}
+.ph-top small{font-size:9px;color:#6B7280;font-variant-numeric:tabular-nums}
+.ph-in h6{margin:0 0 1px;font-size:15px;color:#111827}
+.ph-sub{display:block;color:#6B7280;font-size:10px}
+.ph-steps{margin:12px 0 10px;position:relative}
+.ps2{display:grid;grid-template-columns:18px 1fr;gap:8px;align-items:start;padding:4px 0;position:relative;opacity:.35;transition:opacity .4s}
+.ps2::before{content:'';position:absolute;left:8.5px;top:21px;bottom:-5px;width:1.5px;background:#E5E7EB}
+.ps2:last-child::before{content:none}
+.ps2 i{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:9px;font-weight:800;border:1.5px solid #D1D5DB;color:transparent;background:#fff;transition:all .4s}
+.ps2 b{display:block;font-size:11px;color:#374151;font-weight:600}
+.ps2 small{font-size:9.5px;color:#6B7280}
+.ps2.done,.ps2.now{opacity:1}
+.ps2.done i{background:#16A34A;border-color:#16A34A;color:#fff}
+.ps2.done::before{background:#16A34A}
+.ps2.now i{background:#2563EB;border-color:#2563EB;color:#fff;box-shadow:0 0 0 4px #DBEAFE;animation:phPulse 1.8s infinite}
+.ps2.now b{color:#1D4ED8}
+@keyframes phPulse{50%{box-shadow:0 0 0 7px rgba(219,234,254,.4)}}
+.ph-rdv{display:flex;gap:10px;align-items:center;padding:10px;border-radius:12px;background:linear-gradient(135deg,#EFF6FF,#ECFEFF);border:1px solid #DBEAFE;opacity:0;transform:translateY(6px);transition:opacity .45s,transform .45s}
+.ph-rdv.show{opacity:1;transform:none}
+.ph-rdv .dt{width:42px;height:44px;border-radius:9px;background:#2563EB;color:#fff;display:grid;place-items:center;align-content:center;line-height:1}
+.ph-rdv .dt b{font-size:17px}.ph-rdv .dt small{font-size:8px;font-weight:700;letter-spacing:.08em;margin-top:2px}
+.ph-rdv b{display:block;font-size:11.5px;color:#111827}.ph-rdv small{display:block;font-size:9.5px;color:#6B7280}
+.ph-rdv small.n{color:#B45309;font-weight:600;margin-top:2px}
+.ph-sep{margin:14px 0 6px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#6B7280;text-transform:uppercase}
+.pp{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid #F0F2F6}
+.pp .av{width:26px;height:26px;font-size:9px}
 .pp b{display:block;font-size:11px;color:#111827}.pp small{font-size:9.5px;color:#6B7280}
 .pp em{font-style:normal;font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;background:#DCFCE7;color:#15803D;white-space:nowrap}
 .pp em.o{background:#FEF3C7;color:#B45309}
 .pp.new{animation:rowIn .5s}
+.ph-rep{display:grid;grid-template-columns:30px minmax(0,1fr) auto auto;gap:8px;align-items:center;padding:9px;border-radius:12px;border:1px solid #E5E7EB;opacity:0;transition:opacity .45s}
+.ph-rep.show{opacity:1}
+.ph-rep b{display:block;font-size:11px;color:#111827}.ph-rep small{font-size:9.5px;color:#6B7280}
+.ph-rep i{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:12px;background:#F3F4F6}
+.ph-upd{text-align:center;margin-top:12px;font-size:9.5px;color:#6B7280}
+.ph-upd.flash{color:#15803D;font-weight:700}
 @media (max-width:760px){ .agrid{grid-template-columns:1fr} }
 </style>
 <script type="application/ld+json">
@@ -251,10 +280,16 @@ try{if(t('\u{1F60A}')&&!t('\u{1F1E8}\u{1F1ED}')){const s=document.createElement(
             </div>
             <div class="pn"><div class="views">
               <div class="view" id="vApp"><div class="pn-h">🌍 Başvurular<span class="n" id="appN">(0)</span></div><div id="apps"></div><div class="gate" id="gate"></div></div>
-              <div class="view hide" id="vPortal"><div class="phone3"><div class="ph-in">
-                <h6>Başvurunuz</h6><small>🇳🇱 Hollanda · Schengen Turistik</small>
-                <div class="ph-st"><i>•</i><div><b>Randevu alındı</b><span>14 Ekim · 09:30</span></div></div>
-                <div class="ph-sep">Sizinle birlikte başvuranlar</div><div id="pp"></div></div></div></div>
+              <div class="view hide" id="vPortal"><div class="phone3"><div class="ph-in"><div class="ph-sc" id="phSc">
+                <div class="ph-top"><span><i>✈</i>Firmanız</span><small>VZ-2026-4190</small></div>
+                <h6>Merhaba Hakan Bey</h6><small class="ph-sub">🇳🇱 Hollanda · Schengen Turistik · 4 başvuru</small>
+                <div class="ph-steps" id="phSteps"></div>
+                <div class="ph-rdv" id="phRdv"><div class="dt"><b>14</b><small>EKİ</small></div><div><b>Çarşamba · 09:30</b><small>İstanbul başvuru merkezi</small><small class="n">30 dk önce orada olun</small></div></div>
+                <div class="ph-sep">Sizinle birlikte başvuranlar</div><div id="pp"></div>
+                <div class="ph-sep">Dosyanızla ilgilenen</div>
+                <div class="ph-rep" id="phRep"><span class="av" style="--c:#2563EB">SD</span><div><b>Selin Demir</b><small>Evrak sorumlusu</small></div><i>📞</i><i>💬</i></div>
+                <div class="ph-upd" id="phUpd">Son güncelleme: az önce</div>
+              </div></div></div></div>
             </div></div>
           </div>
         </div>
@@ -471,7 +506,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
     resetLog(); nRdv = 0;
     $('cName').textContent = 'Müşteri dosyası'; $('cMeta').textContent = 'VZ-2026-4190'; $('cStage').className = 'tg c'; $('cStage').textContent = 'Yeni Kayıt';
     $('ref').innerHTML = '<div class="empty sm" id="refE">Henüz refakatçi eklenmedi.</div>'; $('refN').textContent = '(0)';
-    $('files').innerHTML = ''; $('fileN').textContent = '0 dosya'; $('apps').innerHTML = ''; $('appN').textContent = '(0)'; $('pp').innerHTML = '';
+    $('files').innerHTML = ''; $('fileN').textContent = '0 dosya'; $('apps').innerHTML = ''; $('appN').textContent = '(0)'; $('pp').innerHTML = ''; $('phSteps').innerHTML = ''; $('phRdv').classList.remove('show'); $('phRep').classList.remove('show'); $('phSc').style.transform = ''; $('phUpd').classList.remove('flash');
     $('fN').textContent = ''; $('fR').textContent = 'Eş'; gate('');
     $('vPortal').classList.add('hide'); $('vApp').classList.remove('hide'); stats();
   }
@@ -506,11 +541,20 @@ document.getElementById('year').textContent = new Date().getFullYear();
       later(() => { at(6, '11:10'); setRdv(3); gate('ok', '✓ Tüm başvurularda randevu tarihi var'); ev('hum', 'cal', 'Nermin Kaya: <b>16 Ekim 11:00</b>', 'Ayrı güne randevu', 'Selin D.'); }, 5300);
       later(() => { $('cStage').className = 'tg g'; $('cStage').textContent = 'Randevu Alındı'; ev('rule', 'check', 'Dosya <b>Randevu Alındı</b>', '4 başvuru · 2 farklı gün'); }, 6500);
     }},
-    { dur: 6400, run(){                                                  // 5) Portalda birlikte
-      later(() => { gate(''); $('vApp').classList.add('hide'); $('vPortal').classList.remove('hide'); }, 300);
+    { dur: 9200, run(){                                                  // 5) Portalda birlikte
+      const ST = [['Başvuru alındı','30 Eylül'],['Ödeme alındı','30 Eylül'],['Evraklar hazırlandı','4 başvuru · 9 belge'],['Randevu alındı','14 Ekim · 09:30'],['Başvuru yapıldı',''],['Sonuç','']];
+      later(() => { gate(''); $('vApp').classList.add('hide'); $('vPortal').classList.remove('hide');
+        $('phSteps').innerHTML = ST.map(([t, d], k) => `<div class="ps2" id="ps${k}"><i>${k < 3 ? '✓' : k === 3 ? '•' : ''}</i><div><b>${t}</b>${d ? `<small>${d}</small>` : ''}</div></div>`).join(''); }, 300);
+      [0,1,2].forEach(k => later(() => $('ps' + k).classList.add('done'), 900 + k * 350));
+      later(() => { $('ps3').classList.add('now'); ev('ml', 'mail', '<b>"Randevunuz Alındı"</b> maili gönderildi', '4 başvuranın tarih ve saatiyle'); }, 2000);
+      later(() => { $('phRdv').classList.add('show'); $('phUpd').classList.add('flash'); }, 2500);
+      later(() => { $('phSc').style.transform = 'translateY(-250px)'; }, 3700);
       [1,2,3].forEach((k, j) => later(() => { const d = document.createElement('div'); d.className = 'pp';
-        d.innerHTML = `<div><b>${FAM[k][0]}</b><small>${FAM[k][1]} · ${TIMES[k]}</small></div><em>Randevu alındı</em>`; $('pp').appendChild(d); anim(d, 'new'); }, 900 + j * 450));
-      later(() => { ev('ml', 'mail', '<b>"Randevunuz Alındı"</b> maili gönderildi', 'Her başvuranın tarih ve saatiyle'); }, 2600);
+        d.innerHTML = `<span class="av" style="--c:${FAM[k][3]}">${FAM[k][2]}</span><div><b>${FAM[k][0]}</b><small>${FAM[k][1]} · ${TIMES[k]}</small></div><em>${k === 3 ? 'Ayrı gün' : 'Randevu alındı'}</em>`;
+        if(k === 3) d.querySelector('em').className = 'o';
+        $('pp').appendChild(d); anim(d, 'new'); }, 4400 + j * 450));
+      later(() => { ev('auto', 'users', 'Portalda <b>birlikte başvuranlar</b> gösterildi', 'Nermin Kaya\'nın ayrı günü işaretli'); }, 5800);
+      later(() => { $('phSc').style.transform = 'translateY(-330px)'; $('phRep').classList.add('show'); }, 6600);
     }},
   ];
 
