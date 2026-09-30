@@ -154,6 +154,62 @@ try{if(t('\u{1F60A}')&&!t('\u{1F1E8}\u{1F1ED}')){const s=document.createElement(
 .hv-dots button:focus-visible{outline:2px solid #22D3EE;outline-offset:-6px;border-radius:8px}
 @media (max-width:760px){ .hv-toast{position:relative;right:auto;bottom:auto;margin:14px auto 0;max-width:none;width:fit-content} .hv-dots{margin-top:12px} .hv-p{grid-template-columns:70px minmax(0,1fr) 24px} }
 @media (prefers-reduced-motion:reduce){ .hv-s,.hv-toast{transition:none;animation:none} .hv-s.on .hi,.hv-s.on .hv-bars i,.hv-s.on .hv-p .bar i{animation:none;opacity:1;transform:none} }
+
+/* Ana sayfa · muhasebe vitrini (koyu, kendiliğinden geçer) */
+.mx{position:relative;border-radius:16px;overflow:hidden;background:#081A2B;box-shadow:0 40px 90px -20px rgba(0,0,0,.75),0 0 0 1px rgba(148,178,210,.14),0 0 70px rgba(57,217,138,.06)}
+.mx-top{display:flex;align-items:center;gap:7px;padding:9px 12px;background:#0B2034;border-bottom:1px solid rgba(148,178,210,.1)}
+.mx-top i{width:9px;height:9px;border-radius:50%;background:#1E3A55}
+.mx-top b{margin-left:8px;font-weight:600;color:#8FA7BD;font-size:11px}
+.mx-per{margin-left:auto;font-size:10px;font-weight:700;color:#C9D6E3;padding:3px 8px;border-radius:6px;background:rgba(148,178,210,.1)}
+.mx-tabs{display:flex;gap:4px;padding:10px 14px 0}
+.mx-tabs button{font:inherit;font-size:11.5px;font-weight:600;color:#8FA7BD;background:none;border:0;padding:8px 10px 10px;cursor:pointer;border-bottom:2px solid transparent;transition:color .3s,border-color .3s}
+.mx-tabs button.on{color:#EAF2F9;border-color:#39D98A}
+.mx-tabs button:hover{color:#EAF2F9}
+.mx-body{display:grid;min-height:252px;border-top:1px solid rgba(148,178,210,.08)}
+.mx-s{grid-area:1/1;padding:14px;opacity:0;transform:translateX(16px);filter:blur(3px);transition:opacity .5s,transform .55s cubic-bezier(.2,.8,.2,1),filter .5s;pointer-events:none}
+.mx-s.on{opacity:1;transform:none;filter:none;pointer-events:auto}
+.mx-kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.mx-kpi div{padding:10px 11px;border-radius:10px;background:rgba(8,25,42,.7);border:1px solid rgba(148,178,210,.1);border-top:2px solid var(--c)}
+.mx-kpi small{display:block;font-size:10px;color:#8FA7BD}
+.mx-kpi b{display:block;font-size:18px;color:var(--c);letter-spacing:-.01em;font-variant-numeric:tabular-nums;margin:2px 0}
+.mx-kpi em{font-style:normal;font-size:9.5px;color:#5E7A94}
+.mx-h{display:flex;justify-content:space-between;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#5E7A94;margin:2px 0 8px}
+.mx-h span{color:#EAF2F9;letter-spacing:0}
+.mx-r{display:grid;grid-template-columns:104px minmax(0,1fr) 78px;gap:10px;align-items:center;padding:5px 0;font-size:11.5px;color:#C9D6E3}
+.mx-r b{text-align:right;color:#EAF2F9;font-variant-numeric:tabular-nums;font-weight:600}
+.mx .bar{height:8px;border-radius:5px;background:rgba(148,178,210,.1);overflow:hidden}
+.mx .bar i{display:block;height:100%;width:var(--w);border-radius:5px;background:linear-gradient(90deg,#0D9488,#39D98A);transform-origin:left;transform:scaleX(0)}
+.mx .bar.r i{background:linear-gradient(90deg,#DC2626,#F87171)}
+.mx-s.on .bar i{animation:mxBar .8s cubic-bezier(.2,.8,.2,1) forwards}
+.mx-s.on .mx-r:nth-child(2) .bar i{animation-delay:.08s}.mx-s.on .mx-r:nth-child(3) .bar i{animation-delay:.16s}.mx-s.on .mx-r:nth-child(4) .bar i{animation-delay:.24s}.mx-s.on .mx-r:nth-child(5) .bar i{animation-delay:.32s}.mx-s.on .mx-r:nth-child(6) .bar i{animation-delay:.4s}
+@keyframes mxBar{to{transform:scaleX(1)}}
+.mx-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.mx-p{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid rgba(148,178,210,.07);font-size:11.5px;color:#EAF2F9;opacity:0;transform:translateY(6px)}
+.mx-s.on .mx-p{animation:mxIn .45s cubic-bezier(.2,.8,.2,1) forwards}
+.mx-s.on .mx-p:nth-child(3){animation-delay:.08s}.mx-s.on .mx-p:nth-child(4){animation-delay:.16s}
+@keyframes mxIn{to{opacity:1;transform:none}}
+.mx-p small{display:block;font-size:9.5px;color:#5E7A94}
+.mx-p b{color:#6EE7B7;font-variant-numeric:tabular-nums;font-size:11.5px}
+.mx-p .av{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:8.5px;font-weight:800;color:#fff;background:var(--c)}
+.mx-p .fl{font-size:16px;text-align:center}
+.mx-foot{margin:10px 0 0;font-size:10px;color:#5E7A94}
+.mx-ap{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:9px 11px;margin-bottom:7px;border-radius:10px;border:1px solid rgba(245,158,11,.3);background:rgba(245,158,11,.06);font-size:11.5px;transition:background .4s,border-color .4s}
+.mx-ap b{display:block;color:#EAF2F9;font-weight:600}.mx-ap small{font-size:9.5px;color:#5E7A94}
+.mx-ap strong{color:#6EE7B7;font-variant-numeric:tabular-nums}.mx-ap strong.neg{color:#FCA5A5}
+.mx-ap .go{font-size:10.5px;font-weight:700;padding:5px 10px;border-radius:7px;background:#2563EB;color:#fff;transition:all .3s}
+.mx-ap.press .go{transform:scale(.92);box-shadow:0 0 0 4px rgba(37,99,235,.3)}
+.mx-ap.ok{border-color:rgba(57,217,138,.4);background:rgba(57,217,138,.08)}
+.mx-ap.ok .go{background:rgba(57,217,138,.15);color:#6EE7B7}
+.mx-led{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:10px;padding:9px 11px;border-radius:10px;background:rgba(8,25,42,.7);border:1px dashed rgba(148,178,210,.18);font-size:10.5px;color:#8FA7BD}
+.mx-led b{color:#EAF2F9;font-variant-numeric:tabular-nums}.mx-led b.warn{color:#FCD34D}.mx-led b.ok{color:#6EE7B7}
+.mx-led b.flash{animation:mxFlash 1s}
+@keyframes mxFlash{0%{text-shadow:0 0 12px currentColor}}
+.mx-prog{height:2px;background:rgba(148,178,210,.08)}
+.mx-prog i{display:block;height:100%;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,#39D98A,#22D3EE)}
+.mx-prog i.run{animation:hvProg 6s linear forwards}
+.mx:hover .mx-prog i,.mx.paused .mx-prog i{animation-play-state:paused}
+@media (max-width:760px){ .mx-kpi b{font-size:14px} .mx-r{grid-template-columns:80px minmax(0,1fr) 70px} .mx-2{grid-template-columns:1fr} .mx-body{min-height:0} .mx-2 > div:last-child{display:none} }
+@media (prefers-reduced-motion:reduce){ .mx-s{transition:none} .mx-s.on .bar i,.mx-s.on .mx-p{animation:none;transform:none;opacity:1} }
 </style>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Bir program kurmam gerekiyor mu?", "acceptedAnswer": {"@type": "Answer", "text": "Hayır. Sistem tarayıcıda çalışır; ofisten, evden ve telefondan internet olan her yerden giriş yapılabilir."}}, {"@type": "Question", "name": "Müşterilerim sisteme nasıl ulaşıyor?", "acceptedAnswer": {"@type": "Answer", "text": "Müşterileriniz CRM'e giriş yapmaz. Her müşteriye özel, süreli bir takip linki gönderilir; bu linkten sadece kendi başvurusunun durumunu, randevu bilgisini ve sorumlu kişiyi görür."}}, {"@type": "Question", "name": "Mevcut müşteri listemi aktarabilir miyim?", "acceptedAnswer": {"@type": "Answer", "text": "Evet. Excel listelerinizi toplu yükleme ile aktarırız; müşteriler aşamalarıyla birlikte sisteme yerleşir."}}, {"@type": "Question", "name": "Ekibimdeki herkes her şeyi görebilir mi?", "acceptedAnswer": {"@type": "Answer", "text": "Hayır, rollere göre ayarlanır. Satış temsilcisi kendi adaylarını, evrak ve randevu ekibi kendi aşamalarındaki dosyaları görür; muhasebe ve raporlar yöneticiye açıktır."}}, {"@type": "Question", "name": "Verilerim güvende mi?", "acceptedAnswer": {"@type": "Answer", "text": "Her firmanın verisi ayrı bir veritabanında tutulur. Şifreler özel olarak şifrelenerek saklanır, hatalı girişlerde hesap geçici olarak kilitlenir ve önemli değişiklikler kimin yaptığıyla birlikte kayıt altına alınır."}}, {"@type": "Question", "name": "Fiyatlandırma nasıl?", "acceptedAnswer": {"@type": "Answer", "text": "Her kurulum firmanın ekip büyüklüğüne ve ihtiyaçlarına göre hazırlandığı için fiyatı demo görüşmesinden sonra size özel olarak sunuyoruz."}}]}
@@ -388,16 +444,56 @@ try{if(t('\u{1F60A}')&&!t('\u{1F1E8}\u{1F1ED}')){const s=document.createElement(
       <a href="muhasebe.html" class="btn btn-ghost" style="margin-top:26px">Muhasebe ekranını canlı izle <span aria-hidden="true">→</span></a>
     </div>
     <div class="reveal">
-      <div class="money">
-        <div class="mcard" style="--mc:#15803D"><b>₺248.600</b><small>Tahsilat · bu ay</small></div>
-        <div class="mcard" style="--mc:#DC2626"><b>₺62.650</b><small>Toplam gider · bu ay</small></div>
-        <div class="mcard" style="--mc:#15803D"><b>₺185.950</b><small>Net kâr · %75</small></div>
-      </div>
-      <div class="mtable">
-        <div><span>AY</span><span>TAHSİLAT</span><span>NET</span><span>GRAFİK</span></div>
-        <div><span style="color:#2563EB;font-weight:600">Eylül</span><span style="color:#15803D">₺248.600</span><span>₺185.950</span><span><span class="bar" style="width:62%;display:block"></span></span></div>
-        <div><span style="color:#2563EB;font-weight:600">Ağustos</span><span style="color:#15803D">₺312.400</span><span>₺268.900</span><span><span class="bar" style="width:84%;display:block"></span></span></div>
-        <div><span style="color:#2563EB;font-weight:600">Temmuz</span><span style="color:#15803D">₺356.100</span><span>₺301.750</span><span><span class="bar" style="width:96%;display:block"></span></span></div>
+      <div class="mx" id="mx" role="region" aria-roledescription="carousel" aria-label="Muhasebe ekranlarından örnekler">
+        <div class="mx-top"><i></i><i></i><i></i><b>Muhasebe</b><span class="mx-per" id="mxPer">Eylül 2026</span></div>
+        <div class="mx-tabs" role="tablist"><button type="button" class="on">Özet</button><button type="button">Giderler</button><button type="button">Ciro</button><button type="button">Onaylar</button></div>
+        <div class="mx-body">
+          <div class="mx-s on">
+            <div class="mx-kpi">
+              <div style="--c:#39D98A"><small>Tahsilat</small><b data-n="248600">₺248.600</b><em>38 müşteri</em></div>
+              <div style="--c:#F87171"><small>Toplam gider</small><b data-n="62650">₺62.650</b><em>ofis + müşteri</em></div>
+              <div style="--c:#22D3EE"><small>Net kâr</small><b data-n="185950">₺185.950</b><em>%75 marj</em></div>
+            </div>
+            <div class="mx-h">Aylık net kâr</div>
+            <div class="mx-mo">
+              <div class="mx-r"><span>Eylül</span><div class="bar"><i style="--w:62%"></i></div><b>₺185.950</b></div>
+              <div class="mx-r"><span>Ağustos</span><div class="bar"><i style="--w:84%"></i></div><b>₺268.900</b></div>
+              <div class="mx-r"><span>Temmuz</span><div class="bar"><i style="--w:96%"></i></div><b>₺301.750</b></div>
+              <div class="mx-r"><span>Haziran</span><div class="bar"><i style="--w:85%"></i></div><b>₺266.800</b></div>
+            </div>
+          </div>
+          <div class="mx-s">
+            <div class="mx-h">Müşteri giderleri · bu yıl <span>₺176.450</span></div>
+            <div class="mx-cat">
+              <div class="mx-r"><span>Konsolosluk harcı</span><div class="bar r"><i style="--w:100%"></i></div><b>₺82.300</b></div>
+              <div class="mx-r"><span>Randevu ücreti</span><div class="bar r"><i style="--w:50%"></i></div><b>₺41.200</b></div>
+              <div class="mx-r"><span>VIP randevu</span><div class="bar r"><i style="--w:26%"></i></div><b>₺21.600</b></div>
+              <div class="mx-r"><span>Tercüme</span><div class="bar r"><i style="--w:18%"></i></div><b>₺14.900</b></div>
+              <div class="mx-r"><span>Sigorta</span><div class="bar r"><i style="--w:12%"></i></div><b>₺10.250</b></div>
+              <div class="mx-r"><span>Kargo</span><div class="bar r"><i style="--w:8%"></i></div><b>₺6.200</b></div>
+            </div>
+          </div>
+          <div class="mx-s">
+            <div class="mx-2">
+              <div><div class="mx-h">Temsilci cirosu</div>
+                <div class="mx-p"><span class="av" style="--c:#0D9488">AK</span><div>Ayşe Korkmaz<small>86 satış</small></div><b>₺902.400</b></div>
+                <div class="mx-p"><span class="av" style="--c:#7C3AED">MY</span><div>Mert Yılmaz<small>64 satış</small></div><b>₺671.300</b></div>
+                <div class="mx-p"><span class="av" style="--c:#DC2626">TK</span><div>Tolga Kurt<small>41 satış</small></div><b>₺402.900</b></div></div>
+              <div><div class="mx-h">Ülke bazlı ciro</div>
+                <div class="mx-p"><span class="fl">🇬🇷</span><div>Yunanistan<small>78 müşteri</small></div><b>₺812.600</b></div>
+                <div class="mx-p"><span class="fl">🇳🇱</span><div>Hollanda<small>44 müşteri</small></div><b>₺455.300</b></div>
+                <div class="mx-p"><span class="fl">🇩🇪</span><div>Almanya<small>31 müşteri</small></div><b>₺362.100</b></div></div>
+            </div>
+            <p class="mx-foot">Bu yıl · temsilci ve ülke bazında</p>
+          </div>
+          <div class="mx-s">
+            <div class="mx-h">Onay bekleyen işlemler <span id="mxQ">2</span></div>
+            <div class="mx-ap" id="mxA1"><div><b>Elif Demir · 2. taksit</b><small>Ayşe K. girdi · VZ-2026-4172</small></div><strong>₺8.000</strong><span class="go">Onayla</span></div>
+            <div class="mx-ap" id="mxA2"><div><b>Oya Tekin · iade talebi</b><small>Vize reddi · Tolga K. girdi</small></div><strong class="neg">−₺3.500</strong><span class="go">Onayla</span></div>
+            <div class="mx-led"><span>Elif Demir · toplam ₺24.000</span><span>Ödenen <b id="mxPaid">₺12.000</b></span><span>Kalan <b id="mxLeft" class="warn">₺12.000</b></span></div>
+          </div>
+        </div>
+        <div class="mx-prog"><i id="mxProg"></i></div>
       </div>
       <p class="demo-note">Örnek görünüm · rakamlar temsilidir</p>
     </div>
@@ -636,6 +732,47 @@ dots.innerHTML = S.map((_, i) => `<button type="button" aria-label="${i + 1}. ek
   if('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => vis(e.isIntersecting))).observe(hv);
   document.addEventListener('visibilitychange', () => vis(!document.hidden));
   db[0].classList.add('on'); if(!reduce) prog.classList.add('run');
+})();
+</script>
+<script>
+// ── Muhasebe vitrini: sekmeler kendiliğinden geçer, üzerine gelince durur ──
+(() => {
+  const mx = document.getElementById('mx'); if(!mx) return;
+  const S = [...mx.querySelectorAll('.mx-s')], tabs = [...mx.querySelectorAll('.mx-tabs button')], prog = document.getElementById('mxProg');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fmt = n => '₺' + Math.round(n).toLocaleString('tr-TR');
+  let cur = 0, timers = [];
+  const later = (f, ms) => timers.push(setTimeout(f, ms));
+  function countUp(){
+    S[0].querySelectorAll('[data-n]').forEach(el => { const to = +el.dataset.n, t0 = performance.now();
+      const step = t => { const p = Math.min(1, (t - t0) / 900); el.textContent = fmt(to * (1 - Math.pow(1 - p, 3))); if(p < 1) requestAnimationFrame(step); };
+      if(!reduce) requestAnimationFrame(step); });
+  }
+  function approvals(){
+    const a1 = document.getElementById('mxA1'), a2 = document.getElementById('mxA2'), q = document.getElementById('mxQ'), paid = document.getElementById('mxPaid'), left = document.getElementById('mxLeft');
+    [a1, a2].forEach(a => { a.classList.remove('ok','press'); a.querySelector('.go').textContent = 'Onayla'; });
+    q.textContent = '2'; paid.textContent = '₺12.000'; paid.classList.remove('flash'); left.textContent = '₺12.000'; left.className = 'warn';
+    if(reduce) return;
+    later(() => a1.classList.add('press'), 1400);
+    later(() => { a1.classList.remove('press'); a1.classList.add('ok'); a1.querySelector('.go').textContent = '✓ Onaylandı'; q.textContent = '1';
+      paid.textContent = '₺20.000'; left.textContent = '₺4.000'; left.className = 'warn flash'; paid.classList.add('flash'); }, 1800);
+    later(() => a2.classList.add('press'), 3300);
+    later(() => { a2.classList.remove('press'); a2.classList.add('ok'); a2.querySelector('.go').textContent = '✓ Onaylandı'; q.textContent = '0'; }, 3700);
+  }
+  function go(i){
+    timers.forEach(clearTimeout); timers = [];
+    S[cur].classList.remove('on'); cur = (i + S.length) % S.length; S[cur].classList.add('on');
+    tabs.forEach((t, k) => { t.classList.toggle('on', k === cur); t.setAttribute('aria-selected', k === cur); });
+    document.getElementById('mxPer').textContent = ['Eylül 2026','Bu yıl','Bu yıl','Bugün'][cur];
+    if(cur === 0) countUp(); if(cur === 3) approvals();
+    prog.classList.remove('run'); void prog.offsetWidth; if(!reduce) prog.classList.add('run');
+  }
+  let started = false;
+  tabs.forEach((t, k) => t.addEventListener('click', () => { started = true; go(k); }));
+  prog.addEventListener('animationend', () => go(cur + 1));
+  const vis = on => { mx.classList.toggle('paused', !on); if(on && !started){ started = true; go(0); } };
+  if('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => vis(e.isIntersecting))).observe(mx); else vis(true);
+  document.addEventListener('visibilitychange', () => mx.classList.toggle('paused', document.hidden));
 })();
 </script>
 </body>
