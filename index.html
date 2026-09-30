@@ -59,6 +59,81 @@
 .app.dark .st.p{background:rgba(139,92,246,.18);color:#C4B5FD}
 .app.dark .st.c{background:rgba(34,211,238,.14);color:#67E8F9}
 @media (max-width:760px){ .app.dark .app-tr{grid-template-columns:minmax(0,1fr) 100px 22px} .app.dark .app-tr > :nth-child(2){display:none} .app.dark .app-body{grid-template-columns:1fr} .app.dark .app-side{display:none} }
+/* Hero: sayfalardan kesitler, kendiliğinden kayar */
+.hero-visual .app.dark{overflow:visible}
+.app.dark .app-top{position:relative}
+.hv-link{margin-left:auto;font-size:10.5px;font-weight:700;color:#67E8F9;text-decoration:none;opacity:.9;transition:opacity .2s}
+.hv-link:hover{opacity:1;text-decoration:underline}
+.app.dark .app-body{min-height:332px}
+.app.dark .app-nav div[data-s]{cursor:pointer;transition:background .35s,color .35s}
+.app.dark .app-nav div[data-s]:hover{color:#EAF2F9}
+.app.dark .app-main{position:relative;display:grid;padding:0;overflow:hidden;border-radius:0 0 16px 0}
+.hv-s{grid-area:1/1;padding:12px 14px;opacity:0;transform:translateX(18px);filter:blur(3px);transition:opacity .55s ease,transform .6s cubic-bezier(.2,.8,.2,1),filter .55s;pointer-events:none}
+.hv-s.on{opacity:1;transform:none;filter:none;pointer-events:auto}
+.hv-s.out{transform:translateX(-18px)}
+.hv-s .hi{opacity:0;transform:translateY(6px)}
+.hv-s.on .hi{animation:hvIn .5s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i,0) * 70ms + 120ms)}
+@keyframes hvIn{to{opacity:1;transform:none}}
+.hv-prog{position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(148,178,210,.08);border-radius:0 0 16px 16px;overflow:hidden}
+.hv-prog i{display:block;height:100%;width:100%;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,#39D98A,#22D3EE)}
+.hv-prog i.run{animation:hvProg 5.2s linear forwards}
+@keyframes hvProg{to{transform:scaleX(1)}}
+.hero-visual:hover .hv-prog i,.hero-visual.paused .hv-prog i{animation-play-state:paused}
+.hv-sub{font-size:10px;color:#5E7A94;margin:-6px 0 9px}
+/* Takvim kesiti */
+.hv-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.hv-cal .dw{font-size:8px;font-weight:700;color:#5E7A94;text-align:center;letter-spacing:.05em}
+.hv-cal .d{height:43px;border-radius:6px;border:1px solid rgba(148,178,210,.1);background:rgba(8,25,42,.6);padding:3px;display:flex;flex-direction:column;gap:2px;font-size:8.5px;color:#8FA7BD;font-weight:700}
+.hv-cal .d.b{visibility:hidden}
+.hv-cal .d.t{border-color:rgba(59,130,246,.85);box-shadow:0 0 0 1px rgba(59,130,246,.45)}
+.hv-cal .d.t > span{background:#3B82F6;color:#fff;border-radius:6px;padding:0 4px;align-self:flex-start}
+.hv-cal .c{height:9px;border-radius:3px;border-left:2px solid}
+.hv-cal .c.g{background:rgba(57,217,138,.2);border-color:#39D98A}
+.hv-cal .c.o{background:rgba(245,158,11,.2);border-color:#F59E0B}
+.hv-cal .c.f{animation:hvFlip 1.2s 1.2s both}
+@keyframes hvFlip{0%{background:rgba(245,158,11,.2);border-color:#F59E0B}100%{background:rgba(57,217,138,.35);border-color:#39D98A;box-shadow:0 0 8px rgba(57,217,138,.6)}}
+.hv-leg{display:flex;gap:10px;font-size:9px;color:#8FA7BD;font-weight:500}
+.app.dark .app-h .hv-leg span{background:none;color:#8FA7BD;padding:0;font-weight:500;font-size:9px}
+.app.dark .app-h span.nt{background:rgba(148,178,210,.12);color:#C9D6E3}
+.hv-leg i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:4px;vertical-align:0}
+/* Liste kesitleri */
+.hv-g{font-size:10px;font-weight:700;color:#EAF2F9;display:flex;align-items:center;gap:6px;margin:6px 0 5px}
+.hv-g::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--c);box-shadow:0 0 8px var(--c)}
+.hv-r{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:7px 9px;margin-bottom:5px;border-radius:8px;border:1px solid rgba(148,178,210,.1);border-left:3px solid var(--c,rgba(148,178,210,.2));background:rgba(8,25,42,.6);font-size:10px;color:#8FA7BD}
+.hv-r b{color:#EAF2F9;font-weight:600;font-size:10.5px}
+.hv-r small{display:block;font-size:9px;color:#5E7A94}
+.hv-d{display:flex;align-items:center;gap:5px;font-weight:800;font-size:11px;color:#C9D6E3;font-variant-numeric:tabular-nums}
+.hv-d::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--c,#5E7A94);box-shadow:0 0 6px var(--c,transparent)}
+/* Muhasebe kesiti */
+.hv-kpi{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:9px}
+.hv-kpi div{padding:8px 9px;border-radius:8px;border:1px solid rgba(148,178,210,.1);border-top:2px solid var(--c);background:rgba(8,25,42,.6)}
+.hv-kpi b{display:block;font-size:14px;color:var(--c);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.hv-kpi small{font-size:8.5px;color:#5E7A94}
+.hv-bars{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;align-items:end;height:72px;padding:0 6px;border-bottom:1px solid rgba(148,178,210,.12)}
+.hv-bars span{display:flex;flex-direction:column;justify-content:flex-end;height:100%;gap:2px}
+.hv-bars i{display:block;border-radius:4px 4px 0 0;background:linear-gradient(180deg,#39D98A,#0D9488);transform-origin:bottom;transform:scaleY(0)}
+.hv-s.on .hv-bars i{animation:hvBar .7s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 90ms + 300ms)}
+@keyframes hvBar{to{transform:scaleY(1)}}
+.hv-bl{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:3px 6px 0;font-size:8.5px;color:#5E7A94;text-align:center}
+/* Performans kesiti */
+.hv-p{display:grid;grid-template-columns:86px minmax(0,1fr) 26px;gap:8px;align-items:center;padding:7px 2px;border-bottom:1px solid rgba(148,178,210,.07);font-size:10px;color:#C9D6E3}
+.hv-p small{display:block;font-size:8.5px;color:#5E7A94}
+.hv-p .bar{height:8px;border-radius:5px;background:rgba(148,178,210,.1);overflow:hidden}
+.hv-p .bar i{display:block;height:100%;width:var(--w);border-radius:5px;background:linear-gradient(90deg,#3B82F6,#22D3EE);transform-origin:left;transform:scaleX(0)}
+.hv-s.on .hv-p .bar i{animation:hvBarX .8s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 90ms + 250ms)}
+@keyframes hvBarX{to{transform:scaleX(1)}}
+.hv-p b{text-align:right;color:#60A5FA;font-weight:800;font-variant-numeric:tabular-nums}
+/* Bildirim kartı ve noktalar */
+.hv-toast{position:absolute;right:-22px;bottom:22px;z-index:3;display:flex;gap:10px;align-items:center;max-width:250px;padding:10px 14px 10px 11px;border-radius:12px;background:rgba(11,34,54,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(57,217,138,.4);box-shadow:0 20px 44px rgba(0,0,0,.55);font-size:11.5px;color:#EAF2F9;transition:opacity .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
+.hv-toast.swap{opacity:0;transform:translateY(10px)}
+.hv-toast .ic{width:28px;height:28px;flex-shrink:0;border-radius:8px;display:grid;place-items:center;background:rgba(57,217,138,.15);color:#39D98A;font-size:13px;font-weight:800}
+.hv-toast b{font-weight:600}
+.hv-toast small{display:block;color:#5E7A94;font-size:10px;margin-top:1px}
+.hv-dots{display:flex;justify-content:center;gap:6px;margin-top:36px}
+.hv-dots button{width:7px;height:7px;padding:0;border:0;border-radius:4px;background:rgba(148,178,210,.25);cursor:pointer;transition:width .35s,background .35s}
+.hv-dots button.on{width:22px;background:linear-gradient(90deg,#39D98A,#22D3EE)}
+@media (max-width:760px){ .hv-toast{position:relative;right:auto;bottom:auto;margin:14px auto 0;max-width:none;width:fit-content} .hv-dots{margin-top:12px} .hv-p{grid-template-columns:70px minmax(0,1fr) 24px} }
+@media (prefers-reduced-motion:reduce){ .hv-s,.hv-toast{transition:none} .hv-s.on .hi,.hv-s.on .hv-bars i,.hv-s.on .hv-p .bar i{animation:none;opacity:1;transform:none} }
 </style>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Bir program kurmam gerekiyor mu?", "acceptedAnswer": {"@type": "Answer", "text": "Hayır. Sistem tarayıcıda çalışır; ofisten, evden ve telefondan internet olan her yerden giriş yapılabilir."}}, {"@type": "Question", "name": "Müşterilerim sisteme nasıl ulaşıyor?", "acceptedAnswer": {"@type": "Answer", "text": "Müşterileriniz CRM'e giriş yapmaz. Her müşteriye özel, süreli bir takip linki gönderilir; bu linkten sadece kendi başvurusunun durumunu, randevu bilgisini ve sorumlu kişiyi görür."}}, {"@type": "Question", "name": "Mevcut müşteri listemi aktarabilir miyim?", "acceptedAnswer": {"@type": "Answer", "text": "Evet. Excel listelerinizi toplu yükleme ile aktarırız; müşteriler aşamalarıyla birlikte sisteme yerleşir."}}, {"@type": "Question", "name": "Ekibimdeki herkes her şeyi görebilir mi?", "acceptedAnswer": {"@type": "Answer", "text": "Hayır, rollere göre ayarlanır. Satış temsilcisi kendi adaylarını, evrak ve randevu ekibi kendi aşamalarındaki dosyaları görür; muhasebe ve raporlar yöneticiye açıktır."}}, {"@type": "Question", "name": "Verilerim güvende mi?", "acceptedAnswer": {"@type": "Answer", "text": "Her firmanın verisi ayrı bir veritabanında tutulur. Şifreler özel olarak şifrelenerek saklanır, hatalı girişlerde hesap geçici olarak kilitlenir ve önemli değişiklikler kimin yaptığıyla birlikte kayıt altına alınır."}}, {"@type": "Question", "name": "Fiyatlandırma nasıl?", "acceptedAnswer": {"@type": "Answer", "text": "Her kurulum firmanın ekip büyüklüğüne ve ihtiyaçlarına göre hazırlandığı için fiyatı demo görüşmesinden sonra size özel olarak sunuyoruz."}}]}
@@ -109,41 +184,77 @@
       </div>
     </div>
 
-    <div class="hero-visual">
-      <div class="app dark" role="img" aria-label="CRM müşteri listesi ekranı örneği">
-        <div class="app-top"><i></i><i></i><i></i><b>Operasyon Sistemi</b></div>
+    <div class="hero-visual" id="hv">
+      <div class="app dark" role="region" aria-roledescription="carousel" aria-label="Sistem ekranlarından örnekler">
+        <div class="app-top"><i></i><i></i><i></i><b>Operasyon Sistemi</b><a class="hv-link" id="hvLink" href="is-akisi.html">Canlı örneği izle →</a></div>
         <div class="app-body">
           <div class="app-side">
             <div class="app-logo"><span>✈</span><div><b>Firmanız</b><small>Operasyon Sistemi</small></div></div>
             <div class="app-nav">
-              <div>📊 Dashboard</div><div>🎯 Bugün Ne Yapmalıyım</div><div class="on">👥 Müşteriler</div><div>🧭 Pipeline</div><div>📅 Takvim</div><div>🏛️ Konsolosluk</div><div>✅ Tamamlandı<em>27</em></div>
-              <h5>YÖNETİM</h5><div>💰 Muhasebe</div><div>📈 Performans</div><div>📚 Belge Kütüphanesi</div>
+              <div>📊 Dashboard</div><div data-s="2">🎯 Bugün Ne Yapmalıyım</div><div data-s="0" class="on">👥 Müşteriler</div><div>🧭 Pipeline</div><div data-s="1">📅 Takvim</div><div data-s="3">🏛️ Konsolosluk</div><div>✅ Tamamlandı<em>27</em></div>
+              <h5>YÖNETİM</h5><div data-s="4">💰 Muhasebe</div><div data-s="5">📈 Performans</div><div>📚 Belge Kütüphanesi</div>
             </div>
           </div>
-          <div class="app-main">
-            <div class="app-h"><b>Müşteriler</b><span>+ Yeni Müşteri</span></div>
+          <div class="app-main" aria-live="polite">
+            <div class="hv-s on" data-s="0">
+<div class="app-h"><b>Müşteriler</b><span>+ Yeni Müşteri</span></div>
             <div class="app-tbl">
               <div class="app-tr hd"><span>MÜŞTERİ</span><span>ÜLKE</span><span>AŞAMA</span><span></span></div>
-              <div class="app-tr"><span class="who"><b>Elif Demir</b><span class="fn">VZ-2026-4172</span></span><span>🇬🇷 Yunanistan</span><span><span class="st g">Ödeme Alındı</span></span><span class="rep"><i style="background:#0D9488" title="Ayşe">AK</i></span></div>
-              <div class="app-tr"><span class="who"><b>Murat Aksoy</b><span class="fn">VZ-2026-4168</span></span><span>🇳🇱 Hollanda</span><span><span class="st p">Randevu Alındı</span></span><span class="rep"><i style="background:#7C3AED" title="Mert">MY</i></span></div>
-              <div class="app-tr"><span class="who"><b>Zeynep Kaya</b><span class="fn">VZ-2026-4161</span></span><span>🇩🇪 Almanya</span><span><span class="st a">Belge Bekleniyor</span></span><span class="rep"><i style="background:#2563EB" title="Selin">SD</i></span></div>
-              <div class="app-tr"><span class="who"><b>Can Yıldız</b><span class="fn">VZ-2026-4155</span></span><span>🇨🇭 İsviçre</span><span><span class="st c">Başvuru Yapıldı</span></span><span class="rep"><i style="background:#0D9488" title="Ayşe">AK</i></span></div>
-              <div class="app-tr"><span class="who"><b>Deniz Arslan</b><span class="fn">VZ-2026-4149</span></span><span>🇮🇹 İtalya</span><span><span class="st b">İlgileniyor</span></span><span class="rep"><i style="background:#EA580C" title="Burak">BT</i></span></div>
-              <div class="app-tr"><span class="who"><b>Ahmet Şen</b><span class="fn">VZ-2026-4140</span></span><span>🇪🇸 İspanya</span><span><span class="st g">Tamamlandı</span></span><span class="rep"><i style="background:#7C3AED" title="Mert">MY</i></span></div>
+              <div class="app-tr hi" style="--i:1"><span class="who"><b>Elif Demir</b><span class="fn">VZ-2026-4172</span></span><span>🇬🇷 Yunanistan</span><span><span class="st g">Ödeme Alındı</span></span><span class="rep"><i style="background:#0D9488" title="Ayşe">AK</i></span></div>
+              <div class="app-tr hi" style="--i:2"><span class="who"><b>Murat Aksoy</b><span class="fn">VZ-2026-4168</span></span><span>🇳🇱 Hollanda</span><span><span class="st p">Randevu Alındı</span></span><span class="rep"><i style="background:#7C3AED" title="Mert">MY</i></span></div>
+              <div class="app-tr hi" style="--i:3"><span class="who"><b>Zeynep Kaya</b><span class="fn">VZ-2026-4161</span></span><span>🇩🇪 Almanya</span><span><span class="st a">Belge Bekleniyor</span></span><span class="rep"><i style="background:#2563EB" title="Selin">SD</i></span></div>
+              <div class="app-tr hi" style="--i:4"><span class="who"><b>Can Yıldız</b><span class="fn">VZ-2026-4155</span></span><span>🇨🇭 İsviçre</span><span><span class="st c">Başvuru Yapıldı</span></span><span class="rep"><i style="background:#0D9488" title="Ayşe">AK</i></span></div>
+              <div class="app-tr hi" style="--i:5"><span class="who"><b>Deniz Arslan</b><span class="fn">VZ-2026-4149</span></span><span>🇮🇹 İtalya</span><span><span class="st b">İlgileniyor</span></span><span class="rep"><i style="background:#EA580C" title="Burak">BT</i></span></div>
+              <div class="app-tr hi" style="--i:6"><span class="who"><b>Ahmet Şen</b><span class="fn">VZ-2026-4140</span></span><span>🇪🇸 İspanya</span><span><span class="st g">Tamamlandı</span></span><span class="rep"><i style="background:#7C3AED" title="Mert">MY</i></span></div>
+            </div>
+            </div>
+            <div class="hv-s" data-s="1">
+              <div class="app-h"><b>Takvim · Ekim 2026</b><div class="hv-leg"><span><i style="background:#39D98A"></i>Evraklar hazır</span><span><i style="background:#F59E0B"></i>Evrak bekleniyor</span></div></div>
+              <div class="hv-cal" id="hvCal"></div>
+            </div>
+            <div class="hv-s" data-s="2">
+              <div class="app-h"><b>Bugün Ne Yapmalıyım</b><span class="nt">Ayşe K. · Satış</span></div>
+              <div class="hv-sub">30 Eylül Çarşamba · bugün ilgilenmen gereken <b style="color:#EAF2F9">4</b> dosya var</div>
+              <div class="hv-g hi" style="--c:#EF4444;--i:1">Acil</div>
+              <div class="hv-r hi" style="--c:#EF4444;--i:2"><div><b>Berk Aydemir</b> <small>Yeni Kayıt · dün geldi, henüz aranmadı</small></div><span>›</span></div>
+              <div class="hv-r hi" style="--c:#EF4444;--i:3"><div><b>Onur Balcı</b> <small>İlgileniyor · 14 gündür güncellenmedi</small></div><span>›</span></div>
+              <div class="hv-g hi" style="--c:#F59E0B;--i:4">Bugün</div>
+              <div class="hv-r hi" style="--c:#F59E0B;--i:5"><div><b>Kemal Öz</b> <small>Sonra Ara · bugün 14:00</small></div><span>›</span></div>
+              <div class="hv-r hi" style="--c:#F59E0B;--i:6"><div><b>Seda Er</b> <small>İletişime Geçildi · ödeme bekleniyor</small></div><span>›</span></div>
+            </div>
+            <div class="hv-s" data-s="3">
+              <div class="app-h"><b>Konsolosluk Takibi</b><span class="nt">4 sonuç bekliyor</span></div>
+              <div class="hv-sub">Başvuru gününden sayılır · 30+ gün sarı, 45+ gün kırmızı</div>
+              <div class="hv-r hi" style="--c:#EF4444;--i:1"><div><b>Mert Kaya</b> <small>🇩🇰 Danimarka · VZ-2026-3981</small></div><span class="hv-d" style="--c:#EF4444;color:#F87171">47 gün</span></div>
+              <div class="hv-r hi" style="--c:#F59E0B;--i:2"><div><b>Sibel Aydın</b> <small>🇳🇱 Hollanda · VZ-2026-4027</small></div><span class="hv-d" style="--c:#F59E0B;color:#FCD34D">35 gün</span></div>
+              <div class="hv-r hi" style="--i:3"><div><b>Ayla Yurt</b> <small>🇫🇷 Fransa · VZ-2026-4066</small></div><span class="hv-d">29 gün</span></div>
+              <div class="hv-r hi" style="--i:4"><div><b>Elif Demir +1</b> <small>🇬🇷 Yunanistan · VZ-2026-4172</small></div><span class="hv-d">11 gün</span></div>
+            </div>
+            <div class="hv-s" data-s="4">
+              <div class="app-h"><b>Muhasebe · Eylül</b><span>📥 Excel</span></div>
+              <div class="hv-kpi">
+                <div class="hi" style="--c:#39D98A;--i:1"><b>₺248.600</b><small>Tahsilat · 38 müşteri</small></div>
+                <div class="hi" style="--c:#F87171;--i:2"><b>₺62.650</b><small>Toplam gider</small></div>
+                <div class="hi" style="--c:#22D3EE;--i:3"><b>₺185.950</b><small>Net kâr · %75 marj</small></div>
+                <div class="hi" style="--c:#F59E0B;--i:4"><b>₺312.800</b><small>Bekleyen · 46 müşteri</small></div>
+              </div>
+              <div class="hv-bars"><span><i style="height:84%;--i:0"></i></span><span><i style="height:100%;--i:1"></i></span><span><i style="height:75%;--i:2"></i></span><span><i style="height:52%;--i:3"></i></span></div>
+              <div class="hv-bl"><span>Haziran</span><span>Temmuz</span><span>Ağustos</span><span>Eylül</span></div>
+            </div>
+            <div class="hv-s" data-s="5">
+              <div class="app-h"><b>Performans · Son 7 gün</b><span class="nt">Toplam işlem</span></div>
+              <div class="hv-sub">Gerçek işlemler sayılır: arama, aşama, ödeme, dosya…</div>
+              <div class="hv-p"><div>Ayşe Korkmaz<small>Satış</small></div><div class="bar"><i style="--w:100%;--i:0"></i></div><b>42</b></div>
+              <div class="hv-p"><div>Selin Demir<small>Evrak</small></div><div class="bar"><i style="--w:52%;--i:1"></i></div><b>22</b></div>
+              <div class="hv-p"><div>Kerem Aslan<small>Randevu</small></div><div class="bar"><i style="--w:29%;--i:2"></i></div><b>12</b></div>
+              <div class="hv-p"><div>Tolga Kurt<small>Satış</small></div><div class="bar"><i style="--w:8%;--i:3"></i></div><b>3</b></div>
             </div>
           </div>
         </div>
+        <div class="hv-prog"><i id="hvProg"></i></div>
       </div>
-      <a href="musteri-portali.html" class="phone" aria-label="Müşteri takip portalını incele">
-        <div class="phone-in">
-          <h6>Başvurunuz</h6><small>🇳🇱 Hollanda · Schengen Turistik</small>
-          <div class="pstep done"><i>✓</i><div><b>Ödeme alındı</b></div></div>
-          <div class="pstep done"><i>✓</i><div><b>Belgeler tamam</b></div></div>
-          <div class="pstep now"><i>•</i><div><b>Randevu alındı</b><span>14 Ekim · 09:30</span></div></div>
-          <div class="pstep todo"><i></i><div><b>Başvuru yapıldı</b></div></div>
-          <div class="pstep todo"><i></i><div><b>Sonuç</b></div></div>
-        </div>
-      </a>
+      <div class="hv-toast" id="hvToast"><span class="ic">✓</span><div><b>Ayşe K.'ya otomatik atandı</b><small>Yeni başvuru · web formundan</small></div></div>
+      <div class="hv-dots" id="hvDots"></div>
     </div>
   </div>
 </section>
@@ -453,6 +564,48 @@ if('IntersectionObserver' in window){
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 } else document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
 document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<script>
+// ── Hero: sistemden kesitler, kendiliğinden kayar (üzerine gelince durur) ──
+(() => {
+  const hv = document.getElementById('hv'); if(!hv) return;
+  const S = [...hv.querySelectorAll('.hv-s')], nav = [...hv.querySelectorAll('.app-nav [data-s]')];
+  const prog = document.getElementById('hvProg'), toast = document.getElementById('hvToast'), link = document.getElementById('hvLink'), dots = document.getElementById('hvDots');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const INFO = [
+    ['is-akisi.html','✓',"Ayşe K.'ya otomatik atandı",'Yeni başvuru · web formundan'],
+    ['randevu-takvimi.html','✓','Evraklar tamam · yeşile döndü','Elif Demir · 14 Ekim 09:30'],
+    ['bugun-ne-yapmaliyim.html','!','2 acil dosya en üstte','Günün listesi kendiliğinden hazır'],
+    ['randevu-takvimi.html','⏱','Sibel Aydın 35 gündür bekliyor','30 günü geçti · sarıyla işaretlendi'],
+    ['muhasebe.html','₺','Net kâr %75','Tahsilat ve giderler tek ekranda'],
+    ['performans-raporlari.html','↗','Ayşe K. · 42 işlem','Son 7 gün · gerçek işlemler'],
+  ];
+  // Takvim kesiti: Ekim 2026 (1 Ekim Perşembe); 14 Ekim'deki randevu turuncudan yeşile döner
+  const C = { 1:'gg', 2:'g', 5:'go', 6:'g', 8:'o', 9:'g', 12:'o', 13:'g', 14:'f', 15:'oo', 16:'g', 19:'o', 20:'o', 22:'o', 23:'o', 26:'o', 27:'o', 29:'o', 30:'o' };
+  document.getElementById('hvCal').innerHTML = ['PZT','SAL','ÇAR','PER','CUM','CMT','PAZ'].map(d => `<span class="dw">${d}</span>`).join('') + '<span class="d b"></span>'.repeat(3)
+    + Array.from({ length:31 }, (_, i) => { const d = i + 1;
+      return `<span class="d${d === 14 ? ' t' : ''}"><span>${d}</span>${[...(C[d] || '')].map(x => `<i class="c ${x === 'f' ? 'o f' : x}"></i>`).join('')}</span>`; }).join('');
+  dots.innerHTML = S.map((_, i) => `<button type="button" aria-label="${i + 1}. ekran"></button>`).join('');
+  const db = [...dots.children];
+  let cur = 0;
+  function go(i){
+    const prev = S[cur]; prev.classList.remove('on'); prev.classList.add('out'); setTimeout(() => prev.classList.remove('out'), 600);
+    cur = (i + S.length) % S.length; S[cur].classList.add('on');
+    nav.forEach(n => n.classList.toggle('on', +n.dataset.s === cur)); db.forEach((d, k) => d.classList.toggle('on', k === cur));
+    const [href, ic, t, sm] = INFO[cur]; link.href = href;
+    toast.classList.add('swap');
+    setTimeout(() => { toast.innerHTML = `<span class="ic">${ic}</span><div><b>${t}</b><small>${sm}</small></div>`; toast.classList.remove('swap'); }, 350);
+    prog.classList.remove('run'); void prog.offsetWidth; if(!reduce) prog.classList.add('run');
+  }
+  prog.addEventListener('animationend', () => go(cur + 1));
+  nav.forEach(n => n.addEventListener('click', () => go(+n.dataset.s)));
+  db.forEach((d, k) => d.addEventListener('click', () => go(k)));
+  // Ekrandan çıkınca ya da sekme gizlenince bekler
+  const vis = on => hv.classList.toggle('paused', !on);
+  if('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => vis(e.isIntersecting))).observe(hv);
+  document.addEventListener('visibilitychange', () => vis(!document.hidden));
+  db[0].classList.add('on'); if(!reduce) prog.classList.add('run');
+})();
 </script>
 </body>
 </html>
