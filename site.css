@@ -486,9 +486,9 @@ footer .links a{display:inline-block;padding:11px 0;margin:-11px 0}
 .marquee{overflow:hidden;padding:22px 0;border-block:1px solid var(--border2);background:rgba(255,255,255,.012);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .mq-track{display:flex;gap:44px;width:max-content;animation:mq 40s linear infinite}
 .marquee:hover .mq-track{animation-play-state:paused}
-.mq-track span{display:inline-flex;align-items:center;gap:10px;white-space:nowrap;font-size:15px;color:var(--faint)}
+.mq-track span{white-space:nowrap;font-size:15px;color:var(--faint)}
 .mq-track b{color:var(--text);font-weight:600}
-.mq-track i{font-style:normal;color:var(--green);font-size:13px}
+.mq-track i{font-style:normal;color:var(--green);font-size:13px;margin-right:10px}
 @keyframes mq{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){
   .hero::before,.page-hero::before{animation:none}
