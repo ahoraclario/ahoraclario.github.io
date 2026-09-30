@@ -86,6 +86,7 @@ try{if(t('\u{1F60A}')&&!t('\u{1F1E8}\u{1F1ED}')){const s=document.createElement(
 .hv-prog i{display:block;height:100%;width:100%;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,#39D98A,#22D3EE)}
 .hv-prog i.run{animation:hvProg 5.2s linear forwards}
 @keyframes hvProg{to{transform:scaleX(1)}}
+@keyframes floaty{50%{translate:0 -8px}}
 .hero-visual:hover .hv-prog i,.hero-visual.paused .hv-prog i{animation-play-state:paused}
 .hv-sub{font-size:10px;color:#5E7A94;margin:-6px 0 9px}
 /* Takvim kesiti */
@@ -132,7 +133,7 @@ try{if(t('\u{1F60A}')&&!t('\u{1F1E8}\u{1F1ED}')){const s=document.createElement(
 @keyframes hvBarX{to{transform:scaleX(1)}}
 .hv-p b{text-align:right;color:#60A5FA;font-weight:800;font-variant-numeric:tabular-nums}
 /* Bildirim kartı ve noktalar */
-.hv-toast{position:absolute;right:-22px;bottom:22px;z-index:3;display:flex;gap:10px;align-items:center;max-width:250px;padding:10px 14px 10px 11px;border-radius:12px;background:rgba(11,34,54,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(57,217,138,.4);box-shadow:0 20px 44px rgba(0,0,0,.55);font-size:11.5px;color:#EAF2F9;transition:opacity .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
+.hv-toast{position:absolute;right:-22px;bottom:22px;z-index:3;animation:floaty 6s ease-in-out infinite;display:flex;gap:10px;align-items:center;max-width:250px;padding:10px 14px 10px 11px;border-radius:12px;background:rgba(11,34,54,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(57,217,138,.4);box-shadow:0 20px 44px rgba(0,0,0,.55);font-size:11.5px;color:#EAF2F9;transition:opacity .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
 .hv-toast.swap{opacity:0;transform:translateY(10px)}
 .hv-toast .ic{width:28px;height:28px;flex-shrink:0;border-radius:8px;display:grid;place-items:center;background:rgba(57,217,138,.15);color:#39D98A;font-size:13px;font-weight:800}
 .hv-toast b{font-weight:600}
@@ -143,7 +144,7 @@ try{if(t('\u{1F60A}')&&!t('\u{1F1E8}\u{1F1ED}')){const s=document.createElement(
 .hv-dots button.on::before{width:22px;background:linear-gradient(90deg,#39D98A,#22D3EE)}
 .hv-dots button:focus-visible{outline:2px solid #22D3EE;outline-offset:-6px;border-radius:8px}
 @media (max-width:760px){ .hv-toast{position:relative;right:auto;bottom:auto;margin:14px auto 0;max-width:none;width:fit-content} .hv-dots{margin-top:12px} .hv-p{grid-template-columns:70px minmax(0,1fr) 24px} }
-@media (prefers-reduced-motion:reduce){ .hv-s,.hv-toast{transition:none} .hv-s.on .hi,.hv-s.on .hv-bars i,.hv-s.on .hv-p .bar i{animation:none;opacity:1;transform:none} }
+@media (prefers-reduced-motion:reduce){ .hv-s,.hv-toast{transition:none;animation:none} .hv-s.on .hi,.hv-s.on .hv-bars i,.hv-s.on .hv-p .bar i{animation:none;opacity:1;transform:none} }
 </style>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Bir program kurmam gerekiyor mu?", "acceptedAnswer": {"@type": "Answer", "text": "Hayır. Sistem tarayıcıda çalışır; ofisten, evden ve telefondan internet olan her yerden giriş yapılabilir."}}, {"@type": "Question", "name": "Müşterilerim sisteme nasıl ulaşıyor?", "acceptedAnswer": {"@type": "Answer", "text": "Müşterileriniz CRM'e giriş yapmaz. Her müşteriye özel, süreli bir takip linki gönderilir; bu linkten sadece kendi başvurusunun durumunu, randevu bilgisini ve sorumlu kişiyi görür."}}, {"@type": "Question", "name": "Mevcut müşteri listemi aktarabilir miyim?", "acceptedAnswer": {"@type": "Answer", "text": "Evet. Excel listelerinizi toplu yükleme ile aktarırız; müşteriler aşamalarıyla birlikte sisteme yerleşir."}}, {"@type": "Question", "name": "Ekibimdeki herkes her şeyi görebilir mi?", "acceptedAnswer": {"@type": "Answer", "text": "Hayır, rollere göre ayarlanır. Satış temsilcisi kendi adaylarını, evrak ve randevu ekibi kendi aşamalarındaki dosyaları görür; muhasebe ve raporlar yöneticiye açıktır."}}, {"@type": "Question", "name": "Verilerim güvende mi?", "acceptedAnswer": {"@type": "Answer", "text": "Her firmanın verisi ayrı bir veritabanında tutulur. Şifreler özel olarak şifrelenerek saklanır, hatalı girişlerde hesap geçici olarak kilitlenir ve önemli değişiklikler kimin yaptığıyla birlikte kayıt altına alınır."}}, {"@type": "Question", "name": "Fiyatlandırma nasıl?", "acceptedAnswer": {"@type": "Answer", "text": "Her kurulum firmanın ekip büyüklüğüne ve ihtiyaçlarına göre hazırlandığı için fiyatı demo görüşmesinden sonra size özel olarak sunuyoruz."}}]}
@@ -269,10 +270,8 @@ try{if(t('\u{1F60A}')&&!t('\u{1F1E8}\u{1F1ED}')){const s=document.createElement(
   </div>
 </section>
 
-<div class="trust" aria-label="Öne çıkanlar">
-  <div class="wrap">
-    <span><b>Satış</b> → <b>Evrak</b> → <b>Randevu</b> tek akışta</span><span class="sep">·</span><span><b>Müşteri</b> takip portalı</span><span class="sep">·</span><span><b>Otomatik</b> randevu hatırlatma</span><span class="sep">·</span><span><b>Tahsilat</b> ve gider takibi</span>
-  </div>
+<div class="marquee" aria-label="Öne çıkanlar">
+  <div class="mq-track"><span><i>✦</i><b>Satış</b> → <b>Evrak</b> → <b>Randevu</b> tek akışta</span><span><i>✦</i><b>Müşteri</b> takip portalı</span><span><i>✦</i><b>7 gün kala</b> otomatik hatırlatma</span><span><i>✦</i><b>Tahsilat</b> ve gider takibi</span><span><i>✦</i><b>Aile ve grup</b> başvuruları</span><span><i>✦</i><b>Belge</b> kütüphanesi</span><span><i>✦</i><b>Türkçe ve İngilizce</b> mailler</span><span><i>✦</i><b>Performans</b> raporları</span><span><i>✦</i><b>Excel</b> ile toplu yükleme</span><span aria-hidden="true"><i>✦</i><b>Satış</b> → <b>Evrak</b> → <b>Randevu</b> tek akışta</span><span aria-hidden="true"><i>✦</i><b>Müşteri</b> takip portalı</span><span aria-hidden="true"><i>✦</i><b>7 gün kala</b> otomatik hatırlatma</span><span aria-hidden="true"><i>✦</i><b>Tahsilat</b> ve gider takibi</span><span aria-hidden="true"><i>✦</i><b>Aile ve grup</b> başvuruları</span><span aria-hidden="true"><i>✦</i><b>Belge</b> kütüphanesi</span><span aria-hidden="true"><i>✦</i><b>Türkçe ve İngilizce</b> mailler</span><span aria-hidden="true"><i>✦</i><b>Performans</b> raporları</span><span aria-hidden="true"><i>✦</i><b>Excel</b> ile toplu yükleme</span></div>
 </div>
 
 <section aria-labelledby="h-pain">
