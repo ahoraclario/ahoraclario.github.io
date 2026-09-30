@@ -7,7 +7,7 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Twemoji Country Flags","Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img,svg{display:block}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
@@ -46,7 +46,7 @@ p{margin:0}
 .btn-ghost{background:rgba(11,32,51,.6);border-color:var(--border);color:var(--text)}
 .btn-ghost:hover{border-color:rgba(34,211,238,.5)}
 .btn-sm{height:40px;padding:0 16px;font-size:14px}
-.menu-btn{display:none;background:none;border:1px solid var(--border);color:var(--text);border-radius:9px;width:42px;height:40px;cursor:pointer}
+.menu-btn{display:none;background:none;border:1px solid var(--border);color:var(--text);border-radius:9px;width:44px;height:44px;cursor:pointer}
 
 /* ── Hero ── */
 .hero{padding:72px 0 90px}
@@ -186,11 +186,11 @@ footer a:hover{color:var(--text)}
 .app-logo{display:flex;align-items:center;gap:7px;margin:0 4px 12px}
 .app-logo span{width:22px;height:22px;border-radius:6px;background:#2563EB;color:#fff;display:grid;place-items:center;font-size:11px}
 .app-logo b{font-size:11.5px;color:#111827;line-height:1.1}
-.app-logo small{display:block;font-size:8.5px;color:#9CA3AF;font-weight:500}
+.app-logo small{display:block;font-size:8.5px;color:#6B7280;font-weight:500}
 .app-nav div{padding:5px 7px;border-radius:6px;color:#4B5563;font-size:10px;display:flex;justify-content:space-between;align-items:center;margin-bottom:1px}
 .app-nav div.on{background:#EFF4FF;color:#2563EB;font-weight:700}
 .app-nav em{font-style:normal;font-size:8.5px;background:#FEE2E2;color:#DC2626;border-radius:8px;padding:0 5px;font-weight:700}
-.app-nav h5{margin:9px 7px 4px;font-size:8px;letter-spacing:.08em;color:#9CA3AF}
+.app-nav h5{margin:9px 7px 4px;font-size:8px;letter-spacing:.08em;color:#6B7280}
 .app-main{padding:12px 14px;overflow:hidden}
 .app-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .app-h b{font-size:13px;color:#111827}
@@ -198,8 +198,8 @@ footer a:hover{color:var(--text)}
 .app-tbl{background:#fff;border:1px solid #E5E9F0;border-radius:9px;overflow:hidden}
 .app-tr{display:grid;grid-template-columns:66px minmax(72px,1fr) 78px 98px 58px;gap:6px;align-items:center;padding:7px 10px;border-bottom:1px solid #F0F2F6;font-size:10px}
 .app-tr:last-child{border-bottom:0}
-.app-tr.hd{font-size:8.5px;font-weight:700;letter-spacing:.05em;color:#9CA3AF;background:#FAFBFC}
-.app-tr .fn{font-family:ui-monospace,Menlo,Consolas,monospace;color:#9CA3AF;font-size:9px}
+.app-tr.hd{font-size:8.5px;font-weight:700;letter-spacing:.05em;color:#6B7280;background:#FAFBFC}
+.app-tr .fn{font-family:ui-monospace,Menlo,Consolas,monospace;color:#6B7280;font-size:9px}
 .app-tr b{color:#111827;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .app-tr > span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .st{display:inline-block;padding:2px 7px;border-radius:5px;font-weight:700;font-size:9px;white-space:nowrap}
@@ -213,10 +213,10 @@ footer a:hover{color:var(--text)}
 .phone-in small{color:#6B7280;font-size:8.5px}
 .pstep{display:flex;gap:7px;align-items:flex-start;margin-top:8px}
 .pstep i{flex-shrink:0;width:14px;height:14px;border-radius:50%;background:#E5E7EB;display:grid;place-items:center;font-style:normal;font-size:8px;color:#fff;margin-top:1px}
-.pstep.done i{background:#22C55E}.pstep.now i{background:#2563EB;box-shadow:0 0 0 3px #DBEAFE}
+.pstep.done i{background:#16A34A}.pstep.now i{background:#2563EB;box-shadow:0 0 0 3px #DBEAFE}
 .pstep b{display:block;font-size:9.5px;color:#111827}
 .pstep span{color:#6B7280;font-size:8.5px}
-.pstep.todo b{color:#9CA3AF}
+.pstep.todo b{color:#6B7280}
 .hero-visual{position:relative;margin-right:26px}
 
 /* Hero ekranı: sitenin koyu temasına uyumlu görünüm */
@@ -270,7 +270,7 @@ footer a:hover{color:var(--text)}
 .mcard small{color:#6B7280;font-size:11px}
 .mtable{margin-top:10px;background:#fff;border-radius:12px;overflow:hidden;color:#1F2937;font-size:11.5px}
 .mtable div{display:grid;grid-template-columns:1.2fr 1fr 1fr 1.2fr;padding:8px 14px;border-bottom:1px solid #F0F2F6;align-items:center}
-.mtable div:first-child{font-size:9.5px;font-weight:700;letter-spacing:.06em;color:#9CA3AF;background:#FAFBFC}
+.mtable div:first-child{font-size:9.5px;font-weight:700;letter-spacing:.06em;color:#6B7280;background:#FAFBFC}
 .mtable .bar{height:6px;border-radius:4px;background:#16A34A}
 .demo-note{font-size:12px;color:var(--faint);margin-top:10px;text-align:right}
 
@@ -364,7 +364,7 @@ a.card{display:block;color:inherit}
 .file-h b{font-size:15px;color:#111827;display:block}
 .file-h small{color:#6B7280;font-size:11px}
 .ffield{background:#fff;border:1px solid #E5E9F0;border-radius:9px;padding:9px 11px;margin-bottom:9px;transition:border-color .3s,box-shadow .3s}
-.ffield label{display:block;font-size:10px;font-weight:700;letter-spacing:.05em;color:#9CA3AF;margin-bottom:3px}
+.ffield label{display:block;font-size:10px;font-weight:700;letter-spacing:.05em;color:#6B7280;margin-bottom:3px}
 .ffield .v{font-size:13px;font-weight:600;color:#111827;min-height:18px;display:flex;align-items:center;gap:8px}
 .ffield.hl{border-color:#2563EB;box-shadow:0 0 0 3px #DBEAFE}
 .win .st{font-size:11px;padding:3px 9px}
@@ -398,17 +398,17 @@ a.card{display:block;color:inherit}
 .p-head .meta{font-size:10.5px;opacity:.9}
 .p-body{padding:12px}
 .p-card{background:#fff;border:1px solid #E5E9F0;border-radius:12px;padding:12px;margin-bottom:10px}
-.p-card h6{margin:0 0 8px;font-size:10.5px;letter-spacing:.05em;color:#9CA3AF;text-transform:uppercase}
+.p-card h6{margin:0 0 8px;font-size:10.5px;letter-spacing:.05em;color:#6B7280;text-transform:uppercase}
 .ps{display:flex;gap:9px;align-items:flex-start;position:relative;padding-bottom:10px}
 .ps:not(:last-child)::after{content:'';position:absolute;left:7.5px;top:17px;bottom:0;width:1.5px;background:#E5E7EB}
 .ps.done:not(:last-child)::after{background:#22C55E}
 .ps i{flex-shrink:0;width:16px;height:16px;border-radius:50%;background:#E5E7EB;display:grid;place-items:center;font-style:normal;font-size:9px;color:#fff;transition:all .4s;position:relative;z-index:1}
-.ps.done i{background:#22C55E}
+.ps.done i{background:#16A34A}
 .ps.now i{background:#2563EB;box-shadow:0 0 0 4px #DBEAFE;animation:pulse 1.6s ease-in-out infinite}
 @keyframes pulse{50%{box-shadow:0 0 0 7px rgba(219,234,254,.5)}}
 .ps b{display:block;font-size:11.5px;color:#111827;transition:color .3s}
 .ps span{color:#6B7280;font-size:10.5px}
-.ps.todo b{color:#9CA3AF;font-weight:500}
+.ps.todo b{color:#6B7280;font-weight:500}
 .appt{display:flex;gap:10px;align-items:center;max-height:0;opacity:0;overflow:hidden;transition:all .6s}
 .appt.show{max-height:90px;opacity:1}
 .appt .d{width:44px;height:48px;border-radius:9px;background:#EFF6FF;color:#1D4ED8;display:grid;place-items:center;text-align:center;font-weight:800;font-size:16px;line-height:1;flex-shrink:0}
@@ -416,13 +416,13 @@ a.card{display:block;color:inherit}
 .appt b{display:block;font-size:12px}
 .appt span{color:#6B7280;font-size:10.5px}
 .rep-row{display:flex;align-items:center;gap:9px}
-.rep-row .av{width:30px;height:30px;border-radius:50%;background:#0D9488;color:#fff;display:grid;place-items:center;font-weight:700;font-size:11px}
+.rep-row .av{width:30px;height:30px;border-radius:50%;background:#0F766E;color:#fff;display:grid;place-items:center;font-weight:700;font-size:11px}
 .rep-row b{display:block;font-size:12px}
 .rep-row span{color:#6B7280;font-size:10.5px}
 .rep-row .call{margin-left:auto;display:flex;gap:5px}
 .rep-row .call em{font-style:normal;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:#DCFCE7;font-size:13px}
-.upd{font-size:10px;color:#9CA3AF;text-align:center;margin-top:4px}
-.upd.flash{color:#16A34A;font-weight:700}
+.upd{font-size:10px;color:#6B7280;text-align:center;margin-top:4px}
+.upd.flash{color:#15803D;font-weight:700}
 
 /* Özellik anlatımı: görsel + metin */
 .feat-row{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-bottom:90px}
@@ -436,7 +436,7 @@ a.card{display:block;color:inherit}
 .more-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .more-grid a{display:flex;align-items:center;gap:12px;padding:16px 18px;border-radius:14px;background:rgba(8,25,42,.7);border:1px solid var(--border2);font-weight:600;transition:border-color .2s,transform .2s}
 .more-grid a:hover{border-color:rgba(34,211,238,.4);transform:translateY(-2px)}
-.more-grid a span{font-size:20px}
+.more-grid a span{font-size:20px;display:grid;place-items:center;width:40px;height:40px;flex-shrink:0;border-radius:11px;background:rgba(34,211,238,.1);color:var(--cyan)}
 .more-grid a small{display:block;color:var(--faint);font-weight:500;font-size:12.5px}
 
 @media (max-width:980px){
@@ -461,3 +461,14 @@ a.card{display:block;color:inherit}
 @media (max-width:760px){ .wa-fab{padding:14px} .wa-fab span{display:none} .wa-fab svg{width:28px;height:28px} }
 @media print{ .wa-fab{display:none} }
 .cline.wa .ic{background:rgba(37,211,102,.12);color:#25D366}
+/* Dokunma alanları: görünüm aynı kalır, parmakla dokunulan alan en az 44px olur */
+.crumb a{display:inline-block;padding:13px 2px;margin:-13px 0}
+footer .links a{display:inline-block;padding:11px 0;margin:-11px 0}
+/* Çizgi ikonlar (emoji yerine) */
+.ico{width:1.1em;height:1.1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.18em;flex-shrink:0}
+.more-grid a span .ico{width:20px;height:20px}
+.card.bad h3 .ico{color:#F87171}.card.good h3 .ico{color:var(--green)}
+.handoff .ico{color:#FBBF24}
+/* Form: hata mesajı ilgili alanın altında */
+.fld.bad input,.fld.bad textarea{border-color:rgba(248,113,113,.8);box-shadow:0 0 0 3px rgba(248,113,113,.15)}
+.ferr{margin:6px 0 0;font-size:13px;color:#FCA5A5}
